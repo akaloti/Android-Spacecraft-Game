@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.KeyEvent;
 
 /**
  * Created by Aaron on 12/27/2015.
@@ -24,5 +25,14 @@ public class GameActivity extends Activity {
 
         mGameView = new SGView(this, size.x, size.y);
         setContentView(mGameView);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // If the player hits the back button, quit the app
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return false;
     }
 }

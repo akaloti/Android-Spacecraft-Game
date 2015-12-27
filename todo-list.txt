@@ -1,7 +1,5 @@
-Next:
--implement onKeyDown for both activities
--implement GameActivity.onPause() and onResume()
-
 Eventually:
+-implement GameActivity.onPause() and onResume()
 -main menu background image
 -delete activity_main.xml
+-figure out why finish() doesn't work in the onKeyDown methods
