@@ -12,8 +12,13 @@
     tools:context="enterprises.wayne.spacecraftgame.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Play"
+        android:id="@+id/bPlay"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp"
+        android:onClick="onPlayClick" />
 </RelativeLayout>
