@@ -1,0 +1,5 @@
+Next:
+-remove the unnecessary stuff from the main menu without breaking it
+
+Eventually:
+-main menu background image
