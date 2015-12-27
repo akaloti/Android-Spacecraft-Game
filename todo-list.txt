@@ -1,7 +1,6 @@
 Next:
--make GameActivity fullscreen and locked on landscape
--implement GameActivity.onPause() and onResume()
 -implement onKeyDown for both activities
+-implement GameActivity.onPause() and onResume()
 
 Eventually:
 -main menu background image

@@ -26,6 +26,9 @@ How to Run Tests
 ----------------
 
 In Android Studio, run 'Tests' in 'enterprises.wayne.spacecraftgame'.
+The Android device that you use to run the tests must be unlocked (even
+if the device is an emulator); otherwise, at least one of the functional
+tests will always fail.
 
 Acknowledgments
 ---------------
