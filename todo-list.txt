@@ -1,5 +1,14 @@
+Next:
+-draw spacecraft
+-look into scaling drawings
+-implement movement/velocity
+-calculate distance taken
+-make enemies: (look into class hierarchy)
+    -ones that go forward
+    -ones that head towards the player
+-draw spacedust
+
 Eventually:
--implement GameActivity.onPause() and onResume()
 -main menu background image
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
