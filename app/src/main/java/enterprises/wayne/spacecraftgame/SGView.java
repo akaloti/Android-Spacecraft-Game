@@ -2,6 +2,7 @@ package enterprises.wayne.spacecraftgame;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,7 +18,7 @@ public class SGView extends SurfaceView
     private int mScreenX;
     private int mScreenY;
 
-    volatile boolean mPlaying;
+    volatile boolean mIsPlaying;
     Thread mGameThread = null;
 
     // For drawing
@@ -44,7 +45,19 @@ public class SGView extends SurfaceView
 
     }
 
-    private void drawTrivialText() {
+    public void pause() {
+        mIsPlaying = false;
+        try {
+            // Clean up thread
+            mGameThread.join();
+        } catch (InterruptedException e) {
 
+        }
+    }
+
+    public void resume() {
+        mIsPlaying = true;
+        mGameThread = new Thread(this);
+        mGameThread.start();
     }
 }
