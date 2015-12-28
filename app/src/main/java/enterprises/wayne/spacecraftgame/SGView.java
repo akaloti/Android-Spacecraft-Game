@@ -36,13 +36,31 @@ public class SGView extends SurfaceView
 
         mHolder = getHolder();
         mPaint = new Paint();
-
-        drawTrivialText();
     }
 
     @Override
     public void run() {
+        while (mIsPlaying)
+            draw();
+    }
 
+    private void draw() {
+        if (mHolder.getSurface().isValid()) {
+            // Lock the area of memory to draw to
+            mCanvas = mHolder.lockCanvas();
+
+            // Rub out the last frame
+            mCanvas.drawColor(Color.argb(255, 0, 0, 0));
+
+            // Draw trivial text
+            mPaint.setColor(Color.argb(255, 255, 255, 255));
+            mPaint.setTextAlign(Paint.Align.CENTER);
+            mPaint.setTextSize(50);
+            mCanvas.drawText("Hello", mScreenX / 2, mScreenY / 2, mPaint);
+
+            // Unlock and draw the scene
+            mHolder.unlockCanvasAndPost(mCanvas);
+        }
     }
 
     public void pause() {
