@@ -27,6 +27,19 @@ public class GameActivity extends Activity {
         setContentView(mGameView);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mGameView.pause();
+    }
+
+    // Is called when app is created or returned to
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mGameView.resume();
+    }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // If the player hits the back button, quit the app
         if (keyCode == KeyEvent.KEYCODE_BACK) {

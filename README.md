@@ -39,6 +39,10 @@ which classes to use.
 "Testing and Securing Android Studio Applications" by Belén Cruz Zapata
 and Antonio Hernández Niñirola helped me set up the unit tests.
 
+The image of the hero's rocket is from the source code of the book
+"SFML Game Development" by Artur Moreira, Henrik Vogelius
+Hansson, and Jan Haller.
+
 Author
 ------
 

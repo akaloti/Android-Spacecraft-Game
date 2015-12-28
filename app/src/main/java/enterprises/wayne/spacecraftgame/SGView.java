@@ -2,6 +2,7 @@ package enterprises.wayne.spacecraftgame;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,7 +18,7 @@ public class SGView extends SurfaceView
     private int mScreenX;
     private int mScreenY;
 
-    volatile boolean mPlaying;
+    volatile boolean mIsPlaying;
     Thread mGameThread = null;
 
     // For drawing
@@ -35,16 +36,46 @@ public class SGView extends SurfaceView
 
         mHolder = getHolder();
         mPaint = new Paint();
-
-        drawTrivialText();
     }
 
     @Override
     public void run() {
-
+        while (mIsPlaying)
+            draw();
     }
 
-    private void drawTrivialText() {
+    private void draw() {
+        if (mHolder.getSurface().isValid()) {
+            // Lock the area of memory to draw to
+            mCanvas = mHolder.lockCanvas();
 
+            // Rub out the last frame
+            mCanvas.drawColor(Color.argb(255, 0, 0, 0));
+
+            // Draw trivial text
+            mPaint.setColor(Color.argb(255, 255, 255, 255));
+            mPaint.setTextAlign(Paint.Align.CENTER);
+            mPaint.setTextSize(50);
+            mCanvas.drawText("Hello", mScreenX / 2, mScreenY / 2, mPaint);
+
+            // Unlock and draw the scene
+            mHolder.unlockCanvasAndPost(mCanvas);
+        }
+    }
+
+    public void pause() {
+        mIsPlaying = false;
+        try {
+            // Clean up thread
+            mGameThread.join();
+        } catch (InterruptedException e) {
+
+        }
+    }
+
+    public void resume() {
+        mIsPlaying = true;
+        mGameThread = new Thread(this);
+        mGameThread.start();
     }
 }
