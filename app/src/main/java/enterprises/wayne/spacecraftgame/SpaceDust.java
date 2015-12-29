@@ -1,5 +1,7 @@
 package enterprises.wayne.spacecraftgame;
 
+import android.graphics.Color;
+
 import java.util.Random;
 
 /**
@@ -17,6 +19,8 @@ public class SpaceDust {
     private int mMaxY;
     private int mMinX;
     private int mMinY;
+
+    public final static int COLOR = Color.argb(255, 255, 255, 255);
 
     /**
      * @param screenX user's screen width (in pixels)

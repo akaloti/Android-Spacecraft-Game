@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Aaron on 12/27/2015.
  */
@@ -18,10 +20,13 @@ public class SGView extends SurfaceView
     private int mScreenX;
     private int mScreenY;
 
-    volatile boolean mIsPlaying;
-    Thread mGameThread = null;
+    private volatile boolean mIsPlaying;
+    private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
+
+    private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
+    private int mNumberOfDust = 120;
 
     // For drawing
     private Paint mPaint;
@@ -47,7 +52,15 @@ public class SGView extends SurfaceView
         mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
                 mScreenX, mScreenY);
 
+        makeNewDustList();
+    }
 
+    private void makeNewDustList() {
+        mDustList.clear();
+        for (int i = 0; i < mNumberOfDust; i++) {
+            SpaceDust speck = new SpaceDust(mScreenX, mScreenY);
+            mDustList.add(speck);
+        }
     }
 
     @Override
@@ -75,6 +88,11 @@ public class SGView extends SurfaceView
             mPaint.setTextAlign(Paint.Align.CENTER);
             mPaint.setTextSize(50);
             mCanvas.drawText("Hello", mScreenX / 2, mScreenY / 2, mPaint);
+
+            // Draw each speck of dust
+            mPaint.setColor(SpaceDust.COLOR);
+            for (SpaceDust sd : mDustList)
+                    mCanvas.drawPoint(sd.getX(), sd.getY(), mPaint);
 
             // Draw the player
             mCanvas.drawBitmap(

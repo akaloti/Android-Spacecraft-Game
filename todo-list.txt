@@ -1,10 +1,10 @@
 Next:
+-player speed and spacedust update
 -implement movement/velocity
 -calculate distance taken
 -make enemies: (look into class hierarchy)
     -ones that go forward
     -ones that head towards the player
--draw spacedust
 
 Eventually:
 -make sure spacecrafts have correct size
