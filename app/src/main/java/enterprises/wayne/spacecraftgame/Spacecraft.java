@@ -10,8 +10,8 @@ import android.graphics.BitmapFactory;
 public abstract class Spacecraft {
     private Bitmap mBitmap;
     private int mX, mY; // position of the spacecraft
+    private int mMaxX, mMinX; // for keeping craft in boundaries
     private int mSpeedX, mSpeedY;
-    private int mScreenX, mScreenY;
 
     public enum Type {
         HERO,
@@ -30,12 +30,17 @@ public abstract class Spacecraft {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
                 break;
+            default:
+                throw new AssertionError("Invalid type given to Spacecraft()");
         }
 
         mX = 50;
         mY = 50;
         mSpeedX = 1;
         mSpeedY = 1;
+
+        mMaxX = screenX - mBitmap.getWidth();
+        mMinX = 0;
     }
 
     public Bitmap getBitmap() {
@@ -46,7 +51,7 @@ public abstract class Spacecraft {
         return mX;
     }
 
-    public void setX(int x) {
+    protected void setX(int x) {
         mX = x;
     }
 
@@ -54,15 +59,23 @@ public abstract class Spacecraft {
         return mY;
     }
 
-    public void setY(int y) {
+    protected void setY(int y) {
         mY = y;
+    }
+
+    public int getMaxX() {
+        return mMaxX;
+    }
+
+    public int getMinX() {
+        return mMinX;
     }
 
     public int getSpeedX() {
         return mSpeedX;
     }
 
-    public void setSpeedX(int speed) {
+    protected void setSpeedX(int speed) {
         mSpeedX = speed;
     }
 
@@ -70,16 +83,8 @@ public abstract class Spacecraft {
         return mSpeedY;
     }
 
-    public void setSpeedY(int speed) {
+    protected void setSpeedY(int speed) {
         mSpeedY = speed;
-    }
-
-    public int getScreenX() {
-        return mScreenX;
-    }
-
-    public int getScreenY() {
-        return mScreenY;
     }
 
     public abstract void update();

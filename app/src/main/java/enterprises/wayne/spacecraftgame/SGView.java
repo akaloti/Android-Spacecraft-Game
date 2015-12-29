@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -26,7 +27,12 @@ public class SGView extends SurfaceView
     private PlayerSpacecraft mPlayer;
 
     private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
-    private int mNumberOfDust = 120;
+    private static final int NUMBER_OF_DUST = 120;
+
+    private static final int IDEAL_FRAMES_PER_SECOND = 60;
+    private static final int MILLISECONDS_PER_SECOND = 1000;
+    private static final long SLEEP_TIME_MILLISECONDS =
+            MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     // For drawing
     private Paint mPaint;
@@ -57,7 +63,7 @@ public class SGView extends SurfaceView
 
     private void makeNewDustList() {
         mDustList.clear();
-        for (int i = 0; i < mNumberOfDust; i++) {
+        for (int i = 0; i < NUMBER_OF_DUST; i++) {
             SpaceDust speck = new SpaceDust(mScreenX, mScreenY);
             mDustList.add(speck);
         }
@@ -68,6 +74,7 @@ public class SGView extends SurfaceView
         while (mIsPlaying) {
             update();
             draw();
+            controlFrameRate();
         }
     }
 
@@ -110,6 +117,15 @@ public class SGView extends SurfaceView
         }
     }
 
+    private void controlFrameRate() {
+        try {
+            mGameThread.sleep(SLEEP_TIME_MILLISECONDS);
+        }
+        catch (InterruptedException e) {
+
+        }
+    }
+
     public void pause() {
         mIsPlaying = false;
         try {
@@ -124,5 +140,32 @@ public class SGView extends SurfaceView
         mIsPlaying = true;
         mGameThread = new Thread(this);
         mGameThread.start();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_UP:
+                // player lifted finger up
+                mPlayer.setHorizontalDirection(
+                        PlayerSpacecraft.HorizontalDirection.NONE);
+                break;
+
+            case MotionEvent.ACTION_DOWN:
+                // player touched screen; determine direction
+                PlayerSpacecraft.HorizontalDirection dir;
+                if (motionEvent.getX() < mScreenX / 2)
+                    dir = PlayerSpacecraft.HorizontalDirection.LEFT;
+                else if (motionEvent.getX() > mScreenX / 2)
+                    dir = PlayerSpacecraft.HorizontalDirection.RIGHT;
+                else {
+                    // should be extremely unlikely, but in case
+                    dir = PlayerSpacecraft.HorizontalDirection.NONE;
+                }
+                mPlayer.setHorizontalDirection(dir);
+                break;
+        }
+
+        return true;
     }
 }

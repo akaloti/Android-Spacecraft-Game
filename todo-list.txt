@@ -1,8 +1,15 @@
 Next:
 -adjusting player's horizontal speed based on input
-    --deal with max values (i.e. screen dimensions)
+    --figure out how to support two fingers of input better
+        -look into having UI buttons below the plane (so, perhaps,
+        SGView doesn't cover whole screen)
+        -look into ACTION_MOVE in switch statement
+-consider scaling everything, so it all looks the same on every device
+    --since a dust speck is a pixel, could make number of specks
+    depend on number of pixels, and then just scale the bitmaps
 -calculate distance taken
 -make enemies: (look into class hierarchy)
+    -change player's size
     -ones that go forward
     -ones that head towards the player
 
@@ -14,3 +21,4 @@ Eventually:
 
 Considerable
 -ways for the user to change his spacecraft's vertical speed
+-change spacecraft's sprite depending on its horizontal direction
