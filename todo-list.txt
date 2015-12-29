@@ -1,13 +1,16 @@
 Next:
--implement movement/velocity
+-adjusting player's horizontal speed based on input
+    --deal with max values (i.e. screen dimensions)
 -calculate distance taken
 -make enemies: (look into class hierarchy)
     -ones that go forward
     -ones that head towards the player
--draw spacedust
 
 Eventually:
 -make sure spacecrafts have correct size
 -main menu background image
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
+
+Considerable
+-ways for the user to change his spacecraft's vertical speed

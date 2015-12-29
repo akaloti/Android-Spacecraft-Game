@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 public abstract class Spacecraft {
     private Bitmap mBitmap;
     private int mX, mY; // position of the spacecraft
+    private int mSpeedX, mSpeedY;
     private int mScreenX, mScreenY;
 
     public enum Type {
@@ -28,7 +29,13 @@ public abstract class Spacecraft {
             case HERO:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
+                break;
         }
+
+        mX = 50;
+        mY = 50;
+        mSpeedX = 1;
+        mSpeedY = 1;
     }
 
     public Bitmap getBitmap() {
@@ -49,6 +56,22 @@ public abstract class Spacecraft {
 
     public void setY(int y) {
         mY = y;
+    }
+
+    public int getSpeedX() {
+        return mSpeedX;
+    }
+
+    public void setSpeedX(int speed) {
+        mSpeedX = speed;
+    }
+
+    public int getSpeedY() {
+        return mSpeedY;
+    }
+
+    public void setSpeedY(int speed) {
+        mSpeedY = speed;
     }
 
     public int getScreenX() {
