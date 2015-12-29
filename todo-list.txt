@@ -1,6 +1,4 @@
 Next:
--draw spacecraft
--look into scaling drawings
 -implement movement/velocity
 -calculate distance taken
 -make enemies: (look into class hierarchy)
@@ -9,6 +7,7 @@ Next:
 -draw spacedust
 
 Eventually:
+-make sure spacecrafts have correct size
 -main menu background image
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
