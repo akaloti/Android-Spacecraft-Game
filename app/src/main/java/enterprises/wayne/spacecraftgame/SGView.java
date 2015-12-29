@@ -21,6 +21,8 @@ public class SGView extends SurfaceView
     volatile boolean mIsPlaying;
     Thread mGameThread = null;
 
+    private PlayerSpacecraft mPlayer;
+
     // For drawing
     private Paint mPaint;
     private Canvas mCanvas;
@@ -36,12 +38,28 @@ public class SGView extends SurfaceView
 
         mHolder = getHolder();
         mPaint = new Paint();
+
+        restartGame();
+    }
+
+    private void restartGame() {
+        // Initialize spacecrafts
+        mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
+                mScreenX, mScreenY);
+
+
     }
 
     @Override
     public void run() {
-        while (mIsPlaying)
+        while (mIsPlaying) {
+            update();
             draw();
+        }
+    }
+
+    private void update() {
+        mPlayer.update();
     }
 
     private void draw() {
@@ -57,6 +75,13 @@ public class SGView extends SurfaceView
             mPaint.setTextAlign(Paint.Align.CENTER);
             mPaint.setTextSize(50);
             mCanvas.drawText("Hello", mScreenX / 2, mScreenY / 2, mPaint);
+
+            // Draw the player
+            mCanvas.drawBitmap(
+                    mPlayer.getBitmap(),
+                    mPlayer.getX(),
+                    mPlayer.getY(),
+                    mPaint);
 
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
