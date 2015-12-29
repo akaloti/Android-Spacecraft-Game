@@ -37,7 +37,14 @@ public class PlayerSpacecraft extends Spacecraft {
     }
 
     public void update() {
-        // Update horizontal speed
+        // Update speed and position
+        updateHorizontalSpeed();
+        setX(getX() + getSpeedX());
+
+        keepSpacecraftOnScreen();
+    }
+
+    private void updateHorizontalSpeed() {
         switch (mHorizontalDirection) {
             case NONE:
                 setSpeedX(0);
@@ -52,7 +59,20 @@ public class PlayerSpacecraft extends Spacecraft {
                 throw new AssertionError(
                         "Somehow invalid player's horizontal direction");
         }
+    }
 
-        setX(getX() + getSpeedX());
+    /**
+     * @post if spacecraft was horizontally off bounds, its position
+     * has been fixed
+     */
+    private void keepSpacecraftOnScreen() {
+        int x = getX();
+        int minX = getMinX();
+        int maxX = getMaxX();
+
+        if (x < minX)
+            setX(minX);
+        if (x > maxX)
+            setX(maxX);
     }
 }
