@@ -27,6 +27,9 @@ public class PlayerSpacecraft extends Spacecraft {
     public PlayerSpacecraft(Context context, Type type,
                             int screenX, int screenY) {
         super(context, type, screenX, screenY);
+
+        setX(screenX / 2);
+        setY(screenY - 300);
     }
 
     public void setHorizontalDirection(HorizontalDirection dir) {

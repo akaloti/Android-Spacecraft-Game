@@ -1,6 +1,5 @@
 Next:
 -adjusting player's horizontal speed based on input
-    --fix player start position
     --deal with max values (i.e. screen dimensions); constrain player
     --control frame rate
     --figure out how to support two fingers of input better
