@@ -1,6 +1,5 @@
 Next:
 -adjusting player's horizontal speed based on input
-    --control frame rate
     --figure out how to support two fingers of input better
         -look into having UI buttons below the plane (so, perhaps,
         SGView doesn't cover whole screen)

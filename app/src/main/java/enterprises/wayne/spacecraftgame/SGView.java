@@ -27,7 +27,12 @@ public class SGView extends SurfaceView
     private PlayerSpacecraft mPlayer;
 
     private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
-    private int mNumberOfDust = 120;
+    private static final int NUMBER_OF_DUST = 120;
+
+    private static final int IDEAL_FRAMES_PER_SECOND = 60;
+    private static final int MILLISECONDS_PER_SECOND = 1000;
+    private static final long SLEEP_TIME_MILLISECONDS =
+            MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     // For drawing
     private Paint mPaint;
@@ -58,7 +63,7 @@ public class SGView extends SurfaceView
 
     private void makeNewDustList() {
         mDustList.clear();
-        for (int i = 0; i < mNumberOfDust; i++) {
+        for (int i = 0; i < NUMBER_OF_DUST; i++) {
             SpaceDust speck = new SpaceDust(mScreenX, mScreenY);
             mDustList.add(speck);
         }
@@ -69,6 +74,7 @@ public class SGView extends SurfaceView
         while (mIsPlaying) {
             update();
             draw();
+            controlFrameRate();
         }
     }
 
@@ -108,6 +114,15 @@ public class SGView extends SurfaceView
 
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
+        }
+    }
+
+    private void controlFrameRate() {
+        try {
+            mGameThread.sleep(SLEEP_TIME_MILLISECONDS);
+        }
+        catch (InterruptedException e) {
+
         }
     }
 
