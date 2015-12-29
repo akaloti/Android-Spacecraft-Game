@@ -46,7 +46,7 @@ public abstract class Spacecraft {
         return mX;
     }
 
-    public void setX(int x) {
+    protected void setX(int x) {
         mX = x;
     }
 
@@ -54,7 +54,7 @@ public abstract class Spacecraft {
         return mY;
     }
 
-    public void setY(int y) {
+    protected void setY(int y) {
         mY = y;
     }
 
@@ -62,7 +62,7 @@ public abstract class Spacecraft {
         return mSpeedX;
     }
 
-    public void setSpeedX(int speed) {
+    protected void setSpeedX(int speed) {
         mSpeedX = speed;
     }
 
@@ -70,7 +70,7 @@ public abstract class Spacecraft {
         return mSpeedY;
     }
 
-    public void setSpeedY(int speed) {
+    protected void setSpeedY(int speed) {
         mSpeedY = speed;
     }
 

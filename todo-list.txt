@@ -1,6 +1,7 @@
 Next:
 -adjusting player's horizontal speed based on input
     --deal with max values (i.e. screen dimensions)
+    --control frame rate
 -calculate distance taken
 -make enemies: (look into class hierarchy)
     -ones that go forward
