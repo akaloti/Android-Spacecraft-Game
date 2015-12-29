@@ -73,6 +73,10 @@ public class SGView extends SurfaceView
 
     private void update() {
         mPlayer.update();
+
+        // Update each speck of dust
+        for (SpaceDust sd : mDustList)
+            sd.update(mPlayer.getSpeedY());
     }
 
     private void draw() {

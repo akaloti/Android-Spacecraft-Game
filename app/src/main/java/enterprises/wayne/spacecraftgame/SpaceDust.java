@@ -44,12 +44,12 @@ public class SpaceDust {
      */
     public void update(int playerSpeedY) {
         // Speed up when player does (so player never technically moves)
-        mY -= playerSpeedY;
-        mY -= mSpeedY;
+        mY += playerSpeedY;
+        mY += mSpeedY;
 
         // respawn space dust that leaves boundaries
-        if (mY < 0) {
-            mY = mMaxY;
+        if (mY > mMaxY) {
+            mY = mMinY;
 
             // Pick random speed and position
             Random generator = new Random();
