@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -124,5 +125,32 @@ public class SGView extends SurfaceView
         mIsPlaying = true;
         mGameThread = new Thread(this);
         mGameThread.start();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_UP:
+                // player lifted finger up
+                mPlayer.setHorizontalDirection(
+                        PlayerSpacecraft.HorizontalDirection.NONE);
+                break;
+
+            case MotionEvent.ACTION_DOWN:
+                // player touched screen; determine direction
+                PlayerSpacecraft.HorizontalDirection dir;
+                if (motionEvent.getX() < mScreenX / 2)
+                    dir = PlayerSpacecraft.HorizontalDirection.LEFT;
+                else if (motionEvent.getX() > mScreenX / 2)
+                    dir = PlayerSpacecraft.HorizontalDirection.RIGHT;
+                else {
+                    // should be extremely unlikely, but in case
+                    dir = PlayerSpacecraft.HorizontalDirection.NONE;
+                }
+                mPlayer.setHorizontalDirection(dir);
+                break;
+        }
+
+        return true;
     }
 }

@@ -7,6 +7,17 @@ import android.content.Context;
  */
 public class PlayerSpacecraft extends Spacecraft {
 
+    private HorizontalDirection mHorizontalDirection =
+            HorizontalDirection.NONE;
+
+    private static final int HORIZONTAL_SPEED = 10;
+
+    public enum HorizontalDirection {
+        NONE,
+        LEFT,
+        RIGHT,
+    }
+
     /**
      * @param context to allow access to drawables
      * @param type so that appropriate bitmap can be selected
@@ -18,7 +29,27 @@ public class PlayerSpacecraft extends Spacecraft {
         super(context, type, screenX, screenY);
     }
 
-    public void update() {
+    public void setHorizontalDirection(HorizontalDirection dir) {
+        mHorizontalDirection = dir;
+    }
 
+    public void update() {
+        // Update horizontal speed
+        switch (mHorizontalDirection) {
+            case NONE:
+                setSpeedX(0);
+                break;
+            case LEFT:
+                setSpeedX(-HORIZONTAL_SPEED);
+                break;
+            case RIGHT:
+                setSpeedX(HORIZONTAL_SPEED);
+                break;
+            default:
+                throw new AssertionError(
+                        "Somehow invalid player's horizontal direction");
+        }
+
+        setX(getX() + getSpeedX());
     }
 }
