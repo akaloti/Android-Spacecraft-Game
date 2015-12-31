@@ -36,25 +36,32 @@ public class PlayerSpacecraft extends Spacecraft {
 
     public void update() {
         // Update speed and position
-        updateHorizontalSpeed();
-        setX(getX() + getSpeedX());
+        setX(getX() + updateHorizontalSpeed());
 
         keepSpacecraftOnScreen();
     }
 
-    private void updateHorizontalSpeed() {
+    /**
+     * @return the new horizontal speed
+     */
+    private int updateHorizontalSpeed() {
+        int newSpeed;
+
         if (mIsPressingLeft && mIsPressingRight) {
             // left and right cancel each other out
-            setSpeedX(0);
+            newSpeed = 0;
         }
         else if (mIsPressingLeft)
-            setSpeedX(-HORIZONTAL_SPEED);
+            newSpeed = -HORIZONTAL_SPEED;
         else if (mIsPressingRight)
-            setSpeedX(HORIZONTAL_SPEED);
+            newSpeed = HORIZONTAL_SPEED;
         else {
             // neither going left nor right
-            setSpeedX(0);
+            newSpeed = 0;
         }
+
+        setSpeedX(newSpeed);
+        return newSpeed;
     }
 
     /**
