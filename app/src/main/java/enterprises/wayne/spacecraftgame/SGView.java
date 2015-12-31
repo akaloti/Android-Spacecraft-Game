@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -144,27 +145,32 @@ public class SGView extends SurfaceView
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_UP:
-                // player lifted finger up
-                mPlayer.setHorizontalDirection(
-                        PlayerSpacecraft.HorizontalDirection.NONE);
-                break;
+        boolean left = false;
+        boolean right = false;
 
-            case MotionEvent.ACTION_DOWN:
-                // player touched screen; determine direction
-                PlayerSpacecraft.HorizontalDirection dir;
-                if (motionEvent.getX() < mScreenX / 2)
-                    dir = PlayerSpacecraft.HorizontalDirection.LEFT;
-                else if (motionEvent.getX() > mScreenX / 2)
-                    dir = PlayerSpacecraft.HorizontalDirection.RIGHT;
-                else {
-                    // should be extremely unlikely, but in case
-                    dir = PlayerSpacecraft.HorizontalDirection.NONE;
-                }
-                mPlayer.setHorizontalDirection(dir);
-                break;
+        int pointerCount = motionEvent.getPointerCount();
+        for (int i = 0; i < pointerCount; ++i) {
+            int x = (int) motionEvent.getX(i);
+
+            switch (motionEvent.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_POINTER_DOWN:
+                case MotionEvent.ACTION_MOVE:
+                    // determine which half of the screen is being touched
+                    if (x < mScreenX / 2) {
+                        // left half, so move left
+                        left = true;
+                    }
+                    else {
+                        // right half, so move right
+                        right = true;
+                    }
+                    break;
+            }
         }
+
+        mPlayer.setPressingLeft(left);
+        mPlayer.setPressingRight(right);
 
         return true;
     }

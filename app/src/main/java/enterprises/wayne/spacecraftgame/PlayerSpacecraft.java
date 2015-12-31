@@ -6,17 +6,11 @@ import android.content.Context;
  * Created by Aaron on 12/28/2015.
  */
 public class PlayerSpacecraft extends Spacecraft {
-
-    private HorizontalDirection mHorizontalDirection =
-            HorizontalDirection.NONE;
-
     private static final int HORIZONTAL_SPEED = 10;
 
-    public enum HorizontalDirection {
-        NONE,
-        LEFT,
-        RIGHT,
-    }
+    // Regarding user input
+    private boolean mIsPressingRight = false;
+    private boolean mIsPressingLeft = false;
 
     /**
      * @param context to allow access to drawables
@@ -32,8 +26,12 @@ public class PlayerSpacecraft extends Spacecraft {
         setY(screenY - 300);
     }
 
-    public void setHorizontalDirection(HorizontalDirection dir) {
-        mHorizontalDirection = dir;
+    public void setPressingRight(boolean isPressingRight) {
+        mIsPressingRight = isPressingRight;
+    }
+
+    public void setPressingLeft(boolean isPressingLeft) {
+        mIsPressingLeft = isPressingLeft;
     }
 
     public void update() {
@@ -45,19 +43,17 @@ public class PlayerSpacecraft extends Spacecraft {
     }
 
     private void updateHorizontalSpeed() {
-        switch (mHorizontalDirection) {
-            case NONE:
-                setSpeedX(0);
-                break;
-            case LEFT:
-                setSpeedX(-HORIZONTAL_SPEED);
-                break;
-            case RIGHT:
-                setSpeedX(HORIZONTAL_SPEED);
-                break;
-            default:
-                throw new AssertionError(
-                        "Somehow invalid player's horizontal direction");
+        if (mIsPressingLeft && mIsPressingRight) {
+            // left and right cancel each other out
+            setSpeedX(0);
+        }
+        else if (mIsPressingLeft)
+            setSpeedX(-HORIZONTAL_SPEED);
+        else if (mIsPressingRight)
+            setSpeedX(HORIZONTAL_SPEED);
+        else {
+            // neither going left nor right
+            setSpeedX(0);
         }
     }
 
