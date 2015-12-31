@@ -1,20 +1,29 @@
 Next:
--consider scaling everything, so it all looks the same on every device
-    --look into eBook for discussion about this topic
-    --since a dust speck is a pixel, could make number of specks
-    depend on number of pixels, and then just scale the bitmaps
--calculate distance taken
+-distance taken
+    --draw remaining distance on screen
+    --winning the game by getting the distance
 -make enemies: (look into class hierarchy)
     -change player's size
     -ones that go forward
     -ones that head towards the player
+-implement death and continuing game
+-consider scaling everything, so it all looks the same on every device
+    --look into eBook for discussion about this topic
+    --since a dust speck is a pixel, could make number of specks
+    depend on number of pixels, and then just scale the bitmaps
+        --PROBLEM: all crafts move more slowly on bigger devices
+            --could compensate by editing speed
+            --could do what was done in eBook's Chapter 5
 
 Eventually:
 -make sure spacecrafts have correct size
 -main menu background image
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
+-make some levels
 
 Considerable
 -ways for the user to change his spacecraft's vertical speed
 -change spacecraft's sprite depending on its horizontal direction
+-giving the player the ability to shoot
+-put finish line sprite at goal distance

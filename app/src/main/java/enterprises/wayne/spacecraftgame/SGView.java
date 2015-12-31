@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,10 +29,17 @@ public class SGView extends SurfaceView
     private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
     private static final int NUMBER_OF_DUST = 120;
 
+    // For controlling frame rate
     private static final int IDEAL_FRAMES_PER_SECOND = 60;
     private static final int MILLISECONDS_PER_SECOND = 1000;
     private static final long SLEEP_TIME_MILLISECONDS =
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
+
+    private float mForwardDistanceRemaining;
+    private static final float FORWARD_DISTANCE_GOAL = 1000;
+
+    private boolean mWon;
+    private boolean mLost;
 
     // For drawing
     private Paint mPaint;
@@ -55,11 +61,15 @@ public class SGView extends SurfaceView
     }
 
     private void restartGame() {
-        // Initialize spacecrafts
+        initializeSpacecrafts();
+        makeNewDustList();
+        mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
+        mWon = mLost = false;
+    }
+
+    private void initializeSpacecrafts() {
         mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
                 mScreenX, mScreenY);
-
-        makeNewDustList();
     }
 
     private void makeNewDustList() {
@@ -85,6 +95,16 @@ public class SGView extends SurfaceView
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
             sd.update(mPlayer.getSpeedY());
+
+        updateRemainingDistance();
+    }
+
+    /**
+     * @post remaining forward distance has been updated; if user has
+     * won, he'll be told this
+     */
+    private void updateRemainingDistance() {
+        mForwardDistanceRemaining -= mPlayer.getSpeedY();
     }
 
     private void draw() {
