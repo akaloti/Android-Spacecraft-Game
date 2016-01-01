@@ -2,6 +2,7 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make enemies: (look into class hierarchy)
     -change player's size
     -ones that go forward
+    -set appropriate starting position
     -ones that head towards the player
     -erase enemies upon victory
     -adjust enemies' speeds appropriately

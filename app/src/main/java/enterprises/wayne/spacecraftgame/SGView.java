@@ -68,8 +68,7 @@ public class SGView extends SurfaceView
     }
 
     private void initializeSpacecrafts() {
-        mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
-                mScreenX, mScreenY);
+        mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
     }
 
     private void makeNewDustList() {

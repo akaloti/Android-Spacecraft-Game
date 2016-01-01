@@ -16,8 +16,6 @@ public abstract class EnemySpacecraft extends Spacecraft {
     public EnemySpacecraft(Context context, Type type,
                            int screenX, int screenY) {
         super(context, type, screenX, screenY);
-
-
     }
 
     /**
