@@ -4,6 +4,8 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
     -ones that go forward
     -ones that head towards the player
     -erase enemies upon victory
+    -adjust enemies' speeds appropriately
+    -respawn them when they go off screen?
 -sound effects
     --start
     --win
@@ -37,4 +39,4 @@ Considerable:
     -alarm sound effects could play
 -implement explosion (via sprite sheet) when a spacecraft explodes
 -combine all images into one sprite sheet
--design my own spacecrafts
+-design my own spacecrafts with either Inventor or Blender
