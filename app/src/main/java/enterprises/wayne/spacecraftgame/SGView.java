@@ -1,13 +1,19 @@
 package enterprises.wayne.spacecraftgame;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +47,10 @@ public class SGView extends SurfaceView
     private boolean mWon;
     private boolean mLost;
 
+    private SoundPool mSoundPool;
+    int mStartSound = -1;
+    int mWinSound = -1;
+
     // For drawing
     private Paint mPaint;
     private Canvas mCanvas;
@@ -51,6 +61,10 @@ public class SGView extends SurfaceView
 
         mContext = context;
 
+        // do this early to minimize the chance that the sounds
+        // don't get loaded in time
+        loadSounds();
+
         mScreenX = screenX;
         mScreenY = screenY;
 
@@ -58,6 +72,27 @@ public class SGView extends SurfaceView
         mPaint = new Paint();
 
         restartGame();
+    }
+
+    /**
+     * @post all sound effects have been loaded (in an order intended
+     * to minimize the possibility of an unloaded sound being played)
+     */
+    private void loadSounds() {
+        mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        try {
+            AssetManager assetManager = mContext.getAssets();
+            AssetFileDescriptor descriptor;
+
+            descriptor = assetManager.openFd("start.ogg");
+            mStartSound = mSoundPool.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("win.ogg");
+            mWinSound = mSoundPool.load(descriptor, 0);
+        }
+        catch (IOException e) {
+            Log.e("error", "failed to load sound files");
+        }
     }
 
     private void restartGame() {

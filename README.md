@@ -34,7 +34,10 @@ Acknowledgments
 ---------------
 
 "Android Game Programming by Example" by John Horton helped me decide
-which classes to use.
+which classes to use. Many of this game's classes were inspired
+by the classes of the Tappy Defender game demonstrated in his book.
+Furthermore, the sound effects in this game came from Tappy Defender's
+source code.
 
 "Testing and Securing Android Studio Applications" by Belén Cruz Zapata
 and Antonio Hernández Niñirola helped me set up the unit tests.
