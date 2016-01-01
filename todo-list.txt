@@ -35,3 +35,6 @@ Considerable:
 -special effects when the user is almost at the goal; e.g.:
     -screen could have flashes of red
     -alarm sound effects could play
+-implement explosion (via sprite sheet) when a spacecraft explodes
+-combine all images into one sprite sheet
+-design my own spacecrafts
