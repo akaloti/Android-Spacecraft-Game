@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,10 +29,17 @@ public class SGView extends SurfaceView
     private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
     private static final int NUMBER_OF_DUST = 120;
 
+    // For controlling frame rate
     private static final int IDEAL_FRAMES_PER_SECOND = 60;
     private static final int MILLISECONDS_PER_SECOND = 1000;
     private static final long SLEEP_TIME_MILLISECONDS =
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
+
+    private float mForwardDistanceRemaining;
+    private static final float FORWARD_DISTANCE_GOAL = 150;
+
+    private boolean mWon;
+    private boolean mLost;
 
     // For drawing
     private Paint mPaint;
@@ -55,11 +61,15 @@ public class SGView extends SurfaceView
     }
 
     private void restartGame() {
-        // Initialize spacecrafts
+        initializeSpacecrafts();
+        makeNewDustList();
+        mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
+        mWon = mLost = false;
+    }
+
+    private void initializeSpacecrafts() {
         mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
                 mScreenX, mScreenY);
-
-        makeNewDustList();
     }
 
     private void makeNewDustList() {
@@ -85,6 +95,20 @@ public class SGView extends SurfaceView
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
             sd.update(mPlayer.getSpeedY());
+
+        updateRemainingDistance();
+    }
+
+    /**
+     * @post remaining forward distance has been updated; if user has
+     * won, game is notified
+     */
+    private void updateRemainingDistance() {
+        mForwardDistanceRemaining -= mPlayer.getSpeedY();
+
+        if (mForwardDistanceRemaining < 0) {
+            mWon = true;
+        }
     }
 
     private void draw() {
@@ -107,9 +131,36 @@ public class SGView extends SurfaceView
                     mPlayer.getY(),
                     mPaint);
 
+            if (!gameEnded())
+                drawHUD();
+            else {
+                if (mWon)
+                    drawWinScreen();
+            }
+
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
         }
+    }
+
+    /**
+     * @post the heads-up display has been drawn
+     */
+    private void drawHUD() {
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // draw forward distance remaining
+        int distanceTextSize = 25;
+        mPaint.setTextSize(distanceTextSize);
+        mCanvas.drawText("Remaining: " + mForwardDistanceRemaining +
+            " meters", mScreenX / 2, distanceTextSize + 5, mPaint);
+    }
+
+    private void drawWinScreen() {
+        mPaint.setTextSize(60);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
     }
 
     private void controlFrameRate() {
@@ -167,5 +218,9 @@ public class SGView extends SurfaceView
         mPlayer.setPressingRight(right);
 
         return true;
+    }
+
+    private boolean gameEnded() {
+        return mWon || mLost;
     }
 }
