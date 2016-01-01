@@ -24,6 +24,6 @@ public abstract class EnemySpacecraft extends Spacecraft {
      * (so that the camera needn't move)
      */
     public void update(int playerSpeedY) {
-        setY(getY() - playerSpeedY - getSpeedY());
+        setY(getY() + playerSpeedY + getSpeedY());
     }
 }

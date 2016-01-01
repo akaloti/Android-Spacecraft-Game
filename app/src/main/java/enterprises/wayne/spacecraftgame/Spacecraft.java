@@ -13,7 +13,7 @@ public abstract class Spacecraft {
     private int mMaxX, mMinX; // for keeping craft in boundaries
     private int mSpeedX, mSpeedY;
 
-    public enum Type {
+    protected enum Type {
         HERO,
         ENEMY_1,
     }
