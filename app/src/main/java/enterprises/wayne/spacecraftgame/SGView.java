@@ -127,9 +127,26 @@ public class SGView extends SurfaceView
                     mPlayer.getY(),
                     mPaint);
 
+            if (!gameEnded())
+                drawHUD();
+
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
         }
+    }
+
+    /**
+     * @post the heads-up display has been drawn
+     */
+    private void drawHUD() {
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // draw forward distance remaining
+        int distanceTextSize = 25;
+        mPaint.setTextSize(distanceTextSize);
+        mCanvas.drawText("Remaining: " + mForwardDistanceRemaining +
+            " meters", mScreenX / 2, distanceTextSize + 5, mPaint);
     }
 
     private void controlFrameRate() {
@@ -187,5 +204,9 @@ public class SGView extends SurfaceView
         mPlayer.setPressingRight(right);
 
         return true;
+    }
+
+    private boolean gameEnded() {
+        return mWon || mLost;
     }
 }

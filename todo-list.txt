@@ -1,6 +1,5 @@
 Next:
 -distance taken
-    --draw remaining distance on screen
     --winning the game by getting the distance
 -make enemies: (look into class hierarchy)
     -change player's size
