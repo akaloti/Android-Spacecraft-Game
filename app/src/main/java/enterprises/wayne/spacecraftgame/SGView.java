@@ -96,6 +96,7 @@ public class SGView extends SurfaceView
     }
 
     private void restartGame() {
+        mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
         initializeSpacecrafts();
         makeNewDustList();
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
@@ -131,7 +132,8 @@ public class SGView extends SurfaceView
         for (SpaceDust sd : mDustList)
             sd.update(mPlayer.getSpeedY());
 
-        updateRemainingDistance();
+        if (!gameEnded())
+            updateRemainingDistance();
     }
 
     /**
@@ -142,6 +144,8 @@ public class SGView extends SurfaceView
         mForwardDistanceRemaining -= mPlayer.getSpeedY();
 
         if (mForwardDistanceRemaining < 0) {
+            // User has won
+            mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
             mWon = true;
         }
     }

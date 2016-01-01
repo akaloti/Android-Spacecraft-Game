@@ -4,10 +4,7 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
     -ones that go forward
     -ones that head towards the player
     -erase enemies upon victory
--sound effects
-    --start
-    --win
--implement death
+-implement death (and/or losing health)
     --draw screen
     --sound effect
 -allow replaying (after win or loss)
@@ -26,6 +23,8 @@ Eventually:
 -figure out why finish() doesn't work in the onKeyDown methods
 -make some levels
 -background music
+-figure out how to wait for all sound effects to load, so that
+the "start" sound effect plays the first time
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
