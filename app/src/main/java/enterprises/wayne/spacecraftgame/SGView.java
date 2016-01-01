@@ -36,7 +36,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 1000;
+    private static final float FORWARD_DISTANCE_GOAL = 150;
 
     private boolean mWon;
     private boolean mLost;
@@ -101,10 +101,14 @@ public class SGView extends SurfaceView
 
     /**
      * @post remaining forward distance has been updated; if user has
-     * won, he'll be told this
+     * won, game is notified
      */
     private void updateRemainingDistance() {
         mForwardDistanceRemaining -= mPlayer.getSpeedY();
+
+        if (mForwardDistanceRemaining < 0) {
+            mWon = true;
+        }
     }
 
     private void draw() {
@@ -129,6 +133,10 @@ public class SGView extends SurfaceView
 
             if (!gameEnded())
                 drawHUD();
+            else {
+                if (mWon)
+                    drawWinScreen();
+            }
 
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
@@ -147,6 +155,12 @@ public class SGView extends SurfaceView
         mPaint.setTextSize(distanceTextSize);
         mCanvas.drawText("Remaining: " + mForwardDistanceRemaining +
             " meters", mScreenX / 2, distanceTextSize + 5, mPaint);
+    }
+
+    private void drawWinScreen() {
+        mPaint.setTextSize(60);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
     }
 
     private void controlFrameRate() {

@@ -1,11 +1,11 @@
-Next:
--distance taken
-    --winning the game by getting the distance
+Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make enemies: (look into class hierarchy)
     -change player's size
     -ones that go forward
     -ones that head towards the player
--implement death and continuing game
+    -erase enemies upon victory
+    -implement death
+-allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
     --since a dust speck is a pixel, could make number of specks
@@ -20,9 +20,14 @@ Eventually:
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
 -make some levels
+-sound effects
+-background music
 
-Considerable
+Considerable:
 -ways for the user to change his spacecraft's vertical speed
 -change spacecraft's sprite depending on its horizontal direction
 -giving the player the ability to shoot
 -put finish line sprite at goal distance
+-special effects when the user is almost at the goal; e.g.:
+    -screen could have flashes of red
+    -alarm sound effects could play
