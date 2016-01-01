@@ -4,7 +4,12 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
     -ones that go forward
     -ones that head towards the player
     -erase enemies upon victory
-    -implement death
+-sound effects
+    --start
+    --win
+-implement death
+    --draw screen
+    --sound effect
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
@@ -20,7 +25,6 @@ Eventually:
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
 -make some levels
--sound effects
 -background music
 
 Considerable:
