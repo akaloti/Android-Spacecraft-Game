@@ -1,10 +1,10 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--make enemies: (look into class hierarchy)
-    -ones that head towards the player
-    -erase enemies upon victory
+-make enemies:
     -change player's size
     -adjust enemies' speeds appropriately
         -set random speeds for the dummy enemies?
+-more advanced enemies
+    -ones that head towards the player
 -sound effects
     --start
     --win

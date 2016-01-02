@@ -37,7 +37,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 150;
+    private static final float FORWARD_DISTANCE_GOAL = 300;
 
     private boolean mWon;
     private boolean mLost;
@@ -117,8 +117,18 @@ public class SGView extends SurfaceView
         mForwardDistanceRemaining -= mPlayer.getSpeedY();
 
         if (mForwardDistanceRemaining < 0) {
-            mWon = true;
+            resolveWin();
         }
+    }
+
+    /**
+     * @post user's having won has been reacted to; game has been
+     * notified so that appropriate message is drawn; enemies have
+     * been cleared
+     */
+    private void resolveWin() {
+        mWon = true;
+        mEnemies.clear();
     }
 
     private void draw() {
