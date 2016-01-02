@@ -50,8 +50,8 @@ public abstract class Spacecraft {
 
         mX = 50;
         mY = 50;
-        mSpeedX = 1;
-        mSpeedY = 1;
+        mSpeedX = 0;
+        mSpeedY = 0;
 
         mMaxX = screenX - mBitmap.getWidth();
         mMinX = 0;

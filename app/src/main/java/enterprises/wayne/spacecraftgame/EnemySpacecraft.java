@@ -25,6 +25,9 @@ public abstract class EnemySpacecraft extends Spacecraft {
         // the illusion that the spacecrafts are not somehow warping)
         mMaxY = screenY + getBitmap().getHeight();
         mMinY = -1 * getBitmap().getHeight();
+
+        // respawn after minimum and maximum positions have been set
+        respawn();
     }
 
     public int getMaxY() {

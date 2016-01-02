@@ -22,6 +22,8 @@ public class PlayerSpacecraft extends Spacecraft {
 
         setX(screenX / 2);
         setY(screenY - 300);
+
+        setSpeedY(1);
     }
 
     public void setPressingRight(boolean isPressingRight) {

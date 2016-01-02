@@ -15,8 +15,6 @@ public class Hunter extends EnemySpacecraft {
         super(context, Type.HUNTER_1, screenX, screenY);
 
         mHorizontalWaypoint = 0;
-
-        respawn();
     }
 
     /**
