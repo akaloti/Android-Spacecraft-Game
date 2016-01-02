@@ -2,9 +2,12 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -more advanced enemies
     -ones that head towards the player
         -consider horizontal speed
--implement death
-    --draw screen
-    --sound effect
+-implement colliding and death
+    -colliding:
+        -test for collision
+    -death:
+        -draw screen
+        -sound effect
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic

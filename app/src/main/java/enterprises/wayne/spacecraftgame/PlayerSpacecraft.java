@@ -37,6 +37,8 @@ public class PlayerSpacecraft extends Spacecraft {
         setX(getX() + updateHorizontalSpeed());
 
         keepSpacecraftOnScreen();
+
+        updateHitBox();
     }
 
     /**

@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
@@ -182,6 +183,9 @@ public class SGView extends SurfaceView
             for (SpaceDust sd : mDustList)
                     mCanvas.drawPoint(sd.getX(), sd.getY(), mPaint);
 
+            // For debugging
+            drawHitBoxes();
+
             // Draw the player
             mCanvas.drawBitmap(
                     mPlayer.getBitmap(),
@@ -203,6 +207,28 @@ public class SGView extends SurfaceView
 
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
+        }
+    }
+
+    /**
+     * This function is for debugging.
+     *
+     * @post each spacecraft's hit box has been drawn
+     */
+    private void drawHitBoxes() {
+        Rect hitBox;
+        mPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // draw player's hit box
+        hitBox = mPlayer.getHitBox();
+        mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
+                hitBox.bottom, mPaint);
+
+        // draw each enemy's hit box
+        for (EnemySpacecraft es : mEnemies) {
+            hitBox = es.getHitBox();
+            mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
+                    hitBox.bottom, mPaint);
         }
     }
 
