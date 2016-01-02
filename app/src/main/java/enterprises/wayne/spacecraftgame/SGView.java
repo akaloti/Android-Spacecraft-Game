@@ -31,8 +31,9 @@ public class SGView extends SurfaceView
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
+    private ArrayList<EnemySpacecraft> mEnemies;
 
-    private ArrayList<SpaceDust> mDustList = new ArrayList<SpaceDust>();
+    private ArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
 
     // For controlling frame rate
@@ -42,7 +43,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 150;
+    private static final float FORWARD_DISTANCE_GOAL = 600;
 
     private boolean mWon;
     private boolean mLost;
@@ -70,6 +71,9 @@ public class SGView extends SurfaceView
 
         mHolder = getHolder();
         mPaint = new Paint();
+
+        mEnemies = new ArrayList<EnemySpacecraft>();
+        mDustList = new ArrayList<SpaceDust>();
 
         restartGame();
     }
@@ -104,8 +108,9 @@ public class SGView extends SurfaceView
     }
 
     private void initializeSpacecrafts() {
-        mPlayer = new PlayerSpacecraft(mContext, Spacecraft.Type.HERO,
-                mScreenX, mScreenY);
+        mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
+        mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
+        mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
@@ -128,9 +133,14 @@ public class SGView extends SurfaceView
     private void update() {
         mPlayer.update();
 
+        // Update each enemy spacecraft
+        int playerSpeedY = mPlayer.getSpeedY();
+        for (EnemySpacecraft es : mEnemies)
+            es.update(playerSpeedY);
+
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
-            sd.update(mPlayer.getSpeedY());
+            sd.update(playerSpeedY);
 
         if (!gameEnded())
             updateRemainingDistance();
@@ -144,10 +154,19 @@ public class SGView extends SurfaceView
         mForwardDistanceRemaining -= mPlayer.getSpeedY();
 
         if (mForwardDistanceRemaining < 0) {
-            // User has won
-            mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
-            mWon = true;
+            resolveWin();
         }
+    }
+
+    /**
+     * @post user's having won has been reacted to; game has been
+     * notified so that appropriate message is drawn; enemies have
+     * been cleared
+     */
+    private void resolveWin() {
+        mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
+        mWon = true;
+        mEnemies.clear();
     }
 
     private void draw() {
@@ -169,6 +188,11 @@ public class SGView extends SurfaceView
                     mPlayer.getX(),
                     mPlayer.getY(),
                     mPaint);
+
+            // Draw each enemy
+            for (EnemySpacecraft es : mEnemies)
+                mCanvas.drawBitmap(es.getBitmap(), es.getX(),
+                        es.getY(), mPaint);
 
             if (!gameEnded())
                 drawHUD();

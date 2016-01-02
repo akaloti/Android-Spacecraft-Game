@@ -1,10 +1,8 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--make enemies: (look into class hierarchy)
-    -change player's size
-    -ones that go forward
+-more advanced enemies
     -ones that head towards the player
-    -erase enemies upon victory
--implement death (and/or losing health)
+        -consider horizontal speed
+-implement death
     --draw screen
     --sound effect
 -allow replaying (after win or loss)
@@ -21,10 +19,16 @@ Eventually:
 -main menu background image
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
--make some levels
+-a way for difficulty to increase; e.g.:
+    -make some levels
+    -as remaining distance decreases:
+        -more spacecrafts could appear
+        -spacecrafts minimum and maximum speeds increase
 -background music
 -figure out how to wait for all sound effects to load, so that
 the "start" sound effect plays the first time
+-improve playability
+    -make sure spacecrafts' speeds and sizes are all great
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
@@ -34,3 +38,6 @@ Considerable:
 -special effects when the user is almost at the goal; e.g.:
     -screen could have flashes of red
     -alarm sound effects could play
+-implement explosion (via sprite sheet) when a spacecraft explodes
+-combine all images into one sprite sheet
+-design my own spacecrafts with either Inventor or Blender
