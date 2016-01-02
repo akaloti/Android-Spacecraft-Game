@@ -107,6 +107,10 @@ public abstract class Spacecraft {
         return mType;
     }
 
+    public int getCenterX() {
+        return mX + mBitmap.getWidth() / 2;
+    }
+
     public boolean isHunter() {
         return mType == Type.HUNTER_1;
     }

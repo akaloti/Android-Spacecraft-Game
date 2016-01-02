@@ -33,9 +33,10 @@ public class Hunter extends EnemySpacecraft {
     @Override
     public void update(int playerSpeedY) {
         // Move enemy towards waypoint
-        if (mWaypointX < getX())
+        int centerX = getCenterX();
+        if (mWaypointX < centerX)
             setSpeedX(-HORIZONTAL_SPEED);
-        else if (mWaypointX > getX())
+        else if (mWaypointX > centerX)
             setSpeedX(HORIZONTAL_SPEED);
         else
             setSpeedX(0);

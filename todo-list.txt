@@ -1,7 +1,6 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -more advanced enemies
     -ones that head towards the player
-        -do something about top-left coordinate being the waypoint?
         -don't set waypoint too often?
             -don't let be too accurate?
             -setting every frame can allow the player to make the enemy
@@ -51,3 +50,5 @@ Considerable:
 -enemies that shoot
 -sound when enemy respawns (would this play too frequently?)
 -hunter's horizontal speed has some randomness and/or gradual increase
+-don't update the shown distance remaining as frequently (since the tens
+and ones digits could be distracting)
