@@ -8,13 +8,13 @@ import android.content.Context;
 public class Hunter extends EnemySpacecraft {
 
     // For hunting the player; should be slower than player on x-axis
-    private int mHorizontalWaypoint;
+    private int mWaypointX;
     private static final int HORIZONTAL_SPEED = 5;
 
     public Hunter(Context context, int screenX, int screenY) {
         super(context, Type.HUNTER_1, screenX, screenY);
 
-        mHorizontalWaypoint = 0;
+        mWaypointX = 0;
     }
 
     /**
@@ -25,9 +25,14 @@ public class Hunter extends EnemySpacecraft {
      */
     @Override
     public void update(int playerSpeedY) {
-        super.update(playerSpeedY);
-
         // Move enemy towards waypoint
+        if (mWaypointX < getX())
+            setSpeedX(-HORIZONTAL_SPEED);
+        else if (mWaypointX > getX())
+            setSpeedX(HORIZONTAL_SPEED);
+        else
+            setSpeedX(0);
 
+        super.update(playerSpeedY);
     }
 }

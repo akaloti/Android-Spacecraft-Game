@@ -44,6 +44,7 @@ public abstract class EnemySpacecraft extends Spacecraft {
      * (so that the camera needn't move)
      */
     public void update(int playerSpeedY) {
+        setX(getX() + getSpeedX());
         setY(getY() + playerSpeedY + getSpeedY());
 
         // respawn when off screen

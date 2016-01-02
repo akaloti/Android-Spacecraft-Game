@@ -1,8 +1,10 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -more advanced enemies
     -ones that head towards the player
+        -set waypoint
         -consider horizontal speed
-        -don't let be too accurate (if matters)
+            -should it change randomly?
+            -don't let be too accurate (if matters)
     -fix up the naming of the dummy spacecraft
     -add @Override where applicable
 -implement death
