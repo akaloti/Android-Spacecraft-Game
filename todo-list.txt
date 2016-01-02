@@ -1,9 +1,7 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--make enemies:
-    -adjust enemies' speeds appropriately
-        -set random speeds for the dummy enemies?
 -more advanced enemies
     -ones that head towards the player
+        -consider horizontal speed
 -sound effects
     --start
     --win
@@ -26,7 +24,9 @@ Eventually:
 -figure out why finish() doesn't work in the onKeyDown methods
 -a way for difficulty to increase; e.g.:
     -make some levels
-    -more spacecrafts could appear as distance remaining decreases
+    -as remaining distance decreases:
+        -more spacecrafts could appear
+        -spacecrafts minimum and maximum speeds increase
 -background music
 -improve playability
     -make sure spacecrafts' speeds and sizes are all great

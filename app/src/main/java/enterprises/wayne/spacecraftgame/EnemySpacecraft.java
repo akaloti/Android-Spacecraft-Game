@@ -45,14 +45,30 @@ public abstract class EnemySpacecraft extends Spacecraft {
 
         // respawn when off screen
         if (getY() > mMaxY)
-            setRandomNewPosition();
+            respawn();
+    }
+
+    /**
+     * @post spacecraft's new speed and position have been chosen
+     */
+    protected void respawn() {
+        setRandomNewPosition();
+        setRandomNewSpeedY();
+    }
+
+    /**
+     * @post this spacecraft's y-speed has been randomly set
+     */
+    private void setRandomNewSpeedY() {
+        Random generator = new Random();
+        setSpeedY(generator.nextInt(3) + 5);
     }
 
     /**
      * @post this spacecraft's position has been set to a horizontally
      * random one that is just above the screen's viewable area
      */
-    protected void setRandomNewPosition() {
+    private void setRandomNewPosition() {
         // Set the spacecraft just above the user's view
         int y = mMinY;
 
