@@ -1,10 +1,12 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -more advanced enemies
     -ones that head towards the player
-        -set waypoint
-        -consider horizontal speed
-            -should it change randomly?
-            -don't let be too accurate (if matters)
+        -do something about top-left coordinate being the waypoint?
+        -don't set waypoint too often?
+            -don't let be too accurate?
+            -setting every frame can allow the player to make the enemy
+            twitch awkwardly
+            (although the player technically does this, too)
     -fix up the naming of the dummy spacecraft
     -add @Override where applicable
 -implement death
@@ -48,3 +50,4 @@ Considerable:
 -design my own spacecrafts with either Inventor or Blender
 -enemies that shoot
 -sound when enemy respawns (would this play too frequently?)
+-hunter's horizontal speed has some randomness and/or gradual increase

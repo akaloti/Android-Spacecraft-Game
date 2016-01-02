@@ -48,6 +48,8 @@ public abstract class Spacecraft {
                 throw new AssertionError("Invalid type given to Spacecraft()");
         }
 
+        mType = type;
+
         mX = 50;
         mY = 50;
         mSpeedX = 0;
@@ -103,5 +105,9 @@ public abstract class Spacecraft {
 
     public Type getType() {
         return mType;
+    }
+
+    public boolean isHunter() {
+        return mType == Type.HUNTER_1;
     }
 }

@@ -134,10 +134,9 @@ public class SGView extends SurfaceView
     private void update() {
         mPlayer.update();
 
-        // Update each enemy spacecraft
+        int playerPositionX = mPlayer.getX();
         int playerSpeedY = mPlayer.getSpeedY();
-        for (EnemySpacecraft es : mEnemies)
-            es.update(playerSpeedY);
+        updateEnemies(playerPositionX, playerSpeedY);
 
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
@@ -145,6 +144,21 @@ public class SGView extends SurfaceView
 
         if (!gameEnded())
             updateRemainingDistance();
+    }
+
+    /**
+     * @param playerPositionX
+     * @param playerSpeedY
+     */
+    private void updateEnemies(int playerPositionX, int playerSpeedY) {
+        for (EnemySpacecraft es : mEnemies) {
+            // Update waypoint if hunter
+            if (es.isHunter()) {
+                ((Hunter) es).setWaypointX(playerPositionX);
+            }
+
+            es.update(playerSpeedY);
+        }
     }
 
     /**

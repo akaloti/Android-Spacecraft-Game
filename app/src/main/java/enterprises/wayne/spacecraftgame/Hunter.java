@@ -9,12 +9,19 @@ public class Hunter extends EnemySpacecraft {
 
     // For hunting the player; should be slower than player on x-axis
     private int mWaypointX;
-    private static final int HORIZONTAL_SPEED = 5;
+    private static final int HORIZONTAL_SPEED = 2;
 
     public Hunter(Context context, int screenX, int screenY) {
         super(context, Type.HUNTER_1, screenX, screenY);
 
         mWaypointX = 0;
+    }
+
+    /**
+     * @param playerPositionX the x-coordinate of the player
+     */
+    public void setWaypointX(int playerPositionX) {
+        mWaypointX = playerPositionX;
     }
 
     /**
