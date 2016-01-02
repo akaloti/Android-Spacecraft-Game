@@ -11,6 +11,6 @@ public class EnemySpacecraft1 extends EnemySpacecraft {
         super(context, Type.ENEMY_1, screenX, screenY);
 
         setSpeedY(4);
-        setRandomPosition();
+        setRandomNewPosition();
     }
 }

@@ -9,6 +9,8 @@ import java.util.Random;
  */
 public abstract class EnemySpacecraft extends Spacecraft {
 
+    private int mMaxY, mMinY; // for repositioning
+
     /**
      * @param context to allow access to drawables
      * @param type so that appropriate bitmap can be selected
@@ -18,6 +20,19 @@ public abstract class EnemySpacecraft extends Spacecraft {
     public EnemySpacecraft(Context context, Type type,
                            int screenX, int screenY) {
         super(context, type, screenX, screenY);
+
+        // enemy spacecrafts can be off screen briefly (to create
+        // the illusion that the spacecrafts are not somehow warping)
+        mMaxY = screenY + getBitmap().getHeight();
+        mMinY = -1 * getBitmap().getHeight();
+    }
+
+    public int getMaxY() {
+        return mMaxY;
+    }
+
+    public int getMinY() {
+        return mMinY;
     }
 
     /**
@@ -27,15 +42,19 @@ public abstract class EnemySpacecraft extends Spacecraft {
      */
     public void update(int playerSpeedY) {
         setY(getY() + playerSpeedY + getSpeedY());
+
+        // respawn when off screen
+        if (getY() > mMaxY)
+            setRandomNewPosition();
     }
 
     /**
      * @post this spacecraft's position has been set to a horizontally
      * random one that is just above the screen's viewable area
      */
-    protected void setRandomPosition() {
+    protected void setRandomNewPosition() {
         // Set the spacecraft just above the user's view
-        int y = -1 * getBitmap().getHeight();
+        int y = mMinY;
 
         // Pick a random, valid horizontal coordinate
         Random generator = new Random();
