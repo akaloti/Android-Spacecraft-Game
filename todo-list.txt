@@ -1,12 +1,6 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--more advanced enemies
-    -ones that head towards the player
-        -don't set waypoint too often?
-            -don't let be too accurate?
-            -setting every frame can allow the player to make the enemy
-            twitch awkwardly
-            (although the player technically does this, too)
-    -fix up the naming of the dummy spacecraft
+-clean up enemies
+    -fix up the naming of the dummy spacecraft; or get rid of class
     -add @Override where applicable
 -implement death
     --draw screen
