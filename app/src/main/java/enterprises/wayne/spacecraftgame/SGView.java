@@ -111,6 +111,7 @@ public class SGView extends SurfaceView
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
         mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
+        mEnemies.add(new Hunter(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {

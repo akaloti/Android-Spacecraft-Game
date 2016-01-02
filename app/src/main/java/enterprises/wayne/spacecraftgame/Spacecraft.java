@@ -13,9 +13,14 @@ public abstract class Spacecraft {
     private int mMaxX, mMinX; // for keeping craft in boundaries
     private int mSpeedX, mSpeedY;
 
+    private Type mType;
+
     protected enum Type {
         HERO,
+
+        // enemies
         ENEMY_1,
+        HUNTER_1,
     }
 
     /**
@@ -34,6 +39,10 @@ public abstract class Spacecraft {
             case ENEMY_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.enemy1);
+                break;
+            case HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hunter1);
                 break;
             default:
                 throw new AssertionError("Invalid type given to Spacecraft()");
@@ -90,5 +99,9 @@ public abstract class Spacecraft {
 
     protected void setSpeedY(int speed) {
         mSpeedY = speed;
+    }
+
+    public Type getType() {
+        return mType;
     }
 }
