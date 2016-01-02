@@ -1,6 +1,5 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make enemies:
-    -change player's size
     -adjust enemies' speeds appropriately
         -set random speeds for the dummy enemies?
 -more advanced enemies
@@ -29,6 +28,8 @@ Eventually:
     -make some levels
     -more spacecrafts could appear as distance remaining decreases
 -background music
+-improve playability
+    -make sure spacecrafts' speeds and sizes are all great
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
