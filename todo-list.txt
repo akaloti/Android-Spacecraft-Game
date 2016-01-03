@@ -3,7 +3,6 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
     -fix up the naming of the dummy spacecraft; or get rid of class
     -add @Override where applicable
 -allow replaying (after win or loss)
-    -tell the user how to
     -wait a little bit before letting the user restart (so that he can
     see the win/loss screen without accidentally skipping)
 -consider scaling everything, so it all looks the same on every device

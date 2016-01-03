@@ -313,15 +313,23 @@ public class SGView extends SurfaceView
     }
 
     private void drawWinScreen() {
-        mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(60);
         mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
+
+        mPaint.setTextSize(40);
+        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+                (mScreenY / 2) + 60, mPaint);
     }
 
     private void drawLossScreen() {
-        mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(60);
         mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
+
+        mPaint.setTextSize(40);
+        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+                (mScreenY / 2) + 60, mPaint);
     }
 
     private void controlFrameRate() {
