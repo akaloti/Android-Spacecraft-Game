@@ -1,7 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--clean up enemies
-    -fix up the naming of the dummy spacecraft; or get rid of class
-    -add @Override where applicable
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
