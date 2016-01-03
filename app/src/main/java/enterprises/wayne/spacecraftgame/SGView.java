@@ -52,6 +52,10 @@ public class SGView extends SurfaceView
     // for avoiding certain actions (e.g. collision detection) on first frame
     private boolean mIsFirstFrame;
 
+    // for allowing the user to see win/loss screen for brief time
+    private long mGameEndTime;
+    private static final long GAME_END_WAIT_MILLISECONDS = 1000;
+
     private SoundPool mSoundPool;
     int mStartSound = -1;
     int mWinSound = -1;
@@ -109,8 +113,13 @@ public class SGView extends SurfaceView
 
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
+
+        // Reset player and enemies
+        mEnemies.clear();
         initializeSpacecrafts();
+
         makeNewDustList();
+
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
         mIsFirstFrame = true;
@@ -215,6 +224,8 @@ public class SGView extends SurfaceView
     private void resolveLoss() {
         mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
         mLost = true;
+
+        mGameEndTime = System.currentTimeMillis();
     }
 
     /**
@@ -226,6 +237,8 @@ public class SGView extends SurfaceView
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
         mEnemies.clear();
+
+        mGameEndTime = System.currentTimeMillis();
     }
 
     private void draw() {
@@ -308,15 +321,23 @@ public class SGView extends SurfaceView
     }
 
     private void drawWinScreen() {
-        mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(60);
         mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
+
+        mPaint.setTextSize(40);
+        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+                (mScreenY / 2) + 60, mPaint);
     }
 
     private void drawLossScreen() {
-        mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(60);
         mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
+
+        mPaint.setTextSize(40);
+        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+                (mScreenY / 2) + 60, mPaint);
     }
 
     private void controlFrameRate() {
@@ -344,35 +365,64 @@ public class SGView extends SurfaceView
         mGameThread.start();
     }
 
+    /**
+     * @param motionEvent
+     * @post if game hasn't ended, the player spacecraft has been
+     * told to move based on where the player is touching the screen;
+     * if game has ended, user's touch restarts the game
+     * @return true, so as to not resolve this motionEvent
+     * any further
+     */
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean left = false;
-        boolean right = false;
+        if (!gameEnded()) {
+            /**
+             * Game hasn't ended, so probably move player's spacecraft
+             */
 
-        int pointerCount = motionEvent.getPointerCount();
-        for (int i = 0; i < pointerCount; ++i) {
-            int x = (int) motionEvent.getX(i);
+            boolean left = false;
+            boolean right = false;
 
-            switch (motionEvent.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN:
-                case MotionEvent.ACTION_POINTER_DOWN:
-                case MotionEvent.ACTION_MOVE:
-                    // determine which half of the screen is being touched
-                    if (x < mScreenX / 2) {
-                        // left half, so move left
-                        left = true;
-                    }
-                    else {
-                        // right half, so move right
-                        right = true;
-                    }
-                    break;
+            int pointerCount = motionEvent.getPointerCount();
+            for (int i = 0; i < pointerCount; ++i) {
+                int x = (int) motionEvent.getX(i);
+
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                        // determine which half of the screen is being touched
+                        if (x < mScreenX / 2) {
+                            // left half, so move left
+                            left = true;
+                        } else {
+                            // right half, so move right
+                            right = true;
+                        }
+                        break;
+                }
+            }
+
+            mPlayer.setPressingLeft(left);
+            mPlayer.setPressingRight(right);
+        }
+        else {
+            /**
+             * Game hasn't ended, so could restart game (if enough
+             * time has passed)
+             */
+            if (System.currentTimeMillis() >
+                    mGameEndTime + GAME_END_WAIT_MILLISECONDS) {
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        restartGame();
+                        break;
+                }
             }
         }
 
-        mPlayer.setPressingLeft(left);
-        mPlayer.setPressingRight(right);
-
+        // Either way, the touch event is resolved
         return true;
     }
 

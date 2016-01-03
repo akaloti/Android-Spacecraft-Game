@@ -1,5 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
     --since a dust speck is a pixel, could make number of specks
@@ -38,8 +37,11 @@ Considerable:
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
 -design my own spacecrafts with either Inventor or Blender
+    -can make them look more like spacecrafts and shape them in a way
+    so that the rectangular hit box fits better
 -enemies that shoot
 -sound when enemy respawns (would this play too frequently?)
 -hunter's horizontal speed has some randomness and/or gradual increase
 -don't update the shown distance remaining as frequently (since the tens
 and ones digits could be distracting)
+-look into prevent ConcurrentModificationException (if ever happens)
