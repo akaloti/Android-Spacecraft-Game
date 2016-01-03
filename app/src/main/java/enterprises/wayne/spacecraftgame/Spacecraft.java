@@ -16,9 +16,14 @@ public abstract class Spacecraft {
 
     private Rect mHitBox; // for collision detection
 
+    private Type mType;
+
     protected enum Type {
         HERO,
+
+        // enemies
         ENEMY_1,
+        HUNTER_1,
     }
 
     /**
@@ -38,14 +43,20 @@ public abstract class Spacecraft {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.enemy1);
                 break;
+            case HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hunter1);
+                break;
             default:
                 throw new AssertionError("Invalid type given to Spacecraft()");
         }
 
+        mType = type;
+
         mX = 50;
         mY = 50;
-        mSpeedX = 1;
-        mSpeedY = 1;
+        mSpeedX = 0;
+        mSpeedY = 0;
 
         mMaxX = screenX - mBitmap.getWidth();
         mMinX = 0;
@@ -110,5 +121,17 @@ public abstract class Spacecraft {
         mHitBox.top = mY;
         mHitBox.right = mX + mBitmap.getWidth();
         mHitBox.bottom = mY + mBitmap.getHeight();
+    }
+
+    public Type getType() {
+        return mType;
+    }
+
+    public int getCenterX() {
+        return mX + mBitmap.getWidth() / 2;
+    }
+
+    public boolean isHunter() {
+        return mType == Type.HUNTER_1;
     }
 }

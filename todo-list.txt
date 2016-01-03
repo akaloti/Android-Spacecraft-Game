@@ -1,7 +1,7 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--more advanced enemies
-    -ones that head towards the player
-        -consider horizontal speed
+-clean up enemies
+    -fix up the naming of the dummy spacecraft; or get rid of class
+    -add @Override where applicable
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
@@ -41,3 +41,8 @@ Considerable:
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
 -design my own spacecrafts with either Inventor or Blender
+-enemies that shoot
+-sound when enemy respawns (would this play too frequently?)
+-hunter's horizontal speed has some randomness and/or gradual increase
+-don't update the shown distance remaining as frequently (since the tens
+and ones digits could be distracting)

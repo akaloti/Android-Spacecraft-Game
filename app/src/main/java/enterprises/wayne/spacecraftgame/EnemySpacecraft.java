@@ -25,6 +25,9 @@ public abstract class EnemySpacecraft extends Spacecraft {
         // the illusion that the spacecrafts are not somehow warping)
         mMaxY = screenY + getBitmap().getHeight();
         mMinY = -1 * getBitmap().getHeight();
+
+        // respawn after minimum and maximum positions have been set
+        respawn();
     }
 
     public int getMaxY() {
@@ -41,6 +44,7 @@ public abstract class EnemySpacecraft extends Spacecraft {
      * (so that the camera needn't move)
      */
     public void update(int playerSpeedY) {
+        setX(getX() + getSpeedX());
         setY(getY() + playerSpeedY + getSpeedY());
 
         // respawn when off screen

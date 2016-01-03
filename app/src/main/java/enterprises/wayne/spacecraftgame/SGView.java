@@ -120,6 +120,7 @@ public class SGView extends SurfaceView
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
         mEnemies.add(new EnemySpacecraft1(mContext, mScreenX, mScreenY));
+        mEnemies.add(new Hunter(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
@@ -152,10 +153,9 @@ public class SGView extends SurfaceView
 
         mPlayer.update();
 
-        // Update each enemy spacecraft
+        int playerCenterX = mPlayer.getCenterX();
         int playerSpeedY = mPlayer.getSpeedY();
-        for (EnemySpacecraft es : mEnemies)
-            es.update(playerSpeedY);
+        updateEnemies(playerCenterX, playerSpeedY);
 
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
@@ -179,6 +179,21 @@ public class SGView extends SurfaceView
         }
 
         return false;
+    }
+
+    /**
+     * @param playerCenterX
+     * @param playerSpeedY
+     */
+    private void updateEnemies(int playerCenterX, int playerSpeedY) {
+        for (EnemySpacecraft es : mEnemies) {
+            // Update waypoint if hunter
+            if (es.isHunter()) {
+                ((Hunter) es).setWaypointX(playerCenterX);
+            }
+
+            es.update(playerSpeedY);
+        }
     }
 
     /**
