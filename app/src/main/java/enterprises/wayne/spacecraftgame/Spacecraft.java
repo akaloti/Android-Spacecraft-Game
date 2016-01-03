@@ -22,7 +22,7 @@ public abstract class Spacecraft {
         HERO,
 
         // enemies
-        ENEMY_1,
+        DUMMY_1,
         HUNTER_1,
     }
 
@@ -39,9 +39,9 @@ public abstract class Spacecraft {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
                 break;
-            case ENEMY_1:
+            case DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource
-                        (context.getResources(), R.drawable.enemy1);
+                        (context.getResources(), R.drawable.dummy1);
                 break;
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
