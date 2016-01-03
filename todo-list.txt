@@ -5,8 +5,6 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -implement colliding and death
     -death:
         -remove player instead of enemies
-    -change the way that first frame instant death is prevented
-        -shouldn't go through class hierarchy
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic

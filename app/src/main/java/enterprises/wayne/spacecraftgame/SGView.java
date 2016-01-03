@@ -49,6 +49,9 @@ public class SGView extends SurfaceView
     private boolean mWon;
     private boolean mLost;
 
+    // for avoiding certain actions (e.g. collision detection) on first frame
+    private boolean mIsFirstFrame;
+
     private SoundPool mSoundPool;
     int mStartSound = -1;
     int mWinSound = -1;
@@ -110,6 +113,7 @@ public class SGView extends SurfaceView
         makeNewDustList();
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
+        mIsFirstFrame = true;
     }
 
     private void initializeSpacecrafts() {
@@ -136,8 +140,14 @@ public class SGView extends SurfaceView
     }
 
     private void update() {
-        if (isCollision())
-            resolveLoss();
+        // Check for collision only if isn't the first frame
+        // (since everyone's hit box is at default spot)
+        if (!mIsFirstFrame) {
+            if (isCollision())
+                resolveLoss();
+        }
+        else
+            mIsFirstFrame = false;
 
         mPlayer.update();
 
