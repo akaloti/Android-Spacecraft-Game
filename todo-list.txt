@@ -1,5 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--background music
 -figure out why finish() doesn't work in the onKeyDown methods
 -improve sound effects
 -figure out how to wait for all sound effects to load, so that
