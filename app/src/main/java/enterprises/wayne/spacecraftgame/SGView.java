@@ -360,6 +360,7 @@ public class SGView extends SurfaceView
 
     public void pause() {
         mIsPlaying = false;
+        mMediaPlayer.pause();
         try {
             // Clean up thread
             mGameThread.join();
@@ -370,6 +371,7 @@ public class SGView extends SurfaceView
 
     public void resume() {
         mIsPlaying = true;
+        mMediaPlayer.start();
         mGameThread = new Thread(this);
         mGameThread.start();
     }

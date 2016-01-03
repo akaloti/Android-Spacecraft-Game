@@ -46,6 +46,8 @@ The images of the spacecrafts are from the source code of the book
 "SFML Game Development" by Artur Moreira, Henrik Vogelius
 Hansson, and Jan Haller.
 
+The background music is from the video game Pac-Man World.
+
 Author
 ------
 
