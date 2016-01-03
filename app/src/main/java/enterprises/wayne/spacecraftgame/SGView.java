@@ -95,6 +95,9 @@ public class SGView extends SurfaceView
 
             descriptor = assetManager.openFd("win.ogg");
             mWinSound = mSoundPool.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("loss.ogg");
+            mLossSound = mSoundPool.load(descriptor, 0);
         }
         catch (IOException e) {
             Log.e("error", "failed to load sound files");
