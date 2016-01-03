@@ -109,8 +109,13 @@ public class SGView extends SurfaceView
 
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
+
+        // Reset player and enemies
+        mEnemies.clear();
         initializeSpacecrafts();
+
         makeNewDustList();
+
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
         mIsFirstFrame = true;
@@ -344,35 +349,60 @@ public class SGView extends SurfaceView
         mGameThread.start();
     }
 
+    /**
+     * @param motionEvent
+     * @post if game hasn't ended, the player spacecraft has been
+     * told to move based on where the player is touching the screen;
+     * if game has ended, user's touch restarts the game
+     * @return true, so as to not resolve this motionEvent
+     * any further
+     */
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean left = false;
-        boolean right = false;
+        if (!gameEnded()) {
+            /**
+             * Game hasn't ended, so probably move player's spacecraft
+             */
 
-        int pointerCount = motionEvent.getPointerCount();
-        for (int i = 0; i < pointerCount; ++i) {
-            int x = (int) motionEvent.getX(i);
+            boolean left = false;
+            boolean right = false;
 
+            int pointerCount = motionEvent.getPointerCount();
+            for (int i = 0; i < pointerCount; ++i) {
+                int x = (int) motionEvent.getX(i);
+
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                        // determine which half of the screen is being touched
+                        if (x < mScreenX / 2) {
+                            // left half, so move left
+                            left = true;
+                        } else {
+                            // right half, so move right
+                            right = true;
+                        }
+                        break;
+                }
+            }
+
+            mPlayer.setPressingLeft(left);
+            mPlayer.setPressingRight(right);
+        }
+        else {
+            /**
+             * Game hasn't ended, so could restart game
+             */
             switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
                 case MotionEvent.ACTION_POINTER_DOWN:
-                case MotionEvent.ACTION_MOVE:
-                    // determine which half of the screen is being touched
-                    if (x < mScreenX / 2) {
-                        // left half, so move left
-                        left = true;
-                    }
-                    else {
-                        // right half, so move right
-                        right = true;
-                    }
+                    restartGame();
                     break;
             }
         }
 
-        mPlayer.setPressingLeft(left);
-        mPlayer.setPressingRight(right);
-
+        // Either way, the touch event is resolved
         return true;
     }
 
