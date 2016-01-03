@@ -1,11 +1,17 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--consider scaling everything, so it all looks the same on every device
-    --look into eBook for discussion about this topic
-    --since a dust speck is a pixel, could make number of specks
-    depend on number of pixels, and then just scale the bitmaps
-        --PROBLEM: all crafts move more slowly on bigger devices
-            --could compensate by editing speed
-            --could do what was done in eBook's Chapter 5
+-background music
+-figure out why finish() doesn't work in the onKeyDown methods
+-improve sound effects
+-figure out how to wait for all sound effects to load, so that
+the "start" sound effect plays the first time
+-design my own spacecrafts with either Inventor or Blender
+    -can make them look more like spacecrafts and shape them in a way
+    so that the rectangular hit box fits better
+-a way for difficulty to increase; e.g.:
+    -make some levels
+    -as remaining distance decreases:
+        -more spacecrafts could appear
+        -spacecrafts minimum and maximum speeds increase
 
 Eventually:
 -make sure spacecrafts have correct size
@@ -14,34 +20,28 @@ Eventually:
     -include some sort of directions (e.g. keep eye on distance remaining,
     tap left and right halves of screen)
 -delete activity_main.xml
--figure out why finish() doesn't work in the onKeyDown methods
--a way for difficulty to increase; e.g.:
-    -make some levels
-    -as remaining distance decreases:
-        -more spacecrafts could appear
-        -spacecrafts minimum and maximum speeds increase
--background music
--figure out how to wait for all sound effects to load, so that
-the "start" sound effect plays the first time
 -improve playability
     -make sure spacecrafts' speeds and sizes are all great
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
 -change spacecraft's sprite depending on its horizontal direction
--giving the player the ability to shoot
 -put finish line sprite at goal distance
 -special effects when the user is almost at the goal; e.g.:
     -screen could have flashes of red
     -alarm sound effects could play
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
--design my own spacecrafts with either Inventor or Blender
-    -can make them look more like spacecrafts and shape them in a way
-    so that the rectangular hit box fits better
 -enemies that shoot
 -sound when enemy respawns (would this play too frequently?)
 -hunter's horizontal speed has some randomness and/or gradual increase
 -don't update the shown distance remaining as frequently (since the tens
 and ones digits could be distracting)
 -look into prevent ConcurrentModificationException (if ever happens)
+-consider scaling everything, so it all looks the same on every device
+    --look into eBook for discussion about this topic
+    --since a dust speck is a pixel, could make number of specks
+    depend on number of pixels, and then just scale the bitmaps
+        --PROBLEM: all crafts move more slowly on bigger devices
+            --could compensate by editing speed
+            --could do what was done in eBook's Chapter 5
