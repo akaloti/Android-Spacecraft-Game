@@ -52,6 +52,10 @@ public class SGView extends SurfaceView
     // for avoiding certain actions (e.g. collision detection) on first frame
     private boolean mIsFirstFrame;
 
+    // for allowing the user to see win/loss screen for brief time
+    private long mGameEndTime;
+    private static final long GAME_END_WAIT_MILLISECONDS = 1000;
+
     private SoundPool mSoundPool;
     int mStartSound = -1;
     int mWinSound = -1;
@@ -220,6 +224,8 @@ public class SGView extends SurfaceView
     private void resolveLoss() {
         mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
         mLost = true;
+
+        mGameEndTime = System.currentTimeMillis();
     }
 
     /**
@@ -231,6 +237,8 @@ public class SGView extends SurfaceView
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
         mEnemies.clear();
+
+        mGameEndTime = System.currentTimeMillis();
     }
 
     private void draw() {
@@ -400,13 +408,17 @@ public class SGView extends SurfaceView
         }
         else {
             /**
-             * Game hasn't ended, so could restart game
+             * Game hasn't ended, so could restart game (if enough
+             * time has passed)
              */
-            switch (motionEvent.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN:
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    restartGame();
-                    break;
+            if (System.currentTimeMillis() >
+                    mGameEndTime + GAME_END_WAIT_MILLISECONDS) {
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        restartGame();
+                        break;
+                }
             }
         }
 
