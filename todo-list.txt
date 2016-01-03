@@ -4,7 +4,7 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
         -consider horizontal speed
 -implement colliding and death
     -death:
-        -remove player instead of enemies
+        -make sure collision detection sound can't play after loss
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic

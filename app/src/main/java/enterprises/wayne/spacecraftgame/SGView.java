@@ -228,12 +228,13 @@ public class SGView extends SurfaceView
             // For debugging
             drawHitBoxes();
 
-            // Draw the player
-            mCanvas.drawBitmap(
-                    mPlayer.getBitmap(),
-                    mPlayer.getX(),
-                    mPlayer.getY(),
-                    mPaint);
+            // Only draw the player if hasn't lost
+            if (!mLost)
+                mCanvas.drawBitmap(
+                        mPlayer.getBitmap(),
+                        mPlayer.getX(),
+                        mPlayer.getY(),
+                        mPaint);
 
             // Draw each enemy
             for (EnemySpacecraft es : mEnemies)
