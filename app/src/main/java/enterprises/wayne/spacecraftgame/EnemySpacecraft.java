@@ -46,6 +46,8 @@ public abstract class EnemySpacecraft extends Spacecraft {
         // respawn when off screen
         if (getY() > mMaxY)
             respawn();
+
+        updateHitBox();
     }
 
     /**

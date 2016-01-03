@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
@@ -48,9 +49,13 @@ public class SGView extends SurfaceView
     private boolean mWon;
     private boolean mLost;
 
+    // for avoiding certain actions (e.g. collision detection) on first frame
+    private boolean mIsFirstFrame;
+
     private SoundPool mSoundPool;
     int mStartSound = -1;
     int mWinSound = -1;
+    int mLossSound = -1;
 
     // For drawing
     private Paint mPaint;
@@ -93,6 +98,9 @@ public class SGView extends SurfaceView
 
             descriptor = assetManager.openFd("win.ogg");
             mWinSound = mSoundPool.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("loss.ogg");
+            mLossSound = mSoundPool.load(descriptor, 0);
         }
         catch (IOException e) {
             Log.e("error", "failed to load sound files");
@@ -105,6 +113,7 @@ public class SGView extends SurfaceView
         makeNewDustList();
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
+        mIsFirstFrame = true;
     }
 
     private void initializeSpacecrafts() {
@@ -131,6 +140,16 @@ public class SGView extends SurfaceView
     }
 
     private void update() {
+        // Check for collision only if isn't the first frame
+        // (since everyone's hit box is at default spot) and if
+        // game hasn't ended
+        if (!gameEnded() && !mIsFirstFrame) {
+            if (isCollision())
+                resolveLoss();
+        }
+        else
+            mIsFirstFrame = false;
+
         mPlayer.update();
 
         // Update each enemy spacecraft
@@ -147,6 +166,22 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @return true if the player is colliding with any enemy;
+     * false, otherwise
+     */
+    private boolean isCollision() {
+        Rect playerHitBox = mPlayer.getHitBox();
+
+        // Check each enemy
+        for (EnemySpacecraft es : mEnemies) {
+            if (Rect.intersects(playerHitBox, es.getHitBox()))
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @post remaining forward distance has been updated; if user has
      * won, game is notified
      */
@@ -156,6 +191,15 @@ public class SGView extends SurfaceView
         if (mForwardDistanceRemaining < 0) {
             resolveWin();
         }
+    }
+
+    /**
+     * @post user's having lost has been reacted to; game has been
+     * notified so that appropriate message will be drawn
+     */
+    private void resolveLoss() {
+        mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
+        mLost = true;
     }
 
     /**
@@ -182,12 +226,16 @@ public class SGView extends SurfaceView
             for (SpaceDust sd : mDustList)
                     mCanvas.drawPoint(sd.getX(), sd.getY(), mPaint);
 
-            // Draw the player
-            mCanvas.drawBitmap(
-                    mPlayer.getBitmap(),
-                    mPlayer.getX(),
-                    mPlayer.getY(),
-                    mPaint);
+            // For debugging
+            // drawHitBoxes();
+
+            // Only draw the player if hasn't lost
+            if (!mLost)
+                mCanvas.drawBitmap(
+                        mPlayer.getBitmap(),
+                        mPlayer.getX(),
+                        mPlayer.getY(),
+                        mPaint);
 
             // Draw each enemy
             for (EnemySpacecraft es : mEnemies)
@@ -199,10 +247,34 @@ public class SGView extends SurfaceView
             else {
                 if (mWon)
                     drawWinScreen();
+                else if (mLost)
+                    drawLossScreen();
             }
 
             // Unlock and draw the scene
             mHolder.unlockCanvasAndPost(mCanvas);
+        }
+    }
+
+    /**
+     * This function is for debugging.
+     *
+     * @post each spacecraft's hit box has been drawn
+     */
+    private void drawHitBoxes() {
+        Rect hitBox;
+        mPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // draw player's hit box
+        hitBox = mPlayer.getHitBox();
+        mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
+                hitBox.bottom, mPaint);
+
+        // draw each enemy's hit box
+        for (EnemySpacecraft es : mEnemies) {
+            hitBox = es.getHitBox();
+            mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
+                    hitBox.bottom, mPaint);
         }
     }
 
@@ -224,6 +296,12 @@ public class SGView extends SurfaceView
         mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
+    }
+
+    private void drawLossScreen() {
+        mPaint.setTextSize(60);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
     }
 
     private void controlFrameRate() {

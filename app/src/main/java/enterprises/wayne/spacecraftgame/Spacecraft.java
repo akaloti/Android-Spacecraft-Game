@@ -3,6 +3,7 @@ package enterprises.wayne.spacecraftgame;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 /**
  * Created by Aaron on 12/28/2015.
@@ -12,6 +13,8 @@ public abstract class Spacecraft {
     private int mX, mY; // position of the spacecraft
     private int mMaxX, mMinX; // for keeping craft in boundaries
     private int mSpeedX, mSpeedY;
+
+    private Rect mHitBox; // for collision detection
 
     protected enum Type {
         HERO,
@@ -46,6 +49,8 @@ public abstract class Spacecraft {
 
         mMaxX = screenX - mBitmap.getWidth();
         mMinX = 0;
+
+        mHitBox = new Rect(mX, mY, mBitmap.getWidth(), mBitmap.getHeight());
     }
 
     public Bitmap getBitmap() {
@@ -90,5 +95,20 @@ public abstract class Spacecraft {
 
     protected void setSpeedY(int speed) {
         mSpeedY = speed;
+    }
+
+    public Rect getHitBox() {
+        return mHitBox;
+    }
+
+    /**
+     * @pre spacecraft's position has been updated
+     * @post location of hit box has been updated
+     */
+    protected void updateHitBox() {
+        mHitBox.left = mX;
+        mHitBox.top = mY;
+        mHitBox.right = mX + mBitmap.getWidth();
+        mHitBox.bottom = mY + mBitmap.getHeight();
     }
 }
