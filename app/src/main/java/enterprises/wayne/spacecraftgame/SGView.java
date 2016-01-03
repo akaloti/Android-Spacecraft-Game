@@ -62,7 +62,7 @@ public class SGView extends SurfaceView
     int mWinSound = -1;
     int mLossSound = -1;
 
-    MediaPlayer mMediaPlayer;
+    MediaPlayer mBackgroundMusic;
 
     // For drawing
     private Paint mPaint;
@@ -79,10 +79,10 @@ public class SGView extends SurfaceView
         loadSounds();
 
         // Set up background music
-        mMediaPlayer = MediaPlayer.create(context, R.raw.background);
-        mMediaPlayer.setLooping(true);
-        mMediaPlayer.setVolume(1.0f, 1.0f);
-        mMediaPlayer.start();
+        mBackgroundMusic = MediaPlayer.create(context, R.raw.background);
+        mBackgroundMusic.setLooping(true);
+        mBackgroundMusic.setVolume(1.0f, 1.0f);
+        mBackgroundMusic.start();
 
         mScreenX = screenX;
         mScreenY = screenY;
@@ -360,7 +360,7 @@ public class SGView extends SurfaceView
 
     public void pause() {
         mIsPlaying = false;
-        mMediaPlayer.pause();
+        mBackgroundMusic.pause();
         try {
             // Clean up thread
             mGameThread.join();
@@ -371,7 +371,7 @@ public class SGView extends SurfaceView
 
     public void resume() {
         mIsPlaying = true;
-        mMediaPlayer.start();
+        mBackgroundMusic.start();
         mGameThread = new Thread(this);
         mGameThread.start();
     }
