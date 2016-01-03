@@ -22,6 +22,9 @@ public class PlayerSpacecraft extends Spacecraft {
 
         setX(screenX / 2);
         setY(screenY - 300);
+
+        // to prevent collision in first frame
+        updateHitBox();
     }
 
     public void setPressingRight(boolean isPressingRight) {

@@ -11,5 +11,8 @@ public class EnemySpacecraft1 extends EnemySpacecraft {
         super(context, Type.ENEMY_1, screenX, screenY);
 
         respawn();
+
+        // to prevent collision in first frame
+        updateHitBox();
     }
 }

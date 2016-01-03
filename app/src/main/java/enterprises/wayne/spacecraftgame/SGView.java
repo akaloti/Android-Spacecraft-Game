@@ -52,6 +52,7 @@ public class SGView extends SurfaceView
     private SoundPool mSoundPool;
     int mStartSound = -1;
     int mWinSound = -1;
+    int mLossSound = -1;
 
     // For drawing
     private Paint mPaint;
@@ -132,6 +133,9 @@ public class SGView extends SurfaceView
     }
 
     private void update() {
+        if (isCollision())
+            resolveLoss();
+
         mPlayer.update();
 
         // Update each enemy spacecraft
@@ -148,6 +152,22 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @return true if the player is colliding with any enemy;
+     * false, otherwise
+     */
+    private boolean isCollision() {
+        Rect playerHitBox = mPlayer.getHitBox();
+
+        // Check each enemy
+        for (EnemySpacecraft es : mEnemies) {
+            if (Rect.intersects(playerHitBox, es.getHitBox()))
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @post remaining forward distance has been updated; if user has
      * won, game is notified
      */
@@ -157,6 +177,15 @@ public class SGView extends SurfaceView
         if (mForwardDistanceRemaining < 0) {
             resolveWin();
         }
+    }
+
+    /**
+     * @post user's having lost has been reacted to; game has been
+     * notified so that appropriate message will be drawn
+     */
+    private void resolveLoss() {
+        mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
+        mLost = true;
     }
 
     /**
@@ -203,6 +232,8 @@ public class SGView extends SurfaceView
             else {
                 if (mWon)
                     drawWinScreen();
+                else if (mLost)
+                    drawLossScreen();
             }
 
             // Unlock and draw the scene
@@ -250,6 +281,12 @@ public class SGView extends SurfaceView
         mPaint.setTextSize(60);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
+    }
+
+    private void drawLossScreen() {
+        mPaint.setTextSize(60);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
     }
 
     private void controlFrameRate() {
