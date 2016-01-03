@@ -1,5 +1,8 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -background music
+    --restart music each time game restarts
+    --restart music when app resumes
+    --pause music when app pauses
 -figure out why finish() doesn't work in the onKeyDown methods
 -improve sound effects
 -figure out how to wait for all sound effects to load, so that

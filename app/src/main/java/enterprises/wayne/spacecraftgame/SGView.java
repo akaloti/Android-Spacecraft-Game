@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -61,6 +62,8 @@ public class SGView extends SurfaceView
     int mWinSound = -1;
     int mLossSound = -1;
 
+    MediaPlayer mMediaPlayer;
+
     // For drawing
     private Paint mPaint;
     private Canvas mCanvas;
@@ -74,6 +77,12 @@ public class SGView extends SurfaceView
         // do this early to minimize the chance that the sounds
         // don't get loaded in time
         loadSounds();
+
+        // Set up background music
+        mMediaPlayer = MediaPlayer.create(context, R.raw.background);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.setVolume(1.0f, 1.0f);
+        mMediaPlayer.start();
 
         mScreenX = screenX;
         mScreenY = screenY;
