@@ -2,9 +2,6 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -more advanced enemies
     -ones that head towards the player
         -consider horizontal speed
--implement colliding and death
-    -death:
-        -make sure collision detection sound can't play after loss
 -allow replaying (after win or loss)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
@@ -16,7 +13,10 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 
 Eventually:
 -make sure spacecrafts have correct size
--main menu background image
+-main activity
+    -main menu background image
+    -include some sort of directions (e.g. keep eye on distance remaining,
+    tap left and right halves of screen)
 -delete activity_main.xml
 -figure out why finish() doesn't work in the onKeyDown methods
 -a way for difficulty to increase; e.g.:

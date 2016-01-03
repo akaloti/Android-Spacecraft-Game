@@ -141,8 +141,9 @@ public class SGView extends SurfaceView
 
     private void update() {
         // Check for collision only if isn't the first frame
-        // (since everyone's hit box is at default spot)
-        if (!mIsFirstFrame) {
+        // (since everyone's hit box is at default spot) and if
+        // game hasn't ended
+        if (!gameEnded() && !mIsFirstFrame) {
             if (isCollision())
                 resolveLoss();
         }
@@ -226,7 +227,7 @@ public class SGView extends SurfaceView
                     mCanvas.drawPoint(sd.getX(), sd.getY(), mPaint);
 
             // For debugging
-            drawHitBoxes();
+            // drawHitBoxes();
 
             // Only draw the player if hasn't lost
             if (!mLost)
