@@ -2,6 +2,7 @@ package enterprises.wayne.spacecraftgame;
 
 import android.app.Activity;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -25,6 +26,12 @@ public class GameActivity extends Activity {
 
         mGameView = new SGView(this, size.x, size.y);
         setContentView(mGameView);
+
+        // Play background music
+        MediaPlayer player = MediaPlayer.create(this, R.raw.background);
+        player.setLooping(true);
+        player.setVolume(1.0f, 1.0f);
+        player.start();
     }
 
     @Override
