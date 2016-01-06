@@ -1,5 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--figure out why finish() doesn't work in the onKeyDown methods
 -figure out how to wait for all sound effects to load, so that
 the "start" sound effect plays the first time
 -design my own spacecrafts with either Inventor or Blender
