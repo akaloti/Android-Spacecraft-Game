@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     public void onPlayClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
