@@ -58,9 +58,9 @@ public class SGView extends SurfaceView
     private static final long GAME_END_WAIT_MILLISECONDS = 1000;
 
     private SoundPool mSoundPool;
-    int mStartSound = -1;
-    int mWinSound = -1;
-    int mLossSound = -1;
+    private int mStartSound = -1;
+    private int mWinSound = -1;
+    private int mLossSound = -1;
 
     MediaPlayer mBackgroundMusic;
 
