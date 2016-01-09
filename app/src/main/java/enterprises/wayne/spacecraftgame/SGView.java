@@ -58,9 +58,10 @@ public class SGView extends SurfaceView
     private static final long GAME_END_WAIT_MILLISECONDS = 1000;
 
     private SoundPool mSoundPool;
-    int mStartSound = -1;
-    int mWinSound = -1;
-    int mLossSound = -1;
+    private int mStartSound = -1;
+    private int mWinSound = -1;
+    private int mLossSound = -1;
+    private boolean mFinishedLoadingSounds = false;
 
     MediaPlayer mBackgroundMusic;
 
@@ -74,8 +75,6 @@ public class SGView extends SurfaceView
 
         mContext = context;
 
-        // do this early to minimize the chance that the sounds
-        // don't get loaded in time
         loadSounds();
 
         // Set up background music
@@ -97,11 +96,20 @@ public class SGView extends SurfaceView
     }
 
     /**
-     * @post all sound effects have been loaded (in an order intended
-     * to minimize the possibility of an unloaded sound being played)
+     * @post all sound effects have been gotten started loading;
+     * load completion listener has been set up
      */
     private void loadSounds() {
         mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        mSoundPool.setOnLoadCompleteListener(
+                new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                       int status) {
+                mFinishedLoadingSounds = true;
+            }
+        });
+
         try {
             AssetManager assetManager = mContext.getAssets();
             AssetFileDescriptor descriptor;
@@ -286,6 +294,17 @@ public class SGView extends SurfaceView
                     drawWinScreen();
                 else if (mLost)
                     drawLossScreen();
+            }
+
+            if (!mFinishedLoadingSounds) {
+                mPaint.setColor(Color.WHITE);
+                mCanvas.drawText("Loading...", mScreenX / 2,
+                        mScreenY / 2, mPaint);
+            }
+            else {
+                mPaint.setColor(Color.WHITE);
+                mCanvas.drawText("Finished!", mScreenX / 2,
+                        mScreenY / 2, mPaint);
             }
 
             // Unlock and draw the scene
