@@ -1,7 +1,9 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--design my own spacecrafts with either Inventor or Blender
-    -can make them look more like spacecrafts and shape them in a way
-    so that the rectangular hit box fits better
+-design my own spacecrafts with either Inventor
+    -again change the hero's spacecraft image, because it looks too much like
+    a rocket, which can't move as horizontally well as a typical spacecraft can
+        --try only shortening the length of the tube
+-look into prevent ConcurrentModificationException (if ever happens)
 -a way for difficulty to increase; e.g.:
     -make some levels
     -as remaining distance decreases:
@@ -32,7 +34,6 @@ Considerable:
 -hunter's horizontal speed has some randomness and/or gradual increase
 -don't update the shown distance remaining as frequently (since the tens
 and ones digits could be distracting)
--look into prevent ConcurrentModificationException (if ever happens)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
     --since a dust speck is a pixel, could make number of specks
