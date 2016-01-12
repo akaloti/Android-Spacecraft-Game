@@ -1,5 +1,5 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--design my own spacecrafts with either Inventor
+-design my own spacecrafts with Inventor
     -again change the hero's spacecraft image, because it looks too much like
     a rocket, which can't move as horizontally well as a typical spacecraft can
         --try only shortening the length of the tube
