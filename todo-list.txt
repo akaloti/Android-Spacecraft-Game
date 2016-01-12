@@ -1,12 +1,12 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--design my own spacecrafts with either Inventor or Blender
-    -can make them look more like spacecrafts and shape them in a way
-    so that the rectangular hit box fits better
+-look into preventing ConcurrentModificationException and NullPointerException
+(perhaps by using a thread-friendly ArrayList version)
 -a way for difficulty to increase; e.g.:
     -make some levels
     -as remaining distance decreases:
         -more spacecrafts could appear
-        -spacecrafts minimum and maximum speeds increase
+            -make more kinds of enemies? OR
+            -spacecrafts minimum and maximum speeds increase?
 
 Eventually:
 -make sure spacecrafts have correct size
@@ -32,7 +32,6 @@ Considerable:
 -hunter's horizontal speed has some randomness and/or gradual increase
 -don't update the shown distance remaining as frequently (since the tens
 and ones digits could be distracting)
--look into prevent ConcurrentModificationException (if ever happens)
 -consider scaling everything, so it all looks the same on every device
     --look into eBook for discussion about this topic
     --since a dust speck is a pixel, could make number of specks
