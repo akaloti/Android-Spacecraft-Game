@@ -45,7 +45,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 600;
+    private static final float FORWARD_DISTANCE_GOAL = 2500;
 
     private boolean mWon;
     private boolean mLost;
