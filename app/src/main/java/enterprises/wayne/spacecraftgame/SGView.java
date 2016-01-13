@@ -16,7 +16,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Aaron on 12/27/2015.
@@ -33,9 +33,9 @@ public class SGView extends SurfaceView
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
-    private ArrayList<EnemySpacecraft> mEnemies;
+    private CopyOnWriteArrayList<EnemySpacecraft> mEnemies;
 
-    private ArrayList<SpaceDust> mDustList;
+    private CopyOnWriteArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
 
     // For controlling frame rate
@@ -90,8 +90,8 @@ public class SGView extends SurfaceView
         mHolder = getHolder();
         mPaint = new Paint();
 
-        mEnemies = new ArrayList<EnemySpacecraft>();
-        mDustList = new ArrayList<SpaceDust>();
+        mEnemies = new CopyOnWriteArrayList<EnemySpacecraft>();
+        mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
     }
