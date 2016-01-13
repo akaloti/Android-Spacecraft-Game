@@ -1,6 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--look into preventing ConcurrentModificationException and NullPointerException
-(perhaps by using a thread-friendly ArrayList version)
 -a way for difficulty to increase; e.g.:
     -make some levels
     -as remaining distance decreases:
