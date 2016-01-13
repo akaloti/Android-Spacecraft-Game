@@ -17,6 +17,7 @@ Eventually:
 -delete activity_main.xml
 -improve playability
     -make sure spacecrafts' speeds and sizes are all great
+-stop the player's horizontal movement after victory
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
