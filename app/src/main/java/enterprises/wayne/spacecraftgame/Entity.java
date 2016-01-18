@@ -21,9 +21,12 @@ public abstract class Entity {
     protected enum Type {
         HERO,
 
-        // enemies
+        // enemy spacecrafts
         DUMMY_1,
         HUNTER_1,
+
+        // asteroids
+        SMALL_ASTEROID,
     }
 
     /**
@@ -46,6 +49,10 @@ public abstract class Entity {
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
+                break;
+            case SMALL_ASTEROID:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.small_asteroid);
                 break;
             default:
                 throw new AssertionError("Invalid type given to Entity()");

@@ -1,8 +1,8 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -implement rocks
-        -draw rocks onto screen
-        -change storage type of mEnemies
+        -change name of mEnemies
+        -change rocks' speeds
     -store level data
         -enemies
             -type
