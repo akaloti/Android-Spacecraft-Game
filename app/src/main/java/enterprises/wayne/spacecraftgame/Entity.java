@@ -8,9 +8,9 @@ import android.graphics.Rect;
 /**
  * Created by Aaron on 12/28/2015.
  */
-public abstract class Spacecraft {
+public abstract class Entity {
     private Bitmap mBitmap;
-    private int mX, mY; // position of the spacecraft
+    private int mX, mY; // position of the entity
     private int mMaxX, mMinX; // for keeping craft in boundaries
     private int mSpeedX, mSpeedY;
 
@@ -21,9 +21,12 @@ public abstract class Spacecraft {
     protected enum Type {
         HERO,
 
-        // enemies
+        // enemy spacecrafts
         DUMMY_1,
         HUNTER_1,
+
+        // asteroids
+        SMALL_ASTEROID,
     }
 
     /**
@@ -32,8 +35,8 @@ public abstract class Spacecraft {
      * @param screenX user's screen's width (in pixels)
      * @param screenY user's screen's height (in pixels)
      */
-    public Spacecraft(Context context, Type type, int screenX, int screenY) {
-        // Select appropriate bitmap for the spacecraft
+    public Entity(Context context, Type type, int screenX, int screenY) {
+        // Select appropriate bitmap for the entity
         switch (type) {
             case HERO:
                 mBitmap = BitmapFactory.decodeResource
@@ -47,8 +50,12 @@ public abstract class Spacecraft {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
                 break;
+            case SMALL_ASTEROID:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.small_asteroid);
+                break;
             default:
-                throw new AssertionError("Invalid type given to Spacecraft()");
+                throw new AssertionError("Invalid type given to Entity()");
         }
 
         mType = type;
@@ -113,7 +120,7 @@ public abstract class Spacecraft {
     }
 
     /**
-     * @pre spacecraft's position has been updated
+     * @pre entity's position has been updated
      * @post location of hit box has been updated
      */
     protected void updateHitBox() {

@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Aaron on 12/31/2015.
  */
-public abstract class EnemySpacecraft extends Spacecraft {
+public abstract class EnemyEntity extends Entity {
 
     private int mMaxY, mMinY; // for repositioning
 
@@ -17,12 +17,12 @@ public abstract class EnemySpacecraft extends Spacecraft {
      * @param screenX user's screen's width (in pixels)
      * @param screenY user's screen's height (in pixels)
      */
-    public EnemySpacecraft(Context context, Type type,
-                           int screenX, int screenY) {
+    public EnemyEntity(Context context, Type type,
+                       int screenX, int screenY) {
         super(context, type, screenX, screenY);
 
-        // enemy spacecrafts can be off screen briefly (to create
-        // the illusion that the spacecrafts are not somehow warping)
+        // enemy entities can be off screen briefly (to create
+        // the illusion that the entities are not somehow warping)
         mMaxY = screenY + getBitmap().getHeight();
         mMinY = -1 * getBitmap().getHeight();
 
@@ -55,7 +55,7 @@ public abstract class EnemySpacecraft extends Spacecraft {
     }
 
     /**
-     * @post spacecraft's new speed and position have been chosen
+     * @post entity's new speed and position have been chosen
      */
     protected void respawn() {
         setRandomNewPosition();
@@ -63,19 +63,26 @@ public abstract class EnemySpacecraft extends Spacecraft {
     }
 
     /**
-     * @post this spacecraft's y-speed has been randomly set
+     * @post this entity's y-speed has been randomly set
      */
     private void setRandomNewSpeedY() {
         Random generator = new Random();
-        setSpeedY(generator.nextInt(3) + 5);
+
+        // asteroids are slower than spacecrafts are;
+        // since there are not many enemy entity types yet,
+        // this method of assigning different speed ranges suffices;
+        if (getType() == Type.SMALL_ASTEROID)
+            setSpeedY(generator.nextInt(2) + 3);
+        else
+            setSpeedY(generator.nextInt(3) + 5);
     }
 
     /**
-     * @post this spacecraft's position has been set to a horizontally
+     * @post this entity's position has been set to a horizontally
      * random one that is just above the screen's viewable area
      */
     private void setRandomNewPosition() {
-        // Set the spacecraft just above the user's view
+        // Set the entity just above the user's view
         int y = mMinY;
 
         // Pick a random, valid horizontal coordinate

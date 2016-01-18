@@ -7,6 +7,8 @@ import java.util.Random;
 /**
  * Based on same-named class from source code of book "Android Game
  * Programming by Example" by John Horton.
+ *
+ * SpaceDust is not an Entity because it can't collide.
  */
 public class SpaceDust {
 

@@ -33,7 +33,7 @@ public class SGView extends SurfaceView
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
-    private CopyOnWriteArrayList<EnemySpacecraft> mEnemies;
+    private CopyOnWriteArrayList<EnemyEntity> mEnemyEntities;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
@@ -90,7 +90,7 @@ public class SGView extends SurfaceView
         mHolder = getHolder();
         mPaint = new Paint();
 
-        mEnemies = new CopyOnWriteArrayList<EnemySpacecraft>();
+        mEnemyEntities = new CopyOnWriteArrayList<EnemyEntity>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
@@ -124,7 +124,7 @@ public class SGView extends SurfaceView
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
 
         // Reset player and enemies
-        mEnemies.clear();
+        mEnemyEntities.clear();
         initializeSpacecrafts();
 
         makeNewDustList();
@@ -136,9 +136,10 @@ public class SGView extends SurfaceView
 
     private void initializeSpacecrafts() {
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
-        mEnemies.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemies.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemies.add(new Hunter(mContext, mScreenX, mScreenY));
+        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
+        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
+        mEnemyEntities.add(new Hunter(mContext, mScreenX, mScreenY));
+        mEnemyEntities.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
@@ -191,7 +192,7 @@ public class SGView extends SurfaceView
         Rect playerHitBox = mPlayer.getHitBox();
 
         // Check each enemy
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemyEntities) {
             if (Rect.intersects(playerHitBox, es.getHitBox()))
                 return true;
         }
@@ -204,7 +205,7 @@ public class SGView extends SurfaceView
      * @param playerSpeedY
      */
     private void updateEnemies(int playerCenterX, int playerSpeedY) {
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemyEntities) {
             // Update waypoint if hunter
             if (es.isHunter()) {
                 ((Hunter) es).setWaypointX(playerCenterX);
@@ -245,7 +246,7 @@ public class SGView extends SurfaceView
     private void resolveWin() {
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
-        mEnemies.clear();
+        mEnemyEntities.clear();
 
         mGameEndTime = System.currentTimeMillis();
     }
@@ -275,7 +276,7 @@ public class SGView extends SurfaceView
                         mPaint);
 
             // Draw each enemy
-            for (EnemySpacecraft es : mEnemies)
+            for (EnemyEntity es : mEnemyEntities)
                 mCanvas.drawBitmap(es.getBitmap(), es.getX(),
                         es.getY(), mPaint);
 
@@ -308,7 +309,7 @@ public class SGView extends SurfaceView
                 hitBox.bottom, mPaint);
 
         // draw each enemy's hit box
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemyEntities) {
             hitBox = es.getHitBox();
             mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
                     hitBox.bottom, mPaint);

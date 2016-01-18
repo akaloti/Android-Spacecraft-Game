@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by Aaron on 1/1/2016.
  */
-public class Hunter extends EnemySpacecraft {
+public class Hunter extends EnemyEntity {
 
     // For hunting the player; should be slower than player on x-axis
     private int mWaypointX;
