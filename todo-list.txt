@@ -1,13 +1,29 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--a way for difficulty to increase; e.g.:
-    -make some levels
-    -as remaining distance decreases:
-        -more spacecrafts could appear
-            -make more kinds of enemies? OR
-            -spacecrafts minimum and maximum speeds increase?
+-make some levels, each different distance
+    -implement rocks
+        -don't worry too much about making them look good
+    -store level data
+        -enemies
+            -type
+            -start and end distances
+        -rocks
+            -type
+            -start and end distances
+        -distance needed to clear
+        -background music
+    -create level data instance for SGView
+    -print level number in HUD
+    -advance to next level after completion; max five levels
+    -tell user when beat non-final level or beat final level or lost
+    -make sure current level is kept if player dies
+-as remaining distance decreases in each level:
+    -the currently spawned enemies could change
+        -would have to mark some enemies for no respawn
+-can choose between three different spacecrafts of varying speed, size,
+and shape
+-make more kinds of enemies
 
 Eventually:
--make sure spacecrafts have correct size
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
@@ -19,7 +35,6 @@ Eventually:
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
--change spacecraft's sprite depending on its horizontal direction
 -put finish line sprite at goal distance
 -special effects when the user is almost at the goal; e.g.:
     -screen could have flashes of red
