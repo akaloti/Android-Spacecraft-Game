@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Aaron on 12/31/2015.
  */
-public abstract class EnemySpacecraft extends Spacecraft {
+public abstract class EnemySpacecraft extends Entity {
 
     private int mMaxY, mMinY; // for repositioning
 

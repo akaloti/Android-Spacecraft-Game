@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by Aaron on 12/28/2015.
  */
-public class PlayerSpacecraft extends Spacecraft {
+public class PlayerSpacecraft extends Entity {
     private static final int HORIZONTAL_SPEED = 10;
 
     // Regarding user input
