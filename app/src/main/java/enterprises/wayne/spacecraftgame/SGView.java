@@ -33,7 +33,7 @@ public class SGView extends SurfaceView
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
-    private CopyOnWriteArrayList<EnemySpacecraft> mEnemies;
+    private CopyOnWriteArrayList<EnemyEntity> mEnemies;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
@@ -90,7 +90,7 @@ public class SGView extends SurfaceView
         mHolder = getHolder();
         mPaint = new Paint();
 
-        mEnemies = new CopyOnWriteArrayList<EnemySpacecraft>();
+        mEnemies = new CopyOnWriteArrayList<EnemyEntity>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
@@ -139,6 +139,8 @@ public class SGView extends SurfaceView
         mEnemies.add(new Dummy(mContext, mScreenX, mScreenY));
         mEnemies.add(new Dummy(mContext, mScreenX, mScreenY));
         mEnemies.add(new Hunter(mContext, mScreenX, mScreenY));
+        mEnemies.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
+        mEnemies.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
@@ -191,7 +193,7 @@ public class SGView extends SurfaceView
         Rect playerHitBox = mPlayer.getHitBox();
 
         // Check each enemy
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemies) {
             if (Rect.intersects(playerHitBox, es.getHitBox()))
                 return true;
         }
@@ -204,7 +206,7 @@ public class SGView extends SurfaceView
      * @param playerSpeedY
      */
     private void updateEnemies(int playerCenterX, int playerSpeedY) {
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemies) {
             // Update waypoint if hunter
             if (es.isHunter()) {
                 ((Hunter) es).setWaypointX(playerCenterX);
@@ -275,7 +277,7 @@ public class SGView extends SurfaceView
                         mPaint);
 
             // Draw each enemy
-            for (EnemySpacecraft es : mEnemies)
+            for (EnemyEntity es : mEnemies)
                 mCanvas.drawBitmap(es.getBitmap(), es.getX(),
                         es.getY(), mPaint);
 
@@ -308,7 +310,7 @@ public class SGView extends SurfaceView
                 hitBox.bottom, mPaint);
 
         // draw each enemy's hit box
-        for (EnemySpacecraft es : mEnemies) {
+        for (EnemyEntity es : mEnemies) {
             hitBox = es.getHitBox();
             mCanvas.drawRect(hitBox.left, hitBox.top, hitBox.right,
                     hitBox.bottom, mPaint);
