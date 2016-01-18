@@ -67,7 +67,14 @@ public abstract class EnemyEntity extends Entity {
      */
     private void setRandomNewSpeedY() {
         Random generator = new Random();
-        setSpeedY(generator.nextInt(3) + 5);
+
+        // asteroids are slower than spacecrafts are;
+        // since there are not many enemy entity types yet,
+        // this method of assigning different speed ranges suffices;
+        if (getType() == Type.SMALL_ASTEROID)
+            setSpeedY(generator.nextInt(2) + 3);
+        else
+            setSpeedY(generator.nextInt(3) + 5);
     }
 
     /**
