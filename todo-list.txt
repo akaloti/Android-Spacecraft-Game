@@ -1,7 +1,6 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -implement rocks
-        -change name of mEnemies
         -change rocks' speeds
     -store level data
         -enemies
