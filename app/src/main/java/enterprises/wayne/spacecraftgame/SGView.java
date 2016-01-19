@@ -50,9 +50,6 @@ public class SGView extends SurfaceView
     private boolean mWon;
     private boolean mLost;
 
-    // for avoiding certain actions (e.g. collision detection) on first frame
-    private boolean mIsFirstFrame;
-
     // for allowing the user to see win/loss screen for brief time
     private long mGameEndTime;
     private static final long GAME_END_WAIT_MILLISECONDS = 1000;
@@ -131,7 +128,6 @@ public class SGView extends SurfaceView
 
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
-        mIsFirstFrame = true;
     }
 
     private void initializeSpacecrafts() {
@@ -163,12 +159,10 @@ public class SGView extends SurfaceView
         // Check for collision only if isn't the first frame
         // (since everyone's hit box is at default spot) and if
         // game hasn't ended
-        if (!gameEnded() && !mIsFirstFrame) {
+        if (!gameEnded()) {
             if (isCollision())
                 resolveLoss();
         }
-        else
-            mIsFirstFrame = false;
 
         mPlayer.update();
 

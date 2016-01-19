@@ -1,5 +1,7 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
+    -enemies have start and end distances
+        -need container for enemies, including non-spawned ones
     -store level data
         -enemies
             -type

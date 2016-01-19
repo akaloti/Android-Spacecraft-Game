@@ -28,6 +28,9 @@ public abstract class EnemyEntity extends Entity {
 
         // respawn after minimum and maximum positions have been set
         respawn();
+
+        // so all entities won't automatically collide in first frame
+        updateHitBox();
     }
 
     public int getMaxY() {
