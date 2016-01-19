@@ -29,7 +29,7 @@ public abstract class EnemyEntity extends Entity {
         // respawn after minimum and maximum positions have been set
         respawn();
 
-        // so all entities won't automatically collide in first frame
+        // so the hit box doesn't start at wrong spot and kill player
         updateHitBox();
     }
 
