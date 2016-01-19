@@ -34,6 +34,7 @@ public class SGView extends SurfaceView
 
     private PlayerSpacecraft mPlayer;
     private CopyOnWriteArrayList<EnemyEntity> mEnemyEntities;
+    private CopyOnWriteArrayList<EnemyEntityData> mEnemyData;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
@@ -117,10 +118,19 @@ public class SGView extends SurfaceView
         }
     }
 
+    /**
+     * @post container for enemy data has been reset with all
+     * enemy data
+     */
+    private void restartEnemyData() {
+        mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
+    }
+
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
 
         // Reset player and enemies
+        restartEnemyData();
         mEnemyEntities.clear();
         initializeSpacecrafts();
 
@@ -132,10 +142,10 @@ public class SGView extends SurfaceView
 
     private void initializeSpacecrafts() {
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
-        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new Hunter(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
+        // mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
+        // mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
+        // mEnemyEntities.add(new Hunter(mContext, mScreenX, mScreenY));
+        // mEnemyEntities.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
