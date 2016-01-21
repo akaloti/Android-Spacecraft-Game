@@ -16,6 +16,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -89,6 +90,7 @@ public class SGView extends SurfaceView
         mPaint = new Paint();
 
         mEnemyEntities = new CopyOnWriteArrayList<EnemyEntity>();
+        mEnemyData = new CopyOnWriteArrayList<EnemyEntityData>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
@@ -124,21 +126,64 @@ public class SGView extends SurfaceView
      */
     private void restartEnemyData() {
         mEnemyData.clear();
-        mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 500));
+    }
+
+    /**
+     * @post each enemy in mEnemyData whose start distance has been reached
+     * has been constructed
+     */
+    private void spawnEnemies() {
+        ArrayList<Integer> indicesToRemove = new ArrayList<Integer>();
+        float distanceTravelled =
+                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+        for (int i = 0; i < mEnemyData.size(); ++i) {
+            // Has the player travelled far enough for this enemy to spawn?
+            if (distanceTravelled >= mEnemyData.get(i).startDistance) {
+                // Create this enemy
+
+                switch (mEnemyData.get(i).type) {
+                    case DUMMY_1:
+                        mEnemyEntities.add(
+                                new Dummy(mContext, mScreenX, mScreenY));
+                        break;
+                    case HUNTER_1:
+                        mEnemyEntities.add(
+                                new Hunter(mContext, mScreenX, mScreenY));
+                        break;
+                    case SMALL_ASTEROID:
+                        mEnemyEntities.add(
+                                new SmallAsteroid(mContext,
+                                        mScreenX, mScreenY));
+                        break;
+                    default:
+                        throw new AssertionError(
+                                "Spawned enemy has invalid type");
+                }
+
+                indicesToRemove.add(i);
+            }
+        }
+
+        // Remove the data of the spawned enemies, so they don't spawn again
+
     }
 
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
 
-        // Reset player and enemies
-        restartEnemyData();
-        mEnemyEntities.clear();
-        initializeSpacecrafts();
-
-        makeNewDustList();
-
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
+
+        // Reset player and enemies
+        restartEnemyData();
+        initializeSpacecrafts();
+        mEnemyEntities.clear();
+        spawnEnemies(); // do after resetting remaining distance
+
+        makeNewDustList();
     }
 
     private void initializeSpacecrafts() {

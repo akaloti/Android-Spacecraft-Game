@@ -4,6 +4,7 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
         -create method to spawn enemies from the data based on player's
          achieved distance; call once at beginning and during each update()
             -remove the data of the spawned enemy
+            -do something about initializeSpacecrafts()
         -create method to destroy enemies whose end distances have been
          reached
         -create some distance between initial spawn points, so that enemy entities
