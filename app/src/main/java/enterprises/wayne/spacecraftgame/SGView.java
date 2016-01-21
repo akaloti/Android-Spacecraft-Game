@@ -251,6 +251,8 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @post each existing enemy has been updated, and new ones have
+     * been spawnwed if player travelled far enough
      * @param playerCenterX
      * @param playerSpeedY
      */
@@ -263,6 +265,9 @@ public class SGView extends SurfaceView
 
             es.update(playerSpeedY);
         }
+
+        if (!gameEnded())
+            spawnEnemies();
     }
 
     /**
