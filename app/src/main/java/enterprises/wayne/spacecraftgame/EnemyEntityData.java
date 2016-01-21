@@ -4,14 +4,14 @@ package enterprises.wayne.spacecraftgame;
  * Created by Aaron on 1/19/2016.
  */
 public class EnemyEntityData {
-    public Entity.Type mType;
-    public float mStartDistance;
-    public float mEndDistance;
+    public Entity.Type type;
+    public float startDistance;
+    public float endDistance;
 
     public EnemyEntityData(Entity.Type type, float startDistance,
                            float endDistance) {
-        mType = type;
-        mStartDistance = startDistance;
-        mEndDistance = endDistance;
+        this.type = type;
+        this.startDistance = startDistance;
+        this.endDistance = endDistance;
     }
 }

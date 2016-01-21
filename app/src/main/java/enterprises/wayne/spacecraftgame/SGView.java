@@ -123,6 +123,7 @@ public class SGView extends SurfaceView
      * enemy data
      */
     private void restartEnemyData() {
+        mEnemyData.clear();
         mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
     }
 
