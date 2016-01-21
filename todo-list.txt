@@ -3,7 +3,6 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
     -enemies have start and end distances
         -create method to spawn enemies from the data based on player's
          achieved distance
-            -remove the data of the spawned enemy
             -do something about initializeSpacecrafts()
         -create method to destroy enemies whose end distances have been
          reached

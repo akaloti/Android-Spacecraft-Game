@@ -168,7 +168,11 @@ public class SGView extends SurfaceView
         }
 
         // Remove the data of the spawned enemies, so they don't spawn again
-
+        int numberOfRemoved = 0;
+        for (Integer i : indicesToRemove) {
+            mEnemyData.remove(i.intValue() - numberOfRemoved);
+            ++numberOfRemoved;
+        }
     }
 
     private void restartGame() {
