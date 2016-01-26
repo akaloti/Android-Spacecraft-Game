@@ -47,7 +47,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 2500;
+    private static final float FORWARD_DISTANCE_GOAL = 1000;
 
     private boolean mWon;
     private boolean mLost;
@@ -93,6 +93,7 @@ public class SGView extends SurfaceView
         mEnemyData = new CopyOnWriteArrayList<EnemyEntityData>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
+        restartEnemyData();
         restartGame();
     }
 
@@ -163,6 +164,7 @@ public class SGView extends SurfaceView
                                 "Spawned enemy has invalid type");
                 }
 
+                Log.e("enemyType", mEnemyData.get(i).type.toString());
                 indicesToRemove.add(i);
             }
         }
@@ -170,6 +172,10 @@ public class SGView extends SurfaceView
         // Remove the data of the spawned enemies, so they don't spawn again
         int numberOfRemoved = 0;
         for (Integer i : indicesToRemove) {
+            Log.e("mEnemyData.size()", "" + mEnemyData.size());
+            Log.e("i.intValue()", "" + i.intValue());
+            Log.e("numberOfRemoved", "" + numberOfRemoved);
+            Log.e("indexToRemove", "" + (i.intValue() - numberOfRemoved));
             mEnemyData.remove(i.intValue() - numberOfRemoved);
             ++numberOfRemoved;
         }
@@ -182,7 +188,6 @@ public class SGView extends SurfaceView
         mWon = mLost = false;
 
         // Reset player and enemies
-        restartEnemyData();
         initializeSpacecrafts();
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
@@ -294,7 +299,7 @@ public class SGView extends SurfaceView
         mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
         mLost = true;
 
-        mGameEndTime = System.currentTimeMillis();
+        doBeforeCanRestart();
     }
 
     /**
@@ -307,7 +312,22 @@ public class SGView extends SurfaceView
         mWon = true;
         mEnemyEntities.clear();
 
+        doBeforeCanRestart();
+    }
+
+    /**
+     * @post certain tasks that must be done before user can restart
+     * have been done
+     */
+    private void doBeforeCanRestart() {
+        // for waiting a certain amount of time before user can restart
         mGameEndTime = System.currentTimeMillis();
+
+        // do this here (rather than when the user restarts) to
+        // prevent exception from trying to remove enemy data based
+        // on outdated indices (since the restarting of the game
+        // is response to user input)
+        restartEnemyData();
     }
 
     private void draw() {

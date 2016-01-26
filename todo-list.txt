@@ -1,6 +1,30 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -enemies have start and end distances
+        -find the bug regarding CopyOnWriteArrayList.remove() in spawnEnemies()
+            -current guess of the problem: The user's input is handled in
+            a thread separate from the one handling the bulk of the game.
+            That input thread allows the user to restart the game by
+            tapping, causing restartGame to be called. restartGame
+            calls restartEnemyData(), which changes mEnemyData. My educated
+            guess, supported by the logged data, is that mEnemyData is
+            edited while the following for loop is running:
+                for (int i = 0; i < mEnemyData.size(); ++i)
+            in spawnEnemies(), and that for loop's version of mEnemyData
+            isn't protected (by the properties of CopyOnWriteArrayList)
+            because an iterator technically isn't used.
+            -possible remedies: ALSO SEE PHONE MEMO
+                -removing duplicate enemy data indices-to-remove
+                -look into what the C5 Platformer does; it's worth noting
+                that it pauses the game after a restart. Perhaps this
+                pausing does something like pause the thread.
+                -temporarily disable restarting, finish the current feature,
+                and decide when to fix the problem later
+                -have calls to spawnEnemies() send the caller's name as argument,
+                then catch the exception and print the caller's name
+                -model the game after the Tanks one (i.e. without threads);
+                would only work if can check for touch, rather than
+                react to it
         -create method to spawn enemies from the data based on player's
          achieved distance
             -do something about initializeSpacecrafts()
