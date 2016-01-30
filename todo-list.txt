@@ -1,11 +1,12 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -enemies' start and end distances
-        -after bug:
-            -figure out why two of the hunting spacecrafts sometimes appear
-            -remove some of the changes I made in my failed attempts
-            to fix the bug
-            -do something about initializeSpacecrafts()
+        -figure out why two of the hunting spacecrafts sometimes appear
+            -try not having restartGame() be called in onTouchEvent();
+            the latter should instead update a flag in SGView so
+            that restartGame gets called by the game thread (rather
+            than by the input thread)
+        -do something about initializeSpacecrafts()
         -create method to destroy enemies whose end distances have been
          reached
         -create some distance between initial spawn points, so that enemy entities

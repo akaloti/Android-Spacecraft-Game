@@ -93,7 +93,6 @@ public class SGView extends SurfaceView
         mEnemyData = new CopyOnWriteArrayList<EnemyEntityData>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
-        restartEnemyData();
         restartGame();
     }
 
@@ -175,6 +174,7 @@ public class SGView extends SurfaceView
         mWon = mLost = false;
 
         // Reset player and enemies
+        restartEnemyData();
         initializeSpacecrafts();
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
@@ -286,7 +286,7 @@ public class SGView extends SurfaceView
         mSoundPool.play(mLossSound, 1, 1, 0, 0, 1);
         mLost = true;
 
-        doBeforeCanRestart();
+        mGameEndTime = System.currentTimeMillis();
     }
 
     /**
@@ -298,23 +298,6 @@ public class SGView extends SurfaceView
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
         mEnemyEntities.clear();
-
-        doBeforeCanRestart();
-    }
-
-    /**
-     * @post certain tasks that must be done before user can restart
-     * have been done
-     */
-    private void doBeforeCanRestart() {
-        // for waiting a certain amount of time before user can restart
-        mGameEndTime = System.currentTimeMillis();
-
-        // do this here (rather than when the user restarts) to
-        // prevent exception from trying to remove enemy data based
-        // on outdated indices (since the restarting of the game
-        // is response to user input)
-        restartEnemyData();
     }
 
     private void draw() {
