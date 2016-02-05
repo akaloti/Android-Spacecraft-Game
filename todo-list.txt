@@ -1,33 +1,12 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
-    -enemies have start and end distances
-        -find the bug regarding CopyOnWriteArrayList.remove() in spawnEnemies()
-            -current guess of the problem: The user's input is handled in
-            a thread separate from the one handling the bulk of the game.
-            That input thread allows the user to restart the game by
-            tapping, causing restartGame to be called. restartGame
-            calls restartEnemyData(), which changes mEnemyData. My educated
-            guess, supported by the logged data, is that mEnemyData is
-            edited while the following for loop is running:
-                for (int i = 0; i < mEnemyData.size(); ++i)
-            in spawnEnemies(), and that for loop's version of mEnemyData
-            isn't protected (by the properties of CopyOnWriteArrayList)
-            because an iterator technically isn't used.
-            -possible remedies: ALSO SEE PHONE MEMO
-                -removing duplicate enemy data indices-to-remove
-                -look into what the C5 Platformer does; it's worth noting
-                that it pauses the game after a restart. Perhaps this
-                pausing does something like pause the thread.
-                -temporarily disable restarting, finish the current feature,
-                and decide when to fix the problem later
-                -have calls to spawnEnemies() send the caller's name as argument,
-                then catch the exception and print the caller's name
-                -model the game after the Tanks one (i.e. without threads);
-                would only work if can check for touch, rather than
-                react to it
-        -create method to spawn enemies from the data based on player's
-         achieved distance
-            -do something about initializeSpacecrafts()
+    -enemies' start and end distances
+        -figure out why two of the hunting spacecrafts sometimes appear
+            -try not having restartGame() be called in onTouchEvent();
+            the latter should instead update a flag in SGView so
+            that restartGame gets called by the game thread (rather
+            than by the input thread)
+        -do something about initializeSpacecrafts()
         -create method to destroy enemies whose end distances have been
          reached
         -create some distance between initial spawn points, so that enemy entities
@@ -85,3 +64,35 @@ and ones digits could be distracting)
             --could do what was done in eBook's Chapter 5
 -rocks (as obstacles)
 -change sound effects
+
+
+Remove this information at some point (It's only here in case I need
+to look at something in it):
+-find the bug regarding CopyOnWriteArrayList.remove() in spawnEnemies()
+    -current guess of the problem: The user's input is handled in
+    a thread separate from the one handling the bulk of the game.
+    That input thread allows the user to restart the game by
+    tapping, causing restartGame to be called. restartGame
+    calls restartEnemyData(), which changes mEnemyData. My educated
+    guess, supported by the logged data, is that mEnemyData is
+    edited while the following for loop is running:
+        for (int i = 0; i < mEnemyData.size(); ++i)
+    in spawnEnemies(), and that for loop's version of mEnemyData
+    isn't protected (by the properties of CopyOnWriteArrayList)
+    because an iterator technically isn't used.
+    -possible remedies:
+        -PICKED THIS ONE:
+            -don't remove enemy data; instead, give each data a "hasSpawned"
+            member
+        -look into what the C5 Platformer does; it's worth noting
+        that it pauses the game after a restart. Perhaps this
+        pausing does something like pause the thread.
+        -temporarily disable restarting, finish the current feature,
+        and decide when to fix the problem later
+        -use mutexes
+        -model the game after the Tanks one (i.e. without threads);
+        would only work if can check for touch, rather than
+        react to it
+        -using an iterator (and its remove function) and thus not
+        a thread-safe ArrayList; would have to change some things
+        to support this
