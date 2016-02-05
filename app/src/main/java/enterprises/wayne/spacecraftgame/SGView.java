@@ -31,6 +31,7 @@ public class SGView extends SurfaceView
     private int mScreenY;
 
     private volatile boolean mIsPlaying;
+    private volatile boolean mShouldRestartGame;
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
@@ -170,6 +171,8 @@ public class SGView extends SurfaceView
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
 
+        mShouldRestartGame = false;
+
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
 
@@ -204,6 +207,9 @@ public class SGView extends SurfaceView
             update();
             draw();
             controlFrameRate();
+
+            if (gameEnded() && mShouldRestartGame)
+                restartGame();
         }
     }
 
@@ -477,7 +483,7 @@ public class SGView extends SurfaceView
                 switch (motionEvent.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_POINTER_DOWN:
-                        restartGame();
+                        mShouldRestartGame = true;
                         break;
                 }
             }
