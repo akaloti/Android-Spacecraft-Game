@@ -178,19 +178,11 @@ public class SGView extends SurfaceView
 
         // Reset player and enemies
         restartEnemyData();
-        initializeSpacecrafts();
+        mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
 
         makeNewDustList();
-    }
-
-    private void initializeSpacecrafts() {
-        mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
-        // mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        // mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        // mEnemyEntities.add(new Hunter(mContext, mScreenX, mScreenY));
-        // mEnemyEntities.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
     }
 
     private void makeNewDustList() {
