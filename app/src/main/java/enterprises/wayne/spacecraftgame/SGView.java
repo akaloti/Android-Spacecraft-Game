@@ -17,6 +17,7 @@ import android.view.SurfaceView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -129,7 +130,7 @@ public class SGView extends SurfaceView
         mEnemyData.clear();
         mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
         mEnemyData.add(new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
-        mEnemyData.add(new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
     }
 
     /**
@@ -147,16 +148,19 @@ public class SGView extends SurfaceView
                 switch (eed.type) {
                     case DUMMY_1:
                         mEnemyEntities.add(
-                                new Dummy(mContext, mScreenX, mScreenY));
+                                new Dummy(mContext, mScreenX, mScreenY,
+                                          eed.endDistance));
                         break;
                     case HUNTER_1:
                         mEnemyEntities.add(
-                                new Hunter(mContext, mScreenX, mScreenY));
+                                new Hunter(mContext, mScreenX, mScreenY,
+                                           eed.endDistance));
                         break;
                     case SMALL_ASTEROID:
                         mEnemyEntities.add(
                                 new SmallAsteroid(mContext,
-                                        mScreenX, mScreenY));
+                                        mScreenX, mScreenY,
+                                        eed.endDistance));
                         break;
                     default:
                         throw new AssertionError(
@@ -165,6 +169,21 @@ public class SGView extends SurfaceView
 
                 eed.hasSpawned = true;
             }
+        }
+    }
+
+    /**
+     * @post each enemy in mEnemyEntities whose end distance has been
+     * reached by the player has been destroyed
+     */
+    private void despawnEnemies() {
+        float distanceTravelled =
+                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+        for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
+             itr.hasNext(); ) {
+            EnemyEntity enemy = itr.next();
+            if (distanceTravelled >= enemy.getEndDistance())
+                itr.remove();
         }
     }
 
@@ -260,8 +279,10 @@ public class SGView extends SurfaceView
             es.update(playerSpeedY);
         }
 
-        if (!gameEnded())
+        if (!gameEnded()) {
             spawnEnemies();
+            despawnEnemies();
+        }
     }
 
     /**

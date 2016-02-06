@@ -10,21 +10,26 @@ import java.util.Random;
 public abstract class EnemyEntity extends Entity {
 
     private int mMaxY, mMinY; // for repositioning
+    private float mEndDistance; // for knowing when to destroy it
 
     /**
      * @param context to allow access to drawables
      * @param type so that appropriate bitmap can be selected
      * @param screenX user's screen's width (in pixels)
      * @param screenY user's screen's height (in pixels)
+     * @param endDistance
      */
     public EnemyEntity(Context context, Type type,
-                       int screenX, int screenY) {
+                       int screenX, int screenY,
+                       float endDistance) {
         super(context, type, screenX, screenY);
 
         // enemy entities can be off screen briefly (to create
         // the illusion that the entities are not somehow warping)
         mMaxY = screenY + getBitmap().getHeight();
         mMinY = -1 * getBitmap().getHeight();
+
+        mEndDistance = endDistance;
 
         // respawn after minimum and maximum positions have been set
         respawn();
@@ -39,6 +44,10 @@ public abstract class EnemyEntity extends Entity {
 
     public int getMinY() {
         return mMinY;
+    }
+
+    public float getEndDistance() {
+        return mEndDistance;
     }
 
     /**

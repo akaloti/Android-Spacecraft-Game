@@ -7,7 +7,8 @@ import android.content.Context;
  */
 public class SmallAsteroid extends EnemyEntity {
 
-    public SmallAsteroid(Context context, int screenX, int screenY) {
-        super(context, Type.SMALL_ASTEROID, screenX, screenY);
+    public SmallAsteroid(Context context, int screenX, int screenY,
+                         float endDistance) {
+        super(context, Type.SMALL_ASTEROID, screenX, screenY, endDistance);
     }
 }

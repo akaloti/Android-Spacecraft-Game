@@ -1,8 +1,7 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -enemies' start and end distances
-        -create method to destroy enemies whose end distances have been
-         reached
+        -make removal of enemies more graceful
         -create some distance between initial spawn points, so that enemy
          entities are not approximately in a clump
     -store level data
