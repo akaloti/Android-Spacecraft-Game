@@ -13,8 +13,8 @@ public class Hunter extends EnemyEntity {
     private static final int HORIZONTAL_SPEED = 2;
     private static final long WAYPOINT_UPDATE_PERIOD = 500; // in milliseconds
 
-    public Hunter(Context context, int screenX, int screenY) {
-        super(context, Type.HUNTER_1, screenX, screenY);
+    public Hunter(Context context, int screenX, int screenY, float endDistance) {
+        super(context, Type.HUNTER_1, screenX, screenY, endDistance);
 
         mWaypointX = 0;
         mLastWaypointSetTime = System.currentTimeMillis();
@@ -40,7 +40,7 @@ public class Hunter extends EnemyEntity {
      * horizontally towards waypoint
      */
     @Override
-    public void update(int playerSpeedY) {
+    public boolean update(int playerSpeedY) {
         // Move enemy towards waypoint
         int centerX = getCenterX();
         if (mWaypointX < centerX)
@@ -50,6 +50,6 @@ public class Hunter extends EnemyEntity {
         else
             setSpeedX(0);
 
-        super.update(playerSpeedY);
+        return super.update(playerSpeedY);
     }
 }

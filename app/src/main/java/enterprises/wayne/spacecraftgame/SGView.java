@@ -16,6 +16,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -30,10 +32,12 @@ public class SGView extends SurfaceView
     private int mScreenY;
 
     private volatile boolean mIsPlaying;
+    private volatile boolean mShouldRestartGame;
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
-    private CopyOnWriteArrayList<EnemyEntity> mEnemyEntities;
+    private ArrayList<EnemyEntity> mEnemyEntities;
+    private CopyOnWriteArrayList<EnemyEntityData> mEnemyData;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
     private static final int NUMBER_OF_DUST = 120;
@@ -45,13 +49,10 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 2500;
+    private static final float FORWARD_DISTANCE_GOAL = 1000;
 
     private boolean mWon;
     private boolean mLost;
-
-    // for avoiding certain actions (e.g. collision detection) on first frame
-    private boolean mIsFirstFrame;
 
     // for allowing the user to see win/loss screen for brief time
     private long mGameEndTime;
@@ -90,7 +91,8 @@ public class SGView extends SurfaceView
         mHolder = getHolder();
         mPaint = new Paint();
 
-        mEnemyEntities = new CopyOnWriteArrayList<EnemyEntity>();
+        mEnemyEntities = new ArrayList<EnemyEntity>();
+        mEnemyData = new CopyOnWriteArrayList<EnemyEntityData>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
@@ -120,26 +122,88 @@ public class SGView extends SurfaceView
         }
     }
 
+    /**
+     * @post container for enemy data has been reset with all
+     * enemy data
+     */
+    private void restartEnemyData() {
+        mEnemyData.clear();
+        mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
+        mEnemyData.add(new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
+    }
+
+    /**
+     * @post each enemy in mEnemyData whose start distance has been reached
+     * has been constructed
+     */
+    private void spawnEnemies() {
+        float distanceTravelled =
+                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+        for (EnemyEntityData eed : mEnemyData) {
+            // Has the player travelled far enough for this enemy to spawn?
+            if (!eed.hasSpawned && distanceTravelled >= eed.startDistance) {
+                // Create this enemy
+
+                switch (eed.type) {
+                    case DUMMY_1:
+                        mEnemyEntities.add(
+                                new Dummy(mContext, mScreenX, mScreenY,
+                                          eed.endDistance));
+                        break;
+                    case HUNTER_1:
+                        mEnemyEntities.add(
+                                new Hunter(mContext, mScreenX, mScreenY,
+                                           eed.endDistance));
+                        break;
+                    case SMALL_ASTEROID:
+                        mEnemyEntities.add(
+                                new SmallAsteroid(mContext,
+                                        mScreenX, mScreenY,
+                                        eed.endDistance));
+                        break;
+                    default:
+                        throw new AssertionError(
+                                "Spawned enemy has invalid type");
+                }
+
+                eed.hasSpawned = true;
+            }
+        }
+    }
+
+    /**
+     * @post each enemy in mEnemyEntities whose end distance has been
+     * reached by the player has been destroyed
+     */
+    private void despawnEnemies() {
+        float distanceTravelled =
+                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+        for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
+             itr.hasNext(); ) {
+            // Mark correct enemies for removal
+            EnemyEntity enemy = itr.next();
+            if (!enemy.isMarkedForRemoval() &&
+                    distanceTravelled >= enemy.getEndDistance())
+                enemy.markForRemoval();
+        }
+    }
+
     private void restartGame() {
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
 
-        // Reset player and enemies
-        mEnemyEntities.clear();
-        initializeSpacecrafts();
-
-        makeNewDustList();
+        mShouldRestartGame = false;
 
         mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
         mWon = mLost = false;
-        mIsFirstFrame = true;
-    }
 
-    private void initializeSpacecrafts() {
+        // Reset player and enemies
+        restartEnemyData();
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
-        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new Dummy(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new Hunter(mContext, mScreenX, mScreenY));
-        mEnemyEntities.add(new SmallAsteroid(mContext, mScreenX, mScreenY));
+        mEnemyEntities.clear();
+        spawnEnemies(); // do after resetting remaining distance
+
+        makeNewDustList();
     }
 
     private void makeNewDustList() {
@@ -156,6 +220,9 @@ public class SGView extends SurfaceView
             update();
             draw();
             controlFrameRate();
+
+            if (gameEnded() && mShouldRestartGame)
+                restartGame();
         }
     }
 
@@ -163,12 +230,10 @@ public class SGView extends SurfaceView
         // Check for collision only if isn't the first frame
         // (since everyone's hit box is at default spot) and if
         // game hasn't ended
-        if (!gameEnded() && !mIsFirstFrame) {
+        if (!gameEnded()) {
             if (isCollision())
                 resolveLoss();
         }
-        else
-            mIsFirstFrame = false;
 
         mPlayer.update();
 
@@ -201,17 +266,29 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @post each existing enemy has been updated, and new ones have
+     * been spawnwed if player travelled far enough
      * @param playerCenterX
      * @param playerSpeedY
      */
     private void updateEnemies(int playerCenterX, int playerSpeedY) {
-        for (EnemyEntity es : mEnemyEntities) {
+        for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
+             itr.hasNext(); ) {
+            EnemyEntity enemy = itr.next();
+
             // Update waypoint if hunter
-            if (es.isHunter()) {
-                ((Hunter) es).setWaypointX(playerCenterX);
+            if (enemy.isHunter()) {
+                ((Hunter) enemy).setWaypointX(playerCenterX);
             }
 
-            es.update(playerSpeedY);
+            boolean shouldDestroy = !(enemy.update(playerSpeedY));
+            if (shouldDestroy)
+                itr.remove();
+        }
+
+        if (!gameEnded()) {
+            spawnEnemies();
+            despawnEnemies();
         }
     }
 
@@ -247,8 +324,6 @@ public class SGView extends SurfaceView
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
         mEnemyEntities.clear();
-
-        mGameEndTime = System.currentTimeMillis();
     }
 
     private void draw() {
@@ -428,7 +503,7 @@ public class SGView extends SurfaceView
                 switch (motionEvent.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_POINTER_DOWN:
-                        restartGame();
+                        mShouldRestartGame = true;
                         break;
                 }
             }

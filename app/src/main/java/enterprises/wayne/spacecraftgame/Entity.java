@@ -18,7 +18,7 @@ public abstract class Entity {
 
     private Type mType;
 
-    protected enum Type {
+    public enum Type {
         HERO,
 
         // enemy spacecrafts
