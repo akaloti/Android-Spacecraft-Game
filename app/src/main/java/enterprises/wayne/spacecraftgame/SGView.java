@@ -181,9 +181,11 @@ public class SGView extends SurfaceView
                 FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
         for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
              itr.hasNext(); ) {
+            // Mark correct enemies for removal
             EnemyEntity enemy = itr.next();
-            if (distanceTravelled >= enemy.getEndDistance())
-                itr.remove();
+            if (!enemy.isMarkedForRemoval() &&
+                    distanceTravelled >= enemy.getEndDistance())
+                enemy.markForRemoval();
         }
     }
 
@@ -270,13 +272,18 @@ public class SGView extends SurfaceView
      * @param playerSpeedY
      */
     private void updateEnemies(int playerCenterX, int playerSpeedY) {
-        for (EnemyEntity es : mEnemyEntities) {
+        for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
+             itr.hasNext(); ) {
+            EnemyEntity enemy = itr.next();
+
             // Update waypoint if hunter
-            if (es.isHunter()) {
-                ((Hunter) es).setWaypointX(playerCenterX);
+            if (enemy.isHunter()) {
+                ((Hunter) enemy).setWaypointX(playerCenterX);
             }
 
-            es.update(playerSpeedY);
+            boolean shouldDestroy = !(enemy.update(playerSpeedY));
+            if (shouldDestroy)
+                itr.remove();
         }
 
         if (!gameEnded()) {

@@ -11,6 +11,7 @@ public abstract class EnemyEntity extends Entity {
 
     private int mMaxY, mMinY; // for repositioning
     private float mEndDistance; // for knowing when to destroy it
+    private boolean mIsMarkedForRemoval;
 
     /**
      * @param context to allow access to drawables
@@ -30,6 +31,7 @@ public abstract class EnemyEntity extends Entity {
         mMinY = -1 * getBitmap().getHeight();
 
         mEndDistance = endDistance;
+        mIsMarkedForRemoval = false;
 
         // respawn after minimum and maximum positions have been set
         respawn();
@@ -50,20 +52,35 @@ public abstract class EnemyEntity extends Entity {
         return mEndDistance;
     }
 
+    public boolean isMarkedForRemoval() {
+        return mIsMarkedForRemoval;
+    }
+
+    public void markForRemoval() {
+        mIsMarkedForRemoval = true;
+    }
+
     /**
      * @param playerSpeedY is used to move the enemy further,
      * creating the illusion that the player is moving forward
      * (so that the camera needn't move)
+     * @returns false if enemy should be destroyed; otherwise, true
      */
-    public void update(int playerSpeedY) {
+    public boolean update(int playerSpeedY) {
         setX(getX() + getSpeedX());
         setY(getY() + playerSpeedY + getSpeedY());
 
-        // respawn when off screen
-        if (getY() > mMaxY)
-            respawn();
+        if (getY() > mMaxY) {
+            // enemy is offscreen; either destroy or respawn
+            if (mIsMarkedForRemoval)
+                return false;
+            else
+                respawn();
+        }
 
         updateHitBox();
+
+        return true;
     }
 
     /**

@@ -40,7 +40,7 @@ public class Hunter extends EnemyEntity {
      * horizontally towards waypoint
      */
     @Override
-    public void update(int playerSpeedY) {
+    public boolean update(int playerSpeedY) {
         // Move enemy towards waypoint
         int centerX = getCenterX();
         if (mWaypointX < centerX)
@@ -50,6 +50,6 @@ public class Hunter extends EnemyEntity {
         else
             setSpeedX(0);
 
-        super.update(playerSpeedY);
+        return super.update(playerSpeedY);
     }
 }
