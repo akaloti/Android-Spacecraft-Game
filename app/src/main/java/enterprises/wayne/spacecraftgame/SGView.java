@@ -35,7 +35,7 @@ public class SGView extends SurfaceView
     private Thread mGameThread = null;
 
     private PlayerSpacecraft mPlayer;
-    private CopyOnWriteArrayList<EnemyEntity> mEnemyEntities;
+    private ArrayList<EnemyEntity> mEnemyEntities;
     private CopyOnWriteArrayList<EnemyEntityData> mEnemyData;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
@@ -90,7 +90,7 @@ public class SGView extends SurfaceView
         mHolder = getHolder();
         mPaint = new Paint();
 
-        mEnemyEntities = new CopyOnWriteArrayList<EnemyEntity>();
+        mEnemyEntities = new ArrayList<EnemyEntity>();
         mEnemyData = new CopyOnWriteArrayList<EnemyEntityData>();
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
