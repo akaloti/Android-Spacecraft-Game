@@ -1,22 +1,13 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
-    -store level data
-        -enemies (should've already established this class)
-            -type
-            -start and end distances
-        -rocks
-            -type
-            -start and end distances
-        -distance needed to clear
-        -background music
-    -create level data instance for SGView
+    -use level data instance in SGView
+    -make FIFO container for level data
     -print level number in HUD
     -advance to next level after completion; max five levels
     -tell user when beat non-final level or beat final level or lost
     -make sure current level is kept if player dies
--as remaining distance decreases in each level:
-    -the currently spawned enemies could change
-        -would have to mark some enemies for no respawn
+    -change background music based on level data
+-look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
 -make more kinds of enemies
