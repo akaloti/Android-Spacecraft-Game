@@ -12,7 +12,7 @@ public class LevelData {
 
     // Default constructor
     public LevelData() {
-        this.enemyData = null;
+        this.enemyData = new CopyOnWriteArrayList<>();
         this.goalDistance = 0;
         this.backgroundMusicResId = -1; // should cause bug if not changed
     }

@@ -49,7 +49,7 @@ public class SGView extends SurfaceView
             MILLISECONDS_PER_SECOND / IDEAL_FRAMES_PER_SECOND;
 
     private float mForwardDistanceRemaining;
-    private static final float FORWARD_DISTANCE_GOAL = 1000;
+    private float mForwardDistanceGoal;
 
     private boolean mWon;
     private boolean mLost;
@@ -63,7 +63,11 @@ public class SGView extends SurfaceView
     private int mWinSound = -1;
     private int mLossSound = -1;
 
-    MediaPlayer mBackgroundMusic;
+    private MediaPlayer mBackgroundMusic;
+
+    private ArrayList<LevelData> mLevels;
+    private LevelData mCurrentLevel;
+    private int mLevelIndex;
 
     // For drawing
     private Paint mPaint;
@@ -96,7 +100,7 @@ public class SGView extends SurfaceView
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
-    }
+    } // SGView constructor
 
     /**
      * @post all sound effects have been loaded (in an order intended
@@ -123,14 +127,25 @@ public class SGView extends SurfaceView
     }
 
     /**
-     * @post container for enemy data has been reset with all
-     * enemy data
+     * @post each level's data has been set up
      */
-    private void restartEnemyData() {
-        mEnemyData.clear();
-        mEnemyData.add(new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
-        mEnemyData.add(new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
-        mEnemyData.add(new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
+    private void initializeLevelData() {
+        mLevels = new ArrayList<>();
+
+        // Level 1
+        LevelData levelData = new LevelData();
+        levelData.goalDistance = 800;
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
+        levelData.backgroundMusicResId = R.raw.background;
+        mLevels.add(levelData);
+
+        // Level 2
+        levelData = new LevelData();
     }
 
     /**
@@ -139,7 +154,7 @@ public class SGView extends SurfaceView
      */
     private void spawnEnemies() {
         float distanceTravelled =
-                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+                mForwardDistanceGoal - mForwardDistanceRemaining;
         for (EnemyEntityData eed : mEnemyData) {
             // Has the player travelled far enough for this enemy to spawn?
             if (!eed.hasSpawned && distanceTravelled >= eed.startDistance) {
@@ -178,7 +193,7 @@ public class SGView extends SurfaceView
      */
     private void despawnEnemies() {
         float distanceTravelled =
-                FORWARD_DISTANCE_GOAL - mForwardDistanceRemaining;
+                mForwardDistanceGoal - mForwardDistanceRemaining;
         for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
              itr.hasNext(); ) {
             // Mark correct enemies for removal
@@ -189,21 +204,33 @@ public class SGView extends SurfaceView
         }
     }
 
+    /**
+     * @post game has been restarted under the assumption that the
+     * player should be moved back to first level
+     */
     private void restartGame() {
-        mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
+        initializeLevelData();
+
+        // Put player at level one
+        mLevelIndex = 0;
+        mCurrentLevel = mLevels.get(mLevelIndex);
+        mForwardDistanceGoal = mCurrentLevel.goalDistance;
 
         mShouldRestartGame = false;
 
-        mForwardDistanceRemaining = FORWARD_DISTANCE_GOAL;
+        mForwardDistanceRemaining = mForwardDistanceGoal;
         mWon = mLost = false;
 
         // Reset player and enemies
-        restartEnemyData();
+        mEnemyData = mCurrentLevel.enemyData;
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
 
         makeNewDustList();
+
+        // Is at end of function so is more likely to play the first time
+        mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
     }
 
     private void makeNewDustList() {
