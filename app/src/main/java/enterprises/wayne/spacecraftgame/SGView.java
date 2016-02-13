@@ -51,8 +51,8 @@ public class SGView extends SurfaceView
     private float mForwardDistanceRemaining;
     private float mForwardDistanceGoal;
 
-    private boolean mWon;
-    private boolean mLost;
+    private boolean mWon = false;
+    private boolean mLost = false;
 
     // for allowing the user to see win/loss screen for brief time
     private long mGameEndTime;
@@ -100,6 +100,7 @@ public class SGView extends SurfaceView
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
+        makeNewDustList();
     } // SGView constructor
 
     /**
@@ -146,6 +147,13 @@ public class SGView extends SurfaceView
 
         // Level 2
         levelData = new LevelData();
+        levelData.goalDistance = 600;
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.backgroundMusicResId = R.raw.background;
+        mLevels.add(levelData);
     }
 
     /**
@@ -205,29 +213,33 @@ public class SGView extends SurfaceView
     }
 
     /**
-     * @post game has been restarted under the assumption that the
-     * player should be moved back to first level
+     * @post game has been restarted, with appropriate level change
+     * (if any)
      */
     private void restartGame() {
-        initializeLevelData();
+        if (mWon) {
+            // user goes to next level
+            ++mLevelIndex;
+        }
+        else {
+            // reset at level one
+            initializeLevelData(); // to set enemy data to "unspawned"
 
-        // Put player at level one
-        mLevelIndex = 0;
-        mCurrentLevel = mLevels.get(mLevelIndex);
-        mForwardDistanceGoal = mCurrentLevel.goalDistance;
+            mLevelIndex = 0;
+        }
 
         mShouldRestartGame = false;
-
-        mForwardDistanceRemaining = mForwardDistanceGoal;
         mWon = mLost = false;
+
+        mCurrentLevel = mLevels.get(mLevelIndex);
+        mForwardDistanceGoal = mCurrentLevel.goalDistance;
+        mForwardDistanceRemaining = mForwardDistanceGoal;
 
         // Reset player and enemies
         mEnemyData = mCurrentLevel.enemyData;
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
-
-        makeNewDustList();
 
         // Is at end of function so is more likely to play the first time
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
