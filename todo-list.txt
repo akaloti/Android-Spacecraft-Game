@@ -1,6 +1,5 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
-    -don't say "Tap to restart" if user beats level
     -tell user when beat non-final level or beat final level or lost
         -could determine final level if no more level data left
     -make sure current level is kept if player dies
@@ -47,3 +46,4 @@ and ones digits could be distracting)
             --could do what was done in eBook's Chapter 5
 -rocks (as obstacles)
 -change sound effects
+-correct enemy spacecrafts' (and maybe player's) diagonal velocities

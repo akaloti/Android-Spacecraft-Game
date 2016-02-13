@@ -460,7 +460,7 @@ public class SGView extends SurfaceView
         mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
 
         mPaint.setTextSize(40);
-        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+        mCanvas.drawText("Tap to advance.", mScreenX / 2,
                 (mScreenY / 2) + 60, mPaint);
     }
 
