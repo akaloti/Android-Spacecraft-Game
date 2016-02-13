@@ -351,6 +351,8 @@ public class SGView extends SurfaceView
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
         mWon = true;
         mEnemyEntities.clear();
+
+        mGameEndTime = System.currentTimeMillis();
     }
 
     private void draw() {
