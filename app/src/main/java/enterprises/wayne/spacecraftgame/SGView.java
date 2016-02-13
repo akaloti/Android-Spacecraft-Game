@@ -262,6 +262,8 @@ public class SGView extends SurfaceView
                 resolveLoss();
         }
 
+        // should come before updating the enemies, since their
+        // vertical speeds depends on player's
         mPlayer.update();
 
         int playerCenterX = mPlayer.getCenterX();

@@ -7,6 +7,7 @@ import android.content.Context;
  */
 public class PlayerSpacecraft extends Entity {
     private static final int HORIZONTAL_SPEED = 10;
+    private static final int DEFAULT_VERTICAL_SPEED = 1;
 
     // Regarding user input
     private boolean mIsPressingRight = false;
@@ -23,7 +24,7 @@ public class PlayerSpacecraft extends Entity {
         setX(screenX / 2);
         setY(screenY - 300);
 
-        setSpeedY(1);
+        setSpeedY(DEFAULT_VERTICAL_SPEED);
     }
 
     public void setPressingRight(boolean isPressingRight) {
@@ -37,6 +38,7 @@ public class PlayerSpacecraft extends Entity {
     public void update() {
         // Update speed and position
         setX(getX() + updateHorizontalSpeed());
+        updateVerticalSpeed();
 
         keepSpacecraftOnScreen();
 
@@ -64,6 +66,17 @@ public class PlayerSpacecraft extends Entity {
 
         setSpeedX(newSpeed);
         return newSpeed;
+    }
+
+    private void updateVerticalSpeed() {
+        int newSpeed;
+
+        if (mIsPressingLeft || mIsPressingRight)
+            newSpeed = 3;
+        else
+            newSpeed = DEFAULT_VERTICAL_SPEED;
+
+        setSpeedY(newSpeed);
     }
 
     /**
