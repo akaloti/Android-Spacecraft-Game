@@ -1,12 +1,13 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
-    -print level number in HUD
+    -"win" should allow a second before permitting restart
     -advance to next level after completion; max five levels
         -restartGame() should restart game at first level
         -make function goToNextLevel()
     -tell user when beat non-final level or beat final level or lost
     -make sure current level is kept if player dies
     -change background music based on level data
+-don't have enemies require player speed
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
@@ -21,6 +22,7 @@ Eventually:
 -improve playability
     -make sure spacecrafts' speeds and sizes are all great
 -stop the player's horizontal movement after victory
+-make HUD beautiful-er; see Google Images for inspiration
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed

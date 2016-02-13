@@ -422,14 +422,22 @@ public class SGView extends SurfaceView
      * @post the heads-up display has been drawn
      */
     private void drawHUD() {
-        mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // draw current level number (not index); note that the
+        // third parameter of drawText(...) is for text's bottom Y
+        int levelTextSize = 25;
+        mPaint.setTextSize(levelTextSize);
+        mPaint.setTextAlign(Paint.Align.LEFT);
+        mCanvas.drawText("Level: " + (mLevelIndex + 1),
+                20, levelTextSize, mPaint);
 
         // draw forward distance remaining
         int distanceTextSize = 25;
         mPaint.setTextSize(distanceTextSize);
+        mPaint.setTextAlign(Paint.Align.RIGHT);
         mCanvas.drawText("Remaining: " + mForwardDistanceRemaining +
-            " meters", mScreenX / 2, distanceTextSize + 5, mPaint);
+            " meters", mScreenX - 20, distanceTextSize, mPaint);
     }
 
     private void drawWinScreen() {
@@ -522,7 +530,7 @@ public class SGView extends SurfaceView
         }
         else {
             /**
-             * Game hasn't ended, so could restart game (if enough
+             * Game has ended, so could restart game (if enough
              * time has passed)
              */
             if (System.currentTimeMillis() >
