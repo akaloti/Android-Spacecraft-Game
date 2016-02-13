@@ -1,8 +1,8 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
-    -tell user when beat non-final level or beat final level or lost
-        -could determine final level if no more level data left
     -make sure current level is kept if player dies
+        -change restartGame() to restartLevel()?
+        -change loss screen message
     -change background music based on level data
 -either:
     --don't have enemies require player speed OR
