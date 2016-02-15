@@ -51,8 +51,9 @@ public class SGView extends SurfaceView
     private float mForwardDistanceRemaining;
     private float mForwardDistanceGoal;
 
-    private boolean mWon;
-    private boolean mLost;
+    private boolean mFinishedGame = false;
+    private boolean mFinishedLevel = false;
+    private boolean mLost = false;
 
     // for allowing the user to see win/loss screen for brief time
     private long mGameEndTime;
@@ -100,6 +101,7 @@ public class SGView extends SurfaceView
         mDustList = new CopyOnWriteArrayList<SpaceDust>();
 
         restartGame();
+        makeNewDustList();
     } // SGView constructor
 
     /**
@@ -134,7 +136,7 @@ public class SGView extends SurfaceView
 
         // Level 1
         LevelData levelData = new LevelData();
-        levelData.goalDistance = 800;
+        levelData.goalDistance = 200; //800;
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
         levelData.enemyData.add(
@@ -146,6 +148,13 @@ public class SGView extends SurfaceView
 
         // Level 2
         levelData = new LevelData();
+        levelData.goalDistance = 200; //600;
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.backgroundMusicResId = R.raw.background;
+        mLevels.add(levelData);
     }
 
     /**
@@ -205,29 +214,39 @@ public class SGView extends SurfaceView
     }
 
     /**
-     * @post game has been restarted under the assumption that the
-     * player should be moved back to first level
+     * @post game has been restarted, with appropriate level change
+     * (if any)
      */
     private void restartGame() {
-        initializeLevelData();
+        if (mFinishedGame) {
+            // if game was finished, user restarts
+            mLevelIndex = 0;
 
-        // Put player at level one
-        mLevelIndex = 0;
-        mCurrentLevel = mLevels.get(mLevelIndex);
-        mForwardDistanceGoal = mCurrentLevel.goalDistance;
+            // to set enemy data to "unspawned"
+            initializeLevelData();
+        }
+        else if (mFinishedLevel) {
+            // user goes to next level
+            ++mLevelIndex;
+        }
+        else { // user lost
+            // to set enemy data to "unspawned", to restart
+            // current level's enemy data
+            initializeLevelData();
+        }
 
         mShouldRestartGame = false;
+        mFinishedGame = mFinishedLevel = mLost = false;
 
+        mCurrentLevel = mLevels.get(mLevelIndex);
+        mForwardDistanceGoal = mCurrentLevel.goalDistance;
         mForwardDistanceRemaining = mForwardDistanceGoal;
-        mWon = mLost = false;
 
         // Reset player and enemies
         mEnemyData = mCurrentLevel.enemyData;
         mPlayer = new PlayerSpacecraft(mContext, mScreenX, mScreenY);
         mEnemyEntities.clear();
         spawnEnemies(); // do after resetting remaining distance
-
-        makeNewDustList();
 
         // Is at end of function so is more likely to play the first time
         mSoundPool.play(mStartSound, 1, 1, 0, 0, 1);
@@ -343,14 +362,17 @@ public class SGView extends SurfaceView
     }
 
     /**
-     * @post user's having won has been reacted to; game has been
-     * notified so that appropriate message is drawn; enemies have
-     * been cleared
+     * @post user's having won has been reacted to; game has
+     * determined if user beat the entire game
      */
     private void resolveWin() {
         mSoundPool.play(mWinSound, 1, 1, 0, 0, 1);
-        mWon = true;
         mEnemyEntities.clear();
+
+        if ((mLevelIndex + 1) == mLevels.size())
+            mFinishedGame = true;
+        else
+            mFinishedLevel = true;
 
         mGameEndTime = System.currentTimeMillis();
     }
@@ -387,8 +409,10 @@ public class SGView extends SurfaceView
             if (!gameEnded())
                 drawHUD();
             else {
-                if (mWon)
-                    drawWinScreen();
+                if (mFinishedGame)
+                    drawFinishedGameScreen();
+                else if (mFinishedLevel)
+                    drawFinishedLevelScreen();
                 else if (mLost)
                     drawLossScreen();
             }
@@ -442,14 +466,27 @@ public class SGView extends SurfaceView
             " meters", mScreenX - 20, distanceTextSize, mPaint);
     }
 
-    private void drawWinScreen() {
+    private void drawFinishedGameScreen() {
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(60);
-        mCanvas.drawText("You won!", mScreenX / 2, mScreenY / 2, mPaint);
+        mPaint.setColor(Color.RED);
+        mCanvas.drawText("Game finished!", mScreenX / 2, mScreenY / 2, mPaint);
+        mPaint.setColor(Color.WHITE);
 
         mPaint.setTextSize(40);
-        mCanvas.drawText("Tap to restart.", mScreenX / 2,
-                (mScreenY / 2) + 60, mPaint);
+        mCanvas.drawText("Tap to restart game.", mScreenX / 2,
+                mScreenY / 2 + 60, mPaint);
+    }
+
+    private void drawFinishedLevelScreen() {
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(60);
+        mCanvas.drawText("Level Completed!",
+                mScreenX / 2, mScreenY / 2, mPaint);
+
+        mPaint.setTextSize(40);
+        mCanvas.drawText("Tap to advance.", mScreenX / 2,
+                mScreenY / 2 + 60, mPaint);
     }
 
     private void drawLossScreen() {
@@ -458,7 +495,7 @@ public class SGView extends SurfaceView
         mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
 
         mPaint.setTextSize(40);
-        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+        mCanvas.drawText("Tap to restart level.", mScreenX / 2,
                 (mScreenY / 2) + 60, mPaint);
     }
 
@@ -551,6 +588,6 @@ public class SGView extends SurfaceView
     }
 
     private boolean gameEnded() {
-        return mWon || mLost;
+        return mFinishedGame || mFinishedLevel || mLost;
     }
 }
