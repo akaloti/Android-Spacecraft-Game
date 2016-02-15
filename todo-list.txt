@@ -15,6 +15,11 @@ Eventually:
     -make sure spacecrafts' speeds and sizes are all great
 -stop the player's horizontal movement after victory
 -make HUD beautiful-er; see Google Images for inspiration
+-either:
+    -remove the speeding up of players when user goes left or right
+    -don't have player speed up if both halves of screen are tapped,
+    since there's no horizontal movement
+    -find a good justification for why the player would speed up
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
