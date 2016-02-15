@@ -2,7 +2,6 @@ Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -make some levels, each different distance
     -make sure current level is kept if player dies
         -change loss screen message
-    -make "you won" text more noticeable; maybe red text
     -change background music based on level data
 -either:
     --don't have enemies require player speed OR

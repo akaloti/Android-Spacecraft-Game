@@ -469,7 +469,9 @@ public class SGView extends SurfaceView
     private void drawFinishedGameScreen() {
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(60);
+        mPaint.setColor(Color.RED);
         mCanvas.drawText("Game finished!", mScreenX / 2, mScreenY / 2, mPaint);
+        mPaint.setColor(Color.WHITE);
 
         mPaint.setTextSize(40);
         mCanvas.drawText("Tap to restart.", mScreenX / 2,
