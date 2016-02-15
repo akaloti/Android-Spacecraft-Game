@@ -229,11 +229,9 @@ public class SGView extends SurfaceView
             // user goes to next level
             ++mLevelIndex;
         }
-        else {
-            // reset at level one
-            mLevelIndex = 0;
-
-            // to set enemy data to "unspawned"
+        else { // user lost
+            // to set enemy data to "unspawned", to restart
+            // current level's enemy data
             initializeLevelData();
         }
 
