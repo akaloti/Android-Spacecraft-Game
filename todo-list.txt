@@ -1,8 +1,5 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -change background music based on level data
--either:
-    --don't have enemies require player speed OR
-    --experiment with player's speed increasing if user taps
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
