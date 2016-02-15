@@ -474,7 +474,7 @@ public class SGView extends SurfaceView
         mPaint.setColor(Color.WHITE);
 
         mPaint.setTextSize(40);
-        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+        mCanvas.drawText("Tap to restart game.", mScreenX / 2,
                 mScreenY / 2 + 60, mPaint);
     }
 
@@ -495,7 +495,7 @@ public class SGView extends SurfaceView
         mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
 
         mPaint.setTextSize(40);
-        mCanvas.drawText("Tap to restart.", mScreenX / 2,
+        mCanvas.drawText("Tap to restart level.", mScreenX / 2,
                 (mScreenY / 2) + 60, mPaint);
     }
 
