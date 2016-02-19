@@ -228,6 +228,18 @@ public class SGView extends SurfaceView
         else if (mFinishedLevel) {
             // user goes to next level
             ++mLevelIndex;
+            mBackgroundMusic.stop();
+            try {
+                mBackgroundMusic.prepare();
+            }
+            catch (IOException exception) {
+                // documentation doesn't say why prepare() would
+                // throw this exception
+                System.out.println(exception.getMessage());
+            }
+            // mBackgroundMusic.deselectTrack(R.raw.king_galaxian);
+            mBackgroundMusic.selectTrack(R.raw.saber_wing);
+            mBackgroundMusic.start();
         }
         else { // user lost
             // to set enemy data to "unspawned", to restart
