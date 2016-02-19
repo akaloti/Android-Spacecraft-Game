@@ -229,7 +229,8 @@ public class SGView extends SurfaceView
             // user goes to next level
             ++mLevelIndex;
             mBackgroundMusic.stop();
-            try {
+            mBackgroundMusic.release();
+            /*try {
                 mBackgroundMusic.prepare();
             }
             catch (IOException exception) {
@@ -239,6 +240,10 @@ public class SGView extends SurfaceView
             }
             // mBackgroundMusic.deselectTrack(R.raw.king_galaxian);
             mBackgroundMusic.selectTrack(R.raw.saber_wing);
+            mBackgroundMusic.start();*/
+            mBackgroundMusic = MediaPlayer.create(mContext, R.raw.saber_wing);
+            mBackgroundMusic.setLooping(true);
+            mBackgroundMusic.setVolume(1.0f, 1.0f);
             mBackgroundMusic.start();
         }
         else { // user lost
