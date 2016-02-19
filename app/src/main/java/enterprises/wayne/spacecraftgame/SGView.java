@@ -85,7 +85,7 @@ public class SGView extends SurfaceView
         loadSounds();
 
         // Set up background music
-        mBackgroundMusic = MediaPlayer.create(context, R.raw.background);
+        mBackgroundMusic = MediaPlayer.create(context, R.raw.king_galaxian);
         mBackgroundMusic.setLooping(true);
         mBackgroundMusic.setVolume(1.0f, 1.0f);
         mBackgroundMusic.start();
@@ -143,7 +143,7 @@ public class SGView extends SurfaceView
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
-        levelData.backgroundMusicResId = R.raw.background;
+        levelData.backgroundMusicResId = R.raw.king_galaxian;
         mLevels.add(levelData);
 
         // Level 2
@@ -153,7 +153,7 @@ public class SGView extends SurfaceView
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
-        levelData.backgroundMusicResId = R.raw.background;
+        levelData.backgroundMusicResId = R.raw.king_galaxian;
         mLevels.add(levelData);
     }
 
