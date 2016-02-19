@@ -1,11 +1,6 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
 -change background music based on level data
-    -keep checking Android MediaPlayer API and StackOverflow
-    -could look into other Android classes (if any)
-    -try cheap way: construct new MediaPlayer instance each time
-        -remember to release resources before constructing new instance
-        -if it comes to this, it might (but might not) be a better
-        idea to not have the background music change
+    -see if is way to only restart background music if changed
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape

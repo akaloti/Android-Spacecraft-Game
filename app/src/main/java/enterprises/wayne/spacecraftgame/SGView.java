@@ -84,12 +84,6 @@ public class SGView extends SurfaceView
         // don't get loaded in time
         loadSounds();
 
-        // Set up background music
-        mBackgroundMusic = MediaPlayer.create(context, R.raw.king_galaxian);
-        mBackgroundMusic.setLooping(true);
-        mBackgroundMusic.setVolume(1.0f, 1.0f);
-        mBackgroundMusic.start();
-
         mScreenX = screenX;
         mScreenY = screenY;
 
@@ -153,7 +147,7 @@ public class SGView extends SurfaceView
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
-        levelData.backgroundMusicResId = R.raw.king_galaxian;
+        levelData.backgroundMusicResId = R.raw.saber_wing;
         mLevels.add(levelData);
     }
 
@@ -214,6 +208,27 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @param id of the new background music
+     * @pre mCurrentLevel is updated
+     * @post mBackgroundMusic has been appropriately changed;
+     * old music was stopped; new one was started
+     */
+    private void changeBackgroundMusic() {
+        if (mBackgroundMusic != null) {
+            // Remove old background music
+            mBackgroundMusic.stop();
+            mBackgroundMusic.release();
+        }
+
+        // Start new background music
+        mBackgroundMusic = MediaPlayer.create(mContext,
+                mCurrentLevel.backgroundMusicResId);
+        mBackgroundMusic.setLooping(true);
+        mBackgroundMusic.setVolume(1.0f, 1.0f);
+        mBackgroundMusic.start();
+    }
+
+    /**
      * @post game has been restarted, with appropriate level change
      * (if any)
      */
@@ -224,38 +239,32 @@ public class SGView extends SurfaceView
 
             // to set enemy data to "unspawned"
             initializeLevelData();
+
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
         else if (mFinishedLevel) {
             // user goes to next level
             ++mLevelIndex;
-            mBackgroundMusic.stop();
-            mBackgroundMusic.release();
-            /*try {
-                mBackgroundMusic.prepare();
-            }
-            catch (IOException exception) {
-                // documentation doesn't say why prepare() would
-                // throw this exception
-                System.out.println(exception.getMessage());
-            }
-            // mBackgroundMusic.deselectTrack(R.raw.king_galaxian);
-            mBackgroundMusic.selectTrack(R.raw.saber_wing);
-            mBackgroundMusic.start();*/
-            mBackgroundMusic = MediaPlayer.create(mContext, R.raw.saber_wing);
-            mBackgroundMusic.setLooping(true);
-            mBackgroundMusic.setVolume(1.0f, 1.0f);
-            mBackgroundMusic.start();
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
-        else { // user lost
+        else if (mLost) {
             // to set enemy data to "unspawned", to restart
             // current level's enemy data
             initializeLevelData();
+
+            mCurrentLevel = mLevels.get(mLevelIndex);
+        }
+        else { // first time playing game
+            initializeLevelData();
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
 
         mShouldRestartGame = false;
         mFinishedGame = mFinishedLevel = mLost = false;
 
-        mCurrentLevel = mLevels.get(mLevelIndex);
         mForwardDistanceGoal = mCurrentLevel.goalDistance;
         mForwardDistanceRemaining = mForwardDistanceGoal;
 
