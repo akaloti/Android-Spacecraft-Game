@@ -1,6 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--change background music based on level data
-    -see if is way to only restart background music if changed
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
