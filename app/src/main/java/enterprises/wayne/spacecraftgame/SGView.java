@@ -65,6 +65,7 @@ public class SGView extends SurfaceView
     private int mLossSound = -1;
 
     private MediaPlayer mBackgroundMusic;
+    private int mCurrentMusic = -1;
 
     private ArrayList<LevelData> mLevels;
     private LevelData mCurrentLevel;
@@ -83,12 +84,6 @@ public class SGView extends SurfaceView
         // do this early to minimize the chance that the sounds
         // don't get loaded in time
         loadSounds();
-
-        // Set up background music
-        mBackgroundMusic = MediaPlayer.create(context, R.raw.background);
-        mBackgroundMusic.setLooping(true);
-        mBackgroundMusic.setVolume(1.0f, 1.0f);
-        mBackgroundMusic.start();
 
         mScreenX = screenX;
         mScreenY = screenY;
@@ -143,7 +138,7 @@ public class SGView extends SurfaceView
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
-        levelData.backgroundMusicResId = R.raw.background;
+        levelData.backgroundMusicResId = R.raw.king_galaxian;
         mLevels.add(levelData);
 
         // Level 2
@@ -153,7 +148,27 @@ public class SGView extends SurfaceView
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
         levelData.enemyData.add(
                 new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
-        levelData.backgroundMusicResId = R.raw.background;
+        levelData.backgroundMusicResId = R.raw.king_galaxian;
+        mLevels.add(levelData);
+
+        // Level 3
+        levelData = new LevelData();
+        levelData.goalDistance = 200;
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
+        levelData.backgroundMusicResId = R.raw.saber_wing;
+        mLevels.add(levelData);
+
+        // Level 4
+        levelData = new LevelData();
+        levelData.goalDistance = 400;
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+        levelData.enemyData.add(
+                new EnemyEntityData(Entity.Type.HUNTER_1, 200, 1000));
+        levelData.backgroundMusicResId = R.raw.saber_wing;
         mLevels.add(levelData);
     }
 
@@ -214,6 +229,30 @@ public class SGView extends SurfaceView
     }
 
     /**
+     * @param id of the new background music
+     * @pre mCurrentLevel is updated
+     * @post mBackgroundMusic has been appropriately changed;
+     * old music was stopped; new one was started
+     */
+    private void changeBackgroundMusic() {
+        // Only restart the background music if there really is a change
+        if (mCurrentMusic != mCurrentLevel.backgroundMusicResId) {
+            if (mBackgroundMusic != null) {
+                // Remove old background music
+                mBackgroundMusic.stop();
+                mBackgroundMusic.release();
+            }
+
+            // Start new background music
+            mCurrentMusic = mCurrentLevel.backgroundMusicResId;
+            mBackgroundMusic = MediaPlayer.create(mContext, mCurrentMusic);
+            mBackgroundMusic.setLooping(true);
+            mBackgroundMusic.setVolume(1.0f, 1.0f);
+            mBackgroundMusic.start();
+        }
+    }
+
+    /**
      * @post game has been restarted, with appropriate level change
      * (if any)
      */
@@ -224,21 +263,32 @@ public class SGView extends SurfaceView
 
             // to set enemy data to "unspawned"
             initializeLevelData();
+
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
         else if (mFinishedLevel) {
             // user goes to next level
             ++mLevelIndex;
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
-        else { // user lost
+        else if (mLost) {
             // to set enemy data to "unspawned", to restart
             // current level's enemy data
             initializeLevelData();
+
+            mCurrentLevel = mLevels.get(mLevelIndex);
+        }
+        else { // first time playing game
+            initializeLevelData();
+            mCurrentLevel = mLevels.get(mLevelIndex);
+            changeBackgroundMusic();
         }
 
         mShouldRestartGame = false;
         mFinishedGame = mFinishedLevel = mLost = false;
 
-        mCurrentLevel = mLevels.get(mLevelIndex);
         mForwardDistanceGoal = mCurrentLevel.goalDistance;
         mForwardDistanceRemaining = mForwardDistanceGoal;
 

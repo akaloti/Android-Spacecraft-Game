@@ -1,5 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--change background music based on level data
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
@@ -20,6 +19,7 @@ Eventually:
     -don't have player speed up if both halves of screen are tapped,
     since there's no horizontal movement
     -find a good justification for why the player would speed up
+-change background music file names
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
@@ -45,3 +45,4 @@ and ones digits could be distracting)
 -rocks (as obstacles)
 -change sound effects
 -correct enemy spacecrafts' (and maybe player's) diagonal velocities
+-call mBackgroundRelease.release() in onStop()
