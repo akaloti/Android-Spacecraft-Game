@@ -1,6 +1,5 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--update readme
--release 0.1
+-determine what should be implemented before the next release
 
 Eventually:
 -main activity
@@ -31,6 +30,7 @@ and shape
 (before that level data is needed)
     -use unit test!
     -check both debugging and non-debugging
+-upload app on Google Play
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
