@@ -1,5 +1,4 @@
 Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--make six acceptable levels
 -update readme
 -release 0.1
 
@@ -18,13 +17,20 @@ Eventually:
     -don't have player speed up if both halves of screen are tapped,
     since there's no horizontal movement
     -find a good justification for why the player would speed up
--change background music file names
+-background music
+    -change file names?
+    -make smoother music restart by making sure no tracks have too long
+     periods of no sound at end
 -look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
 -make more kinds of enemies (i.e. not variations of hunters or dummies)
 -call mBackgroundRelease.release() in onStop()
     -saves battery
+-figure out a way to throw AssertionError if incomplete level data is stored
+(before that level data is needed)
+    -use unit test!
+    -check both debugging and non-debugging
 
 Considerable:
 -ways for the user to change his spacecraft's vertical speed
@@ -50,3 +56,5 @@ and ones digits could be distracting)
             --could do what was done in eBook's Chapter 5
 -change sound effects
 -correct enemy spacecrafts' (and maybe player's) diagonal velocities
+-could restart level data by iterating through and adjusting each's
+hasSpawned member
