@@ -15,13 +15,20 @@ Features
 --------
 
 -Handling of two threads (the main game thread and the input thread).
+
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
+
 -User's spacecraft goes faster if he/she is touching the screen.
+
 -Sprites designed with Autodesk Inventor.
+
 -Sound effects.
+
 -Background music that changes according to level data.
+
 -Each level has total goal distance according to level data.
+
 -Five levels.
 
 Releases
