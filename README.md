@@ -7,7 +7,7 @@ In this app, the user controls a spacecraft and attempts to navigate
 through all of the levels by dodging enemies and rocks.
 
 I programmed this from December of 2015 (during my winter break)
-to February of 2016 (during the winter quarter of my first year in college).
+to March of 2016 (during the winter quarter of my first year in college).
 
 I programmed it in Java with the help of Android Studio.
 
@@ -18,8 +18,6 @@ Features
 
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
-
--User's spacecraft goes faster if he/she is touching the screen.
 
 -Sprites designed with Autodesk Inventor.
 
@@ -34,7 +32,7 @@ user is touching, even if he/she is touching both halves.
 Releases
 --------
 
-The latest release is: v0.1
+The latest release is: v0.2
 
 Please see the releases section under this repository on GitHub
 to download the latest release.
