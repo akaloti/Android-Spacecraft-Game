@@ -1,3 +1,5 @@
+DON'T FORGET ABOUT UNIT TESTS
+
 For release 1.0:
 -look into reading data from text files
 -to be determined...
