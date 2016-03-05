@@ -1,26 +1,24 @@
-Next: TRY MERGING MULTIPLE BRANCHES FOR PRACTICE
--determine what should be implemented before the next release
+For release 0.2:
+-fix player movement
+    -remove the speeding up of players when user goes left or right
+    -stop the player's horizontal movement after victory
+-delete activity_main.xml
+-background music
+    -change file names?
+    -make smoother music restart by making sure no tracks have too long
+     periods of no sound at end
+-give more distance between each final enemy appearing and level ending
+
+For release 1.0:
+-look into reading data from text files
+-to be determined...
 
 Eventually:
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
     tap left and right halves of screen)
--delete activity_main.xml
--improve playability
-    -make sure spacecrafts' speeds and sizes are all great
--stop the player's horizontal movement after victory
 -make HUD beautiful-er; see Google Images for inspiration
--either:
-    -remove the speeding up of players when user goes left or right
-    -don't have player speed up if both halves of screen are tapped,
-    since there's no horizontal movement
-    -find a good justification for why the player would speed up
--background music
-    -change file names?
-    -make smoother music restart by making sure no tracks have too long
-     periods of no sound at end
--look into reading data from text files
 -can choose between three different spacecrafts of varying speed, size,
 and shape
 -make more kinds of enemies (i.e. not variations of hunters or dummies)
