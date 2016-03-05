@@ -1,11 +1,3 @@
-For release 0.2:
--delete activity_main.xml
--background music
-    -change file names?
-    -make smoother music restart by making sure no tracks have too long
-     periods of no sound at end
--give more distance between each final enemy appearing and level ending
-
 For release 1.0:
 -look into reading data from text files
 -to be determined...
