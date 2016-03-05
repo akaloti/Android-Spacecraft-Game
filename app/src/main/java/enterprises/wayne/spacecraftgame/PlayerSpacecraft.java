@@ -38,7 +38,7 @@ public class PlayerSpacecraft extends Entity {
     public void update() {
         // Update speed and position
         setX(getX() + updateHorizontalSpeed());
-        updateVerticalSpeed();
+        // updateVerticalSpeed();
 
         keepSpacecraftOnScreen();
 

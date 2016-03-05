@@ -1,6 +1,5 @@
 For release 0.2:
 -fix player movement
-    -remove the speeding up of players when user goes left or right
     -stop the player's horizontal movement after victory
 -delete activity_main.xml
 -background music
@@ -56,3 +55,5 @@ and ones digits could be distracting)
 -correct enemy spacecrafts' (and maybe player's) diagonal velocities
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
+-make the hunter enemy's outer ridge white instead of black
+-make enemies disappear before a level is finished (by editing level data)

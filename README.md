@@ -19,8 +19,6 @@ Features
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
 
--User's spacecraft goes faster if he/she is touching the screen.
-
 -Sprites designed with Autodesk Inventor.
 
 -Sound effects.
