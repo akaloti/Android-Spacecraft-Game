@@ -712,6 +712,9 @@ public class SGView extends SurfaceView
             mPlayer.setPressingRight(right);
         }
         else {
+            mPlayer.setPressingLeft(false);
+            mPlayer.setPressingRight(false);
+
             /**
              * Game has ended, so could restart game (if enough
              * time has passed)
