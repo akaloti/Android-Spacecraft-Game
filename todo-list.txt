@@ -1,7 +1,6 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--make the hunter enemy's outer ridge white instead of black
 -look into reading data from text files
 -figure out a way to throw AssertionError if incomplete level data is stored
 (before that level data is needed)
