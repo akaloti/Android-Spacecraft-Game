@@ -1,14 +1,10 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--call mBackgroundRelease.release() in onStop()
-    -saves battery
-
-Release 1.1:
 -can choose between three different spacecrafts of varying speed, size,
 and shape
 
-Release 1.2:
+Release 1.1:
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
@@ -48,3 +44,5 @@ hasSpawned member
     -criteria for being invalid:
         -background music isn't set
         -any enemy's beginning distance is past goal distance?
+-don't allow the player to pause
+    -call mBackgroundMusic.release() in SGView.pause()
