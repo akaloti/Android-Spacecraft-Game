@@ -1,11 +1,6 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--look into reading data from text files
--figure out a way to throw AssertionError if incomplete level data is stored
-(before that level data is needed)
-    -use unit test!
-    -check both debugging and non-debugging
 -call mBackgroundRelease.release() in onStop()
     -saves battery
 
@@ -46,3 +41,10 @@ Considerable:
 -enemies that shoot
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
+-look into reading data from text files
+    -doesn't seem to have any benefit in this context
+-use unit test to check for invalid level data
+    -check both "debugging" and "non-debugging levels"
+    -criteria for being invalid:
+        -background music isn't set
+        -any enemy's beginning distance is past goal distance?
