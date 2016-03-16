@@ -654,7 +654,13 @@ public class SGView extends SurfaceView
 
     public void pause() {
         mIsPlaying = false;
+
+        // I had to decide whether to allow the user to be able to pause
+        // or not (and thus whether to call pause() or release()); thus,
+        // this risks that the MusicPlayer could drain the player's battery
+        // if he leaves this app paused
         mBackgroundMusic.pause();
+
         try {
             // Clean up thread
             mGameThread.join();
@@ -668,6 +674,10 @@ public class SGView extends SurfaceView
         mBackgroundMusic.start();
         mGameThread = new Thread(this);
         mGameThread.start();
+    }
+
+    public void stop() {
+        mBackgroundMusic.release();
     }
 
     /**
