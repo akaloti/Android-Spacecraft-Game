@@ -1,39 +1,24 @@
 DON'T FORGET ABOUT UNIT TESTS
 
-For release 1.0:
--look into reading data from text files
--to be determined...
+Release 1.0:
+-can choose between three different spacecrafts of varying speed, size,
+and shape
 
-Eventually:
+Release 1.1:
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
     tap left and right halves of screen)
 -make HUD beautiful-er; see Google Images for inspiration
--can choose between three different spacecrafts of varying speed, size,
-and shape
+
+Eventually:
+-player's spacecraft's speed could increase as levels progress
+-make enemies disappear before a level is finished (by editing level data)
 -make more kinds of enemies (i.e. not variations of hunters or dummies)
--call mBackgroundRelease.release() in onStop()
-    -saves battery
--figure out a way to throw AssertionError if incomplete level data is stored
-(before that level data is needed)
-    -use unit test!
-    -check both debugging and non-debugging
+-make game have total of 40 levels
 -upload app on Google Play
 
 Considerable:
--ways for the user to change his spacecraft's vertical speed
--put finish line sprite at goal distance
--special effects when the user is almost at the goal; e.g.:
-    -screen could have flashes of red
-    -alarm sound effects could play
--implement explosion (via sprite sheet) when user's spacecraft explodes
--combine all images into one sprite sheet
--enemies that shoot
--sound when enemy respawns (would this play too frequently?)
--hunter's horizontal speed has some randomness and/or gradual increase
--don't update the shown distance remaining as frequently (since the tens
-and ones digits could be distracting)
 -consider scaling everything, so it all looks the same on every device
     --may not be needed
     --look into eBook (i.e. "Android Game Development by Example")
@@ -43,10 +28,21 @@ and ones digits could be distracting)
         --PROBLEM: all crafts move more slowly on bigger devices
             --could compensate by editing speed
             --could do what was done in eBook's Chapter 5
--change sound effects
--correct enemy spacecrafts' (and maybe player's) diagonal velocities
+-put finish line sprite at goal distance
+-special effects when the user is almost at the goal; e.g.:
+    -screen could have flashes of red
+    -alarm sound effects could play
+-implement explosion (via sprite sheet) when user's spacecraft explodes
+-combine all images into one sprite sheet
+-enemies that shoot
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
--make the hunter enemy's outer ridge white instead of black
--make enemies disappear before a level is finished (by editing level data)
--player's spacecraft's speed could increase as levels progress
+-look into reading data from text files
+    -doesn't seem to have any benefit in this context
+-use unit test to check for invalid level data
+    -check both "debugging" and "non-debugging levels"
+    -criteria for being invalid:
+        -background music isn't set
+        -any enemy's beginning distance is past goal distance?
+-don't allow the player to pause
+    -call mBackgroundMusic.release() in SGView.pause()

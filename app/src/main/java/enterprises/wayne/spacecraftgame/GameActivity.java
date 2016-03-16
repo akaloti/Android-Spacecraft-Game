@@ -40,6 +40,12 @@ public class GameActivity extends Activity {
         mGameView.resume();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGameView.stop();
+    }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // If the player hits the back button, quit the app
         if (keyCode == KeyEvent.KEYCODE_BACK) {
