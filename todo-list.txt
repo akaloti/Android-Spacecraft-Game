@@ -3,6 +3,9 @@ DON'T FORGET ABOUT UNIT TESTS
 Release 1.0:
 -can choose between three different spacecrafts of varying speed, size,
 and shape
+    -edit UI
+        -figure out how to transfer button id from MainActivity UI to
+        GameActivity
 
 Release 1.1:
 -main activity
