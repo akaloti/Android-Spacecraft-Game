@@ -32,7 +32,7 @@ user is touching, even if he/she is touching both halves.
 Releases
 --------
 
-The latest release is: v0.2
+The latest release is: v0.3
 
 Please see the releases section under this repository on GitHub
 to download the latest release.
