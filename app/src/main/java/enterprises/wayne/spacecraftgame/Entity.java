@@ -20,6 +20,8 @@ public abstract class Entity {
 
     public enum Type {
         HERO,
+        HERO_1,
+        HERO_2,
 
         // enemy spacecrafts
         DUMMY_1,

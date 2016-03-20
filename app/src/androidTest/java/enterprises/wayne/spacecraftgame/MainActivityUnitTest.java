@@ -2,7 +2,7 @@ package enterprises.wayne.spacecraftgame;
 
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by Aaron on 12/27/2015.
@@ -11,7 +11,8 @@ public class MainActivityUnitTest
     extends ActivityUnitTestCase<MainActivity> {
 
     private MainActivity mActivity;
-    private Button mPlay;
+    private ImageButton mHero1;
+    private ImageButton mHero2;
 
     public MainActivityUnitTest() {
         super(MainActivity.class);
@@ -28,11 +29,12 @@ public class MainActivityUnitTest
         startActivity(intent, null, null);
         mActivity = getActivity();
 
-        mPlay = (Button) mActivity.findViewById(R.id.bPlay);
+        mHero1 = (ImageButton) mActivity.findViewById(R.id.ibHero);
+        mHero2 = (ImageButton) mActivity.findViewById(R.id.ibAsteroid);
     }
 
     public void testGameActivityLaunch() {
-        mPlay.performClick();
+        mHero1.performClick();
 
         Intent triggeredIntent = getStartedActivityIntent();
         assertNotNull("Intent was null", triggeredIntent);
