@@ -1,24 +1,21 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
-
-
-Release 1.1:
+-output remaining distance if lose
+-finally clause in GameActivity to end music resource? Or does onStop do this?
+-level design and game play:
+    -make enemies disappear before a level is finished (by editing level data)
+        -could test
+    -make more kinds of enemies (i.e. not variations of hunters or dummies)
+    -make game have total of 40 levels
+    -change player spacecrafts' speeds to all three have good chance
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
     tap left and right halves of screen)
 -make HUD beautiful-er; see Google Images for inspiration
-
-Eventually:
--make enemies disappear before a level is finished (by editing level data)
-    -could test
--make more kinds of enemies (i.e. not variations of hunters or dummies)
--make game have total of 40 levels
--upload app on Google Play
--finally clause in GameActivity to end music resource? Or does onStop do this?
 -put number of unit tests in readme?
--finalize levels and speeds
+-upload app on Google Play
 
 Considerable:
 -consider scaling everything, so it all looks the same on every device
@@ -40,7 +37,8 @@ Considerable:
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
 -look into reading data from text files
-    -doesn't seem to have any benefit in this context
+    -doesn't seem to have any benefit in this context, since the files would
+    still have to be deployed
 -use unit test to check for invalid level data
     -check both "debugging" and "non-debugging levels"
     -criteria for being invalid:
@@ -48,5 +46,4 @@ hasSpawned member
         -any enemy's beginning distance is past goal distance?
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
--output remaining distance if lose
 -player's spacecraft's speed could increase as levels progress
