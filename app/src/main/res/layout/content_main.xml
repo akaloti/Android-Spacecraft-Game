@@ -29,13 +29,23 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ibAsteroid"
-        android:src="@drawable/small_asteroid"
+        android:id="@+id/ibHero2"
+        android:src="@drawable/hero2"
         android:background="#00ffffff"
+        android:onClick="onPlayClick"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_alignBottom="@+id/ibHero3"
+        android:layout_toRightOf="@+id/ibHero3"
+        android:layout_toEndOf="@+id/ibHero3" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibHero3"
+        android:src="@drawable/hero3"
         android:layout_alignBottom="@+id/ibHero"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="47dp"
-        android:layout_marginEnd="47dp"
-        android:onClick="onPlayClick" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onPlayClick"
+        android:background="#00ffffff" />
 </RelativeLayout>

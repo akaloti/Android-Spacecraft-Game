@@ -4,8 +4,6 @@ Release 1.0:
 -can choose between three different spacecrafts of varying speed, size,
 and shape
     -three non-trivial choices
-        -remove HERO_2 asteroid sprite case statement
-        -make two additional sprites; pick rectangle-friendly shapes
         -implement different speeds
         -change unit tests appropriately
 
@@ -22,6 +20,8 @@ Eventually:
 -make more kinds of enemies (i.e. not variations of hunters or dummies)
 -make game have total of 40 levels
 -upload app on Google Play
+-finally clause in GameActivity to end music resource? Or does onStop do this?
+-put number of unit tests in readme?
 
 Considerable:
 -consider scaling everything, so it all looks the same on every device
@@ -51,3 +51,4 @@ hasSpawned member
         -any enemy's beginning distance is past goal distance?
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
+-output remaining distance if lose

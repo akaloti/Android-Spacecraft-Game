@@ -34,8 +34,10 @@ public class MainActivity extends Activity {
     public static Entity.Type resIdToEntityType(int spacecraftResId) {
         if (spacecraftResId == R.id.ibHero)
             return Entity.Type.HERO_1;
-        else if (spacecraftResId == R.id.ibAsteroid)
+        else if (spacecraftResId == R.id.ibHero2)
             return Entity.Type.HERO_2;
+        else if (spacecraftResId == R.id.ibHero3)
+            return Entity.Type.HERO_3;
         else
             throw new AssertionError(
                     "Didn't find entity corresponding to res id");

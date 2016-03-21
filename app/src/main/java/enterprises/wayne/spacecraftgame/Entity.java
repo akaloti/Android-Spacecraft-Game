@@ -21,6 +21,7 @@ public abstract class Entity {
     public enum Type {
         HERO_1,
         HERO_2,
+        HERO_3,
 
         // enemy spacecrafts
         DUMMY_1,
@@ -43,6 +44,14 @@ public abstract class Entity {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
                 break;
+            case HERO_2:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero2);
+                break;
+            case HERO_3:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero3);
+                break;
             case DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.dummy1);
@@ -52,7 +61,6 @@ public abstract class Entity {
                         (context.getResources(), R.drawable.hunter1);
                 break;
             case SMALL_ASTEROID:
-            case HERO_2: // <-- REMOVE
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.small_asteroid);
                 break;

@@ -11,8 +11,7 @@ public class MainActivityUnitTest
     extends ActivityUnitTestCase<MainActivity> {
 
     private MainActivity mActivity;
-    private ImageButton mHero1;
-    private ImageButton mHero2;
+    private ImageButton[] mImageButtons = new ImageButton[3];
 
     public MainActivityUnitTest() {
         super(MainActivity.class);
@@ -29,24 +28,27 @@ public class MainActivityUnitTest
         startActivity(intent, null, null);
         mActivity = getActivity();
 
-        mHero1 = (ImageButton) mActivity.findViewById(R.id.ibHero);
-        mHero2 = (ImageButton) mActivity.findViewById(R.id.ibAsteroid);
+        mImageButtons[0] = (ImageButton) mActivity.findViewById(R.id.ibHero);
+        mImageButtons[1] = (ImageButton) mActivity.findViewById(R.id.ibHero2);
+        mImageButtons[2] = (ImageButton) mActivity.findViewById(R.id.ibHero3);
     }
 
     public void testHeroSelection() {
-        mHero1.performClick();
+        int i = 1;
+        for (ImageButton ib : mImageButtons) {
+            ib.performClick();
 
-        Intent triggeredIntent = getStartedActivityIntent();
-        assertNotNull("Intent was null", triggeredIntent);
+            Intent triggeredIntent = getStartedActivityIntent();
+            assertNotNull("Intent was null in iteration " + i, triggeredIntent);
 
-        // Check if the button's corresponding hero is recorded
-        assertNotNull(MainActivity.getChosenSpacecraft());
-        assertEquals(MainActivity.resIdToEntityType(mHero1.getId()),
-                MainActivity.getChosenSpacecraft());
+            // Check if the button's corresponding hero is recorded
+            assertNotNull("Chosen spacecraft not recorded in iteration " + i,
+                    MainActivity.getChosenSpacecraft());
+            assertEquals("Wrong res id recorded in iteration " + i,
+                    MainActivity.resIdToEntityType(ib.getId()),
+                    MainActivity.getChosenSpacecraft());
 
-        mHero2.performClick();
-
-        triggeredIntent = getStartedActivityIntent();
-        assertNotNull("Intent was null", triggeredIntent);
+            ++i;
+        } // for each image button
     }
 }

@@ -33,7 +33,7 @@ public class MainActivityFunctionalTest
         mActivity = getActivity();
 
         mHero1 = (ImageButton) mActivity.findViewById(R.id.ibHero);
-        mHero2 = (ImageButton) mActivity.findViewById(R.id.ibAsteroid);
+        mHero2 = (ImageButton) mActivity.findViewById(R.id.ibHero2);
     }
 
     /**
