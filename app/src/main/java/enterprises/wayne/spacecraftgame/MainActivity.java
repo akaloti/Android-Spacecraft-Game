@@ -25,13 +25,13 @@ public class MainActivity extends Activity {
     }
 
     public void onPlayClick(View view) {
-        // whichSpacecraft = resIdToEntityType(view.getId());
+        whichSpacecraft = resIdToEntityType(view.getId());
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private Entity.Type resIdToEntityType(int spacecraftResId) {
+    public static Entity.Type resIdToEntityType(int spacecraftResId) {
         if (spacecraftResId == R.id.ibHero)
             return Entity.Type.HERO_1;
         else if (spacecraftResId == R.id.ibAsteroid)

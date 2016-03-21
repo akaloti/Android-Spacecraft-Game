@@ -33,11 +33,16 @@ public class MainActivityUnitTest
         mHero2 = (ImageButton) mActivity.findViewById(R.id.ibAsteroid);
     }
 
-    public void testGameActivityLaunch() {
+    public void testHeroSelection() {
         mHero1.performClick();
 
         Intent triggeredIntent = getStartedActivityIntent();
         assertNotNull("Intent was null", triggeredIntent);
+
+        // Check if the button's corresponding hero is recorded
+        assertNotNull(MainActivity.getChosenSpacecraft());
+        assertEquals(MainActivity.resIdToEntityType(mHero1.getId()),
+                MainActivity.getChosenSpacecraft());
 
         mHero2.performClick();
 

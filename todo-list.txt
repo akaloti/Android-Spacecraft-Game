@@ -4,8 +4,8 @@ Release 1.0:
 -can choose between three different spacecrafts of varying speed, size,
 and shape
     -get rid of HERO enum
-    -test proper enum assignment based on button pressed
     -make three non-trivial choices
+    -change unit tests appropriately
     -change the sprites appropriately
 
 Release 1.1:
