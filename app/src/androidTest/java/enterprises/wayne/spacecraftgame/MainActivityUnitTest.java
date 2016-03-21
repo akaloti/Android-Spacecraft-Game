@@ -38,5 +38,10 @@ public class MainActivityUnitTest
 
         Intent triggeredIntent = getStartedActivityIntent();
         assertNotNull("Intent was null", triggeredIntent);
+
+        mHero2.performClick();
+
+        triggeredIntent = getStartedActivityIntent();
+        assertNotNull("Intent was null", triggeredIntent);
     }
 }
