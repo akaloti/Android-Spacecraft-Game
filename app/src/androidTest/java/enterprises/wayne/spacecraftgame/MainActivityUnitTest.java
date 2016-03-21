@@ -2,7 +2,7 @@ package enterprises.wayne.spacecraftgame;
 
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by Aaron on 12/27/2015.
@@ -11,7 +11,7 @@ public class MainActivityUnitTest
     extends ActivityUnitTestCase<MainActivity> {
 
     private MainActivity mActivity;
-    private Button mPlay;
+    private ImageButton[] mImageButtons = new ImageButton[3];
 
     public MainActivityUnitTest() {
         super(MainActivity.class);
@@ -28,13 +28,27 @@ public class MainActivityUnitTest
         startActivity(intent, null, null);
         mActivity = getActivity();
 
-        mPlay = (Button) mActivity.findViewById(R.id.bPlay);
+        mImageButtons[0] = (ImageButton) mActivity.findViewById(R.id.ibHero);
+        mImageButtons[1] = (ImageButton) mActivity.findViewById(R.id.ibHero2);
+        mImageButtons[2] = (ImageButton) mActivity.findViewById(R.id.ibHero3);
     }
 
-    public void testGameActivityLaunch() {
-        mPlay.performClick();
+    public void testHeroSelection() {
+        int i = 1;
+        for (ImageButton ib : mImageButtons) {
+            ib.performClick();
 
-        Intent triggeredIntent = getStartedActivityIntent();
-        assertNotNull("Intent was null", triggeredIntent);
+            Intent triggeredIntent = getStartedActivityIntent();
+            assertNotNull("Intent was null in iteration " + i, triggeredIntent);
+
+            // Check if the button's corresponding hero is recorded
+            assertNotNull("Chosen spacecraft not recorded in iteration " + i,
+                    MainActivity.getChosenSpacecraft());
+            assertEquals("Wrong res id recorded in iteration " + i,
+                    MainActivity.resIdToEntityType(ib.getId()),
+                    MainActivity.getChosenSpacecraft());
+
+            ++i;
+        } // for each image button
     }
 }

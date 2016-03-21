@@ -12,13 +12,40 @@
     tools:context="enterprises.wayne.spacecraftgame.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/bPlay"
+        android:id="@+id/ibHero"
+        android:layout_marginBottom="79dp"
+        android:src="@drawable/hero"
+        android:background="#00ffffff"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="67dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp"
         android:onClick="onPlayClick" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibHero2"
+        android:src="@drawable/hero2"
+        android:background="#00ffffff"
+        android:onClick="onPlayClick"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_alignBottom="@+id/ibHero3"
+        android:layout_toRightOf="@+id/ibHero3"
+        android:layout_toEndOf="@+id/ibHero3" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibHero3"
+        android:src="@drawable/hero3"
+        android:layout_alignBottom="@+id/ibHero"
+        android:layout_centerHorizontal="true"
+        android:onClick="onPlayClick"
+        android:background="#00ffffff" />
 </RelativeLayout>

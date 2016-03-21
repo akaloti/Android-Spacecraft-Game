@@ -1,8 +1,7 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--can choose between three different spacecrafts of varying speed, size,
-and shape
+
 
 Release 1.1:
 -main activity
@@ -12,11 +11,14 @@ Release 1.1:
 -make HUD beautiful-er; see Google Images for inspiration
 
 Eventually:
--player's spacecraft's speed could increase as levels progress
 -make enemies disappear before a level is finished (by editing level data)
+    -could test
 -make more kinds of enemies (i.e. not variations of hunters or dummies)
 -make game have total of 40 levels
 -upload app on Google Play
+-finally clause in GameActivity to end music resource? Or does onStop do this?
+-put number of unit tests in readme?
+-finalize levels and speeds
 
 Considerable:
 -consider scaling everything, so it all looks the same on every device
@@ -46,3 +48,5 @@ hasSpawned member
         -any enemy's beginning distance is past goal distance?
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
+-output remaining distance if lose
+-player's spacecraft's speed could increase as levels progress

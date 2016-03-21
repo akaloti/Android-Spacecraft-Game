@@ -6,12 +6,12 @@ import android.content.Context;
  * Created by Aaron on 12/28/2015.
  */
 public class PlayerSpacecraft extends Entity {
-    private static final int HORIZONTAL_SPEED = 10;
-    private static final int DEFAULT_VERTICAL_SPEED = 1;
-
     // Regarding user input
     private boolean mIsPressingRight = false;
     private boolean mIsPressingLeft = false;
+
+    private int mMaxHorizontalSpeed = 0;
+    private int mMaxVerticalSpeed = 0;
 
     /**
      * @param context to allow access to drawables
@@ -19,12 +19,15 @@ public class PlayerSpacecraft extends Entity {
      * @param screenY user's screen's height (in pixels)
      */
     public PlayerSpacecraft(Context context, int screenX, int screenY) {
-        super(context, Type.HERO, screenX, screenY);
+        super(context, MainActivity.getChosenSpacecraft(), screenX, screenY);
 
         setX(screenX / 2);
         setY(screenY - 300);
 
-        setSpeedY(DEFAULT_VERTICAL_SPEED);
+        mMaxVerticalSpeed = decideMaxVerticalSpeed();
+        mMaxHorizontalSpeed = decideMaxHorizontalSpeed();
+
+        setSpeedY(mMaxVerticalSpeed);
     }
 
     public void setPressingRight(boolean isPressingRight) {
@@ -35,10 +38,35 @@ public class PlayerSpacecraft extends Entity {
         mIsPressingLeft = isPressingLeft;
     }
 
+    private int decideMaxVerticalSpeed() {
+        switch (getType()) {
+            case HERO_1:
+                return 2;
+            case HERO_2:
+                return 4;
+            case HERO_3:
+                return 1;
+            default:
+                throw new AssertionError("Invalid spacecraft type");
+        }
+    }
+
+    private int decideMaxHorizontalSpeed() {
+        switch (getType()) {
+            case HERO_1:
+                return 10;
+            case HERO_2:
+                return 5;
+            case HERO_3:
+                return 15;
+            default:
+                throw new AssertionError("Invalid spacecraft type");
+        }
+    }
+
     public void update() {
         // Update speed and position
         setX(getX() + updateHorizontalSpeed());
-        // updateVerticalSpeed();
 
         keepSpacecraftOnScreen();
 
@@ -56,9 +84,9 @@ public class PlayerSpacecraft extends Entity {
             newSpeed = 0;
         }
         else if (mIsPressingLeft)
-            newSpeed = -HORIZONTAL_SPEED;
+            newSpeed = -mMaxHorizontalSpeed;
         else if (mIsPressingRight)
-            newSpeed = HORIZONTAL_SPEED;
+            newSpeed = mMaxHorizontalSpeed;
         else {
             // neither going left nor right
             newSpeed = 0;
@@ -66,17 +94,6 @@ public class PlayerSpacecraft extends Entity {
 
         setSpeedX(newSpeed);
         return newSpeed;
-    }
-
-    private void updateVerticalSpeed() {
-        int newSpeed;
-
-        if (mIsPressingLeft || mIsPressingRight)
-            newSpeed = 3;
-        else
-            newSpeed = DEFAULT_VERTICAL_SPEED;
-
-        setSpeedY(newSpeed);
     }
 
     /**

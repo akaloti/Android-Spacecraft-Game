@@ -19,7 +19,9 @@ public abstract class Entity {
     private Type mType;
 
     public enum Type {
-        HERO,
+        HERO_1,
+        HERO_2,
+        HERO_3,
 
         // enemy spacecrafts
         DUMMY_1,
@@ -38,9 +40,17 @@ public abstract class Entity {
     public Entity(Context context, Type type, int screenX, int screenY) {
         // Select appropriate bitmap for the entity
         switch (type) {
-            case HERO:
+            case HERO_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
+                break;
+            case HERO_2:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero2);
+                break;
+            case HERO_3:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero3);
                 break;
             case DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource

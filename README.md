@@ -29,10 +29,16 @@ user is touching, even if he/she is touching both halves.
 
 -Five levels.
 
+-A few unit tests. (Because of the nature of this game and my relatively low
+experience with test-driven development, I missed a few
+opportunities to add unit tests and functional tests.
+I hope to not make this mistake again.)
+
+
 Releases
 --------
 
-The latest release is: v0.3
+Latest release: v0.3
 
 Please see the releases section under this repository on GitHub
 to download the latest release.
@@ -44,11 +50,6 @@ In Android Studio, run 'app' in 'enterprises.wayne.spacecraftgame'.
 
 How to Run Tests
 ----------------
-
-(Note that because of the nature of this game and my relatively low
-experience with test-driven development, I missed a few
-opportunities to add unit tests and functional tests, so there are only a few.
-I plan to not make this mistake again.)
 
 In Android Studio, run 'Tests' in 'enterprises.wayne.spacecraftgame'.
 The Android device that you use to run the tests must be unlocked (even
