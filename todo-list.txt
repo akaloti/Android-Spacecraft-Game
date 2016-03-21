@@ -3,10 +3,11 @@ DON'T FORGET ABOUT UNIT TESTS
 Release 1.0:
 -can choose between three different spacecrafts of varying speed, size,
 and shape
-    -get rid of HERO enum
-    -make three non-trivial choices
-    -change unit tests appropriately
-    -change the sprites appropriately
+    -three non-trivial choices
+        -remove HERO_2 asteroid sprite case statement
+        -make two additional sprites; pick rectangle-friendly shapes
+        -implement different speeds
+        -change unit tests appropriately
 
 Release 1.1:
 -main activity

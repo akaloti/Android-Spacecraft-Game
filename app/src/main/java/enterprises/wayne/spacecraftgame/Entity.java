@@ -19,7 +19,6 @@ public abstract class Entity {
     private Type mType;
 
     public enum Type {
-        HERO,
         HERO_1,
         HERO_2,
 
@@ -40,7 +39,7 @@ public abstract class Entity {
     public Entity(Context context, Type type, int screenX, int screenY) {
         // Select appropriate bitmap for the entity
         switch (type) {
-            case HERO:
+            case HERO_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
                 break;
@@ -53,6 +52,7 @@ public abstract class Entity {
                         (context.getResources(), R.drawable.hunter1);
                 break;
             case SMALL_ASTEROID:
+            case HERO_2: // <-- REMOVE
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.small_asteroid);
                 break;

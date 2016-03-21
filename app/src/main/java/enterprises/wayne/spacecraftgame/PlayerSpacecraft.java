@@ -19,7 +19,7 @@ public class PlayerSpacecraft extends Entity {
      * @param screenY user's screen's height (in pixels)
      */
     public PlayerSpacecraft(Context context, int screenX, int screenY) {
-        super(context, Type.HERO, screenX, screenY);
+        super(context, MainActivity.getChosenSpacecraft(), screenX, screenY);
 
         setX(screenX / 2);
         setY(screenY - 300);
