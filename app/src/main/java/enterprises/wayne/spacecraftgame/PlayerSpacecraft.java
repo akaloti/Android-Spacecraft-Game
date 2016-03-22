@@ -10,8 +10,8 @@ public class PlayerSpacecraft extends Entity {
     private boolean mIsPressingRight = false;
     private boolean mIsPressingLeft = false;
 
-    private int mMaxHorizontalSpeed = 0;
-    private int mMaxVerticalSpeed = 0;
+    private int mMaxSpeedX = 0;
+    private int mMaxSpeedY = 0;
 
     /**
      * @param context to allow access to drawables
@@ -24,10 +24,10 @@ public class PlayerSpacecraft extends Entity {
         setX(screenX / 2);
         setY(screenY - 300);
 
-        mMaxVerticalSpeed = decideMaxVerticalSpeed();
-        mMaxHorizontalSpeed = decideMaxHorizontalSpeed();
+        mMaxSpeedY = decideMaxSpeedY();
+        mMaxSpeedX = decideMaxSpeedX();
 
-        setSpeedY(mMaxVerticalSpeed);
+        setSpeedY(mMaxSpeedY);
     }
 
     public void setPressingRight(boolean isPressingRight) {
@@ -38,7 +38,7 @@ public class PlayerSpacecraft extends Entity {
         mIsPressingLeft = isPressingLeft;
     }
 
-    private int decideMaxVerticalSpeed() {
+    private int decideMaxSpeedY() {
         switch (getType()) {
             case HERO_1:
                 return 2;
@@ -51,7 +51,7 @@ public class PlayerSpacecraft extends Entity {
         }
     }
 
-    private int decideMaxHorizontalSpeed() {
+    private int decideMaxSpeedX() {
         switch (getType()) {
             case HERO_1:
                 return 10;
@@ -66,7 +66,7 @@ public class PlayerSpacecraft extends Entity {
 
     public void update() {
         // Update speed and position
-        setX(getX() + updateHorizontalSpeed());
+        setX(getX() + updateSpeedX(());
 
         keepSpacecraftOnScreen();
 
@@ -76,7 +76,7 @@ public class PlayerSpacecraft extends Entity {
     /**
      * @return the new horizontal speed
      */
-    private int updateHorizontalSpeed() {
+    private int updateSpeedX() {
         int newSpeed;
 
         if (mIsPressingLeft && mIsPressingRight) {
@@ -84,9 +84,9 @@ public class PlayerSpacecraft extends Entity {
             newSpeed = 0;
         }
         else if (mIsPressingLeft)
-            newSpeed = -mMaxHorizontalSpeed;
+            newSpeed = -mMaxSpeedX;
         else if (mIsPressingRight)
-            newSpeed = mMaxHorizontalSpeed;
+            newSpeed = mMaxSpeedX;
         else {
             // neither going left nor right
             newSpeed = 0;
