@@ -1,12 +1,20 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--finally clause in GameActivity to end music resource? Or does onStop do this?
+-make more kinds of enemies (i.e. not variations of hunters or dummies)
+    -zig-zaggers
+    -boundary-gliders
+    -giant square dummy
+    -giant square hunter
+    -small, really fast one; waypoint rarely set
+    -faster different-colored versions of the enemies
+    -ambusher; waypoint is set to where the player is headed
+    -enemy that alters between small and big sprite each time interval
+    -make hunters less circular and more rectangular?
 -level design and game play:
     -make enemies disappear before a level is finished (by editing level data)
         -could test
-    -make more kinds of enemies (i.e. not variations of hunters or dummies)
-    -make game have total of 40 levels
+    -make game have total of 40 levels; use pencil and paper
     -change player spacecrafts' speeds to all three have good chance
 -main activity
     -main menu background image
