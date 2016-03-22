@@ -1,7 +1,6 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--output remaining distance if lose
 -finally clause in GameActivity to end music resource? Or does onStop do this?
 -level design and game play:
     -make enemies disappear before a level is finished (by editing level data)

@@ -626,21 +626,32 @@ public class SGView extends SurfaceView
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(60);
         mCanvas.drawText("Level Completed!",
-                mScreenX / 2, mScreenY / 2, mPaint);
+                mScreenX / 2, (mScreenY / 2) - 50, mPaint);
+
+        mPaint.setTextSize(30);
+        mCanvas.drawText("Completed: " + mForwardDistanceGoal,
+                mScreenX / 2, mScreenY / 2 + 10, mPaint);
 
         mPaint.setTextSize(40);
+        mPaint.setColor(Color.RED);
         mCanvas.drawText("Tap to advance.", mScreenX / 2,
-                mScreenY / 2 + 60, mPaint);
+                mScreenY / 2 + 100, mPaint);
     }
 
     private void drawLossScreen() {
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(60);
-        mCanvas.drawText("You lost... :(", mScreenX / 2, mScreenY / 2, mPaint);
+        mCanvas.drawText("You lost... :(", mScreenX / 2,
+                (mScreenY / 2) - 50, mPaint);
+
+        mPaint.setTextSize(30);
+        mCanvas.drawText("Remaining: " + mForwardDistanceRemaining,
+                mScreenX / 2, (mScreenY / 2) + 10, mPaint);
 
         mPaint.setTextSize(40);
+        mPaint.setColor(Color.RED);
         mCanvas.drawText("Tap to restart level.", mScreenX / 2,
-                (mScreenY / 2) + 60, mPaint);
+                (mScreenY / 2) + 100, mPaint);
     }
 
     private void controlFrameRate() {
