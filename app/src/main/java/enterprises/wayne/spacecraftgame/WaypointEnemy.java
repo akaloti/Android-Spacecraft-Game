@@ -10,8 +10,17 @@ public class WaypointEnemy extends EnemyEntity {
     private int mMaxSpeedX;
     private int mWaypointX; // where this enemy is headed towards
     private long mLastWaypointSetTime;
-    private long mWaypointUpdatePeriod;
+    private long mWaypointUpdatePeriod; // in milliseconds
 
+    /**
+     * @param context
+     * @param type
+     * @param screenX
+     * @param screenY
+     * @param endDistance
+     * @param maxSpeedX
+     * @param waypointUpdatePeriod in milliseconds
+     */
     public WaypointEnemy(Context context, Type type, int screenX,
                          int screenY, float endDistance, int maxSpeedX,
                          long waypointUpdatePeriod) {
@@ -35,20 +44,24 @@ public class WaypointEnemy extends EnemyEntity {
         return mLastWaypointSetTime;
     }
 
+    protected void setLastWaypointSetTime(long newTime) {
+        mLastWaypointSetTime = newTime;
+    }
+
     protected float getWaypointUpdatePeriod() {
         return mWaypointUpdatePeriod;
     }
 
     /**
-     * @param playerPositionX the x-coordinate of the player
+     * @param newWaypointX
      * @post if enough time has passed, waypoint on x-axis
      * has been updated
      */
-    public void setWaypointX(int playerPositionX) {
+    public void setWaypointX(int newWaypointX) {
         if (System.currentTimeMillis() >
                 mLastWaypointSetTime + mWaypointUpdatePeriod) {
             mLastWaypointSetTime = System.currentTimeMillis();
-            mWaypointX = playerPositionX;
+            mWaypointX = newWaypointX;
         }
     }
 

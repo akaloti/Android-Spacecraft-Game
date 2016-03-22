@@ -135,17 +135,19 @@ public class SGView extends SurfaceView
         if (mDebuggingLevels) {
             // Level 1
             LevelData levelData = new LevelData();
-            levelData.goalDistance = 200;
-            levelData.enemyData.add(
+            levelData.goalDistance = 700;
+            /*levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));*/
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1000));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
-            // Level 2
+            /*// Level 2
             levelData = new LevelData();
             levelData.goalDistance = 200;
             levelData.enemyData.add(
@@ -173,7 +175,7 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 200, 1000));
             levelData.backgroundMusicResId = R.raw.saber_wing;
-            mLevels.add(levelData);
+            mLevels.add(levelData);*/
         }
         else { // not debugging -- use real levels
             // Level 1
@@ -286,6 +288,11 @@ public class SGView extends SurfaceView
                         mEnemyEntities.add(
                                 new Hunter(mContext, mScreenX, mScreenY,
                                            eed.endDistance));
+                        break;
+                    case ZIGZAG_1:
+                        mEnemyEntities.add(
+                                new Zigzag(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
                         break;
                     case SMALL_ASTEROID:
                         mEnemyEntities.add(

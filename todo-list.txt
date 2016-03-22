@@ -2,8 +2,13 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -enemies
+    -randomize the setting of mWaypointX in WaypointEnemy, so enemies with
+    high waypoint periods don't just always start going left
+    -allow enemies to have different vertical speeds
     -more types
         -zig-zaggers
+            -set waypoint correctly, perhaps by knowing the two possible
+            waypoints and having a boolean
         -boundary-gliders
         -giant square dummy
         -giant square hunter
@@ -43,18 +48,16 @@ Considerable:
         --PROBLEM: all crafts move more slowly on bigger devices
             --could compensate by editing speed
             --could do what was done in eBook's Chapter 5
--put finish line sprite at goal distance
--special effects when the user is almost at the goal; e.g.:
-    -screen could have flashes of red
-    -alarm sound effects could play
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
 -enemies that shoot
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
--look into reading data from text files
-    -doesn't seem to have any benefit in this context, since the files would
-    still have to be deployed
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
 -player's spacecraft's speed could increase as levels progress
+-inflate speeds (and thus level distances) to increase variety of slower speeds
+-make everything smaller (to make world wider) by making sprites smaller
+-make "max" (and other appropriate) members "final"
+-don't let any update method call System.currentTimeMillis() twice; instead
+store the time in a local variable

@@ -64,7 +64,7 @@ public abstract class EnemyEntity extends Entity {
      * @param playerSpeedY is used to move the enemy further,
      * creating the illusion that the player is moving forward
      * (so that the camera needn't move)
-     * @returns false if enemy should be destroyed; otherwise, true
+     * @return false if enemy should be destroyed; otherwise, true
      */
     public boolean update(int playerSpeedY) {
         setX(getX() + getSpeedX());
