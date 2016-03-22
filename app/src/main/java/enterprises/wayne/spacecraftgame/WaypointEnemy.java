@@ -2,6 +2,8 @@ package enterprises.wayne.spacecraftgame;
 
 import android.content.Context;
 
+import java.util.Random;
+
 /**
  * Created by Aaron on 3/22/2016.
  */
@@ -27,7 +29,11 @@ public class WaypointEnemy extends EnemyEntity {
         super(context, type, screenX, screenY, endDistance);
 
         mMaxSpeedX = maxSpeedX;
-        mWaypointX = 0;
+
+        // Don't always have the enemy start going the same way
+        Random generator = new Random();
+        mWaypointX = generator.nextInt(screenX);
+
         mLastWaypointSetTime = System.currentTimeMillis();
         mWaypointUpdatePeriod = waypointUpdatePeriod;
     }
