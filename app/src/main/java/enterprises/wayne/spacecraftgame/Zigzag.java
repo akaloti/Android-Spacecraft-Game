@@ -15,9 +15,9 @@ public class Zigzag extends WaypointEnemy {
     private final int mDistanceBetweenWaypoints;
 
     public Zigzag(Context context, int screenX, int screenY, float endDistance) {
-        super(context, Type.ZIGZAG_1, screenX, screenY, endDistance, 5, 800);
+        super(context, Type.ZIGZAG_1, screenX, screenY, endDistance, 4, 700);
 
-        mDistanceBetweenWaypoints = screenX / 2;
+        mDistanceBetweenWaypoints = screenX / 3;
 
         // Have to call again, now that have correct distance between waypoints
         decideWaypoints();

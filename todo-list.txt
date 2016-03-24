@@ -6,7 +6,6 @@ Release 1.0:
     -give enemies horizontal boundary checking?
     -more types
         -zig-zaggers
-            -change the parameters regarding the waypoint's switching
             -make sprite
         -boundary-gliders
         -giant square dummy
@@ -60,3 +59,5 @@ hasSpawned member
 -make "max" (and other appropriate) members "final"
 -don't let any update method call System.currentTimeMillis() twice; instead
 store the time in a local variable
+-switch zig-zagger's current waypoint based on reaching the waypoint
+rather than on reaching the time
