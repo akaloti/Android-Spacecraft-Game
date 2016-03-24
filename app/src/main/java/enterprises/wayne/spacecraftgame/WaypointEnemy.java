@@ -62,13 +62,17 @@ public class WaypointEnemy extends EnemyEntity {
      * @param newWaypointX
      * @post if enough time has passed, waypoint on x-axis
      * has been updated
+     * @return true if waypoint was changed; otherwise, false
      */
-    public void setWaypointX(int newWaypointX) {
+    public boolean setWaypointX(int newWaypointX) {
         if (System.currentTimeMillis() >
                 mLastWaypointSetTime + mWaypointUpdatePeriod) {
             mLastWaypointSetTime = System.currentTimeMillis();
             mWaypointX = newWaypointX;
+            return true;
         }
+        else
+            return false;
     }
 
     /**

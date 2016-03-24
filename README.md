@@ -19,6 +19,9 @@ Features
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
 
+-Four enemies and three different categories (i.e. hunters, zig-zaggers,
+dummies).
+
 -Sprites designed with Autodesk Inventor.
 
 -Sound effects.

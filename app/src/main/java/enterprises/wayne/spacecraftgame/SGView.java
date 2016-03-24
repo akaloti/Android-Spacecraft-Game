@@ -135,7 +135,7 @@ public class SGView extends SurfaceView
         if (mDebuggingLevels) {
             // Level 1
             LevelData levelData = new LevelData();
-            levelData.goalDistance = 500;
+            levelData.goalDistance = 1200;
             /*levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
             levelData.enemyData.add(
