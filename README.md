@@ -19,8 +19,10 @@ Features
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
 
--Four enemies and three different categories (i.e. hunters, zig-zaggers,
-dummies).
+-Three kinds of enemies:
+1. Dummies and Asteroids
+2. Hunters
+3. Zig-Zaggers
 
 -Sprites designed with Autodesk Inventor.
 

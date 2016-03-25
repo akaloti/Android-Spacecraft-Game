@@ -63,7 +63,7 @@ public abstract class Entity {
                 break;
             case ZIGZAG_1:
                 mBitmap = BitmapFactory.decodeResource
-                        (context.getResources(), R.drawable.small_asteroid);
+                        (context.getResources(), R.drawable.zigzag1);
                 break;
             case SMALL_ASTEROID:
                 mBitmap = BitmapFactory.decodeResource

@@ -5,13 +5,11 @@ Release 1.0:
     -allow enemies to have different vertical speeds
     -give enemies horizontal boundary checking?
     -more types
-        -zig-zaggers
-            -make sprite
-        -boundary-gliders
         -giant square dummy
         -giant square hunter
         -giant asteroid
         -small, really fast one; waypoint rarely set
+        -boundary-gliders
         -ambusher; waypoint is set to where the player is headed
         -enemy that alters between small and big sprite each time interval
     -other notes
