@@ -19,6 +19,11 @@ Features
 -User's spacecraft reacts according to which half (if any) of the screen the
 user is touching, even if he/she is touching both halves.
 
+-Three kinds of enemies:
+1. Dummies and Asteroids
+2. Hunters
+3. Zig-Zaggers
+
 -Sprites designed with Autodesk Inventor.
 
 -Sound effects.

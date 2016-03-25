@@ -1,16 +1,26 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--make more kinds of enemies (i.e. not variations of hunters or dummies)
-    -zig-zaggers
-    -boundary-gliders
-    -giant square dummy
-    -giant square hunter
-    -small, really fast one; waypoint rarely set
-    -faster different-colored versions of the enemies
-    -ambusher; waypoint is set to where the player is headed
-    -enemy that alters between small and big sprite each time interval
-    -make hunters less circular and more rectangular?
+-enemies
+    -allow enemies to have different vertical speeds
+    -give enemies horizontal boundary checking?
+    -more types
+        -giant square dummy
+        -giant square hunter
+        -giant asteroid
+        -small, really fast one; waypoint rarely set
+        -boundary-gliders
+        -ambusher; waypoint is set to where the player is headed
+        -enemy that alters between small and big sprite each time interval
+    -other notes
+        -put the different types in the readme
+        -faster different-colored versions of the enemies
+        -make hunters less circular and more rectangular?
+-use unit test to check for invalid level data
+    -check both "debugging" and "non-debugging levels"
+    -criteria for being invalid:
+        -background music isn't set
+        -any enemy's beginning distance is past goal distance?
 -level design and game play:
     -make enemies disappear before a level is finished (by editing level data)
         -could test
@@ -34,23 +44,18 @@ Considerable:
         --PROBLEM: all crafts move more slowly on bigger devices
             --could compensate by editing speed
             --could do what was done in eBook's Chapter 5
--put finish line sprite at goal distance
--special effects when the user is almost at the goal; e.g.:
-    -screen could have flashes of red
-    -alarm sound effects could play
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
 -enemies that shoot
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
--look into reading data from text files
-    -doesn't seem to have any benefit in this context, since the files would
-    still have to be deployed
--use unit test to check for invalid level data
-    -check both "debugging" and "non-debugging levels"
-    -criteria for being invalid:
-        -background music isn't set
-        -any enemy's beginning distance is past goal distance?
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
 -player's spacecraft's speed could increase as levels progress
+-inflate speeds (and thus level distances) to increase variety of slower speeds
+-make everything smaller (to make world wider) by making sprites smaller
+-make "max" (and other appropriate) members "final"
+-don't let any update method call System.currentTimeMillis() twice; instead
+store the time in a local variable
+-switch zig-zagger's current waypoint based on reaching the waypoint
+rather than on reaching the time

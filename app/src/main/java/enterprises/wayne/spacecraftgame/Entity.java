@@ -26,6 +26,7 @@ public abstract class Entity {
         // enemy spacecrafts
         DUMMY_1,
         HUNTER_1,
+        ZIGZAG_1,
 
         // asteroids
         SMALL_ASTEROID,
@@ -59,6 +60,10 @@ public abstract class Entity {
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
+                break;
+            case ZIGZAG_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.zigzag1);
                 break;
             case SMALL_ASTEROID:
                 mBitmap = BitmapFactory.decodeResource
