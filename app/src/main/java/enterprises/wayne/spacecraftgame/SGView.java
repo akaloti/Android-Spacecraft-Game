@@ -141,9 +141,11 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));*/
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1000));
+                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1000));*/
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.BIG_DUMMY_1, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
@@ -283,6 +285,11 @@ public class SGView extends SurfaceView
                         mEnemyEntities.add(
                                 new Dummy(mContext, mScreenX, mScreenY,
                                           eed.endDistance));
+                        break;
+                    case BIG_DUMMY_1:
+                        mEnemyEntities.add(
+                                new BigDummy1(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
                         break;
                     case HUNTER_1:
                         mEnemyEntities.add(
