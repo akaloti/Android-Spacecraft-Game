@@ -60,13 +60,16 @@ public abstract class Entity {
                         (context.getResources(), R.drawable.dummy1);
                 break;
             case BIG_DUMMY_1:
-            case BIG_HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.big_dummy1);
                 break;
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
+                break;
+            case BIG_HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.big_hunter1);
                 break;
             case ZIGZAG_1:
                 mBitmap = BitmapFactory.decodeResource
