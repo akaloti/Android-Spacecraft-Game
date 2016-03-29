@@ -27,6 +27,7 @@ public abstract class Entity {
         DUMMY_1,
         BIG_DUMMY_1, // by "big dummy", I mean he's larger, not dumber
         HUNTER_1,
+        BIG_HUNTER_1,
         ZIGZAG_1,
 
         // asteroids
@@ -59,6 +60,7 @@ public abstract class Entity {
                         (context.getResources(), R.drawable.dummy1);
                 break;
             case BIG_DUMMY_1:
+            case BIG_HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.big_dummy1);
                 break;
@@ -159,6 +161,12 @@ public abstract class Entity {
     }
 
     public boolean isHunter() {
-        return mType == Type.HUNTER_1;
+        switch (mType) {
+            case HUNTER_1:
+            case BIG_HUNTER_1:
+                return true;
+            default:
+                return false;
+        }
     }
 }

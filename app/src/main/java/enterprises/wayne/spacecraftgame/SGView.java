@@ -145,7 +145,9 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1000));*/
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_DUMMY_1, 0, 1400));
+                    new EnemyEntityData(Entity.Type.BIG_HUNTER_1, 0, 1400));
+            // levelData.enemyData.add(
+               //      new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
@@ -295,6 +297,11 @@ public class SGView extends SurfaceView
                         mEnemyEntities.add(
                                 new Hunter(mContext, mScreenX, mScreenY,
                                            eed.endDistance));
+                        break;
+                    case BIG_HUNTER_1:
+                        mEnemyEntities.add(
+                                new BigHunter1(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
                         break;
                     case ZIGZAG_1:
                         mEnemyEntities.add(
@@ -482,7 +489,7 @@ public class SGView extends SurfaceView
 
             // Update waypoint if hunter
             if (enemy.isHunter()) {
-                ((Hunter) enemy).setWaypointX(playerCenterX);
+                ((WaypointEnemy) enemy).setWaypointX(playerCenterX);
             }
 
             boolean shouldDestroy = !(enemy.update(playerSpeedY));

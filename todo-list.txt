@@ -63,3 +63,5 @@ store the time in a local variable
 rather than on reaching the time
 -figure out why zig-zagger's sometimes vibrates in place, even when
 it doesn't seem to have reached its waypoint
+-figure out some quick way to add new enemies (and in the process update what
+needs to be updated in isHunter() and SGView)
