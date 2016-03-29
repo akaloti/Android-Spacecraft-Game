@@ -5,8 +5,6 @@ Release 1.0:
     -allow enemies to have different vertical speeds
     -give enemies horizontal boundary checking?
     -more types
-        -giant asteroid
-            -make better sprite
         -small, really fast one; waypoint rarely set
         -boundary-gliders
         -ambusher; waypoint is set to where the player is headed
@@ -14,13 +12,16 @@ Release 1.0:
         -enemy that toggles its visibilty (really frequently)
             -dummy version
             -hunter version?
+        -gigantic asteroid that is almost as wide as the screen
+         (would have to check how well the game works on
+          devices of other sizes first, though)
     -other notes
         -put the different types in the readme
         -faster different-colored versions of the enemies
         -make hunters less circular and more rectangular?
 -again, look into testing on devices of different sizes
 -make each sprite appropriately more square (would have to change Hero1 and
-Hunter1)
+Hunter1 and maybe BigAsteroid1)
 -use unit test to check for invalid level data
     -check both "debugging" and "non-debugging levels"
     -criteria for being invalid:
