@@ -136,18 +136,10 @@ public class SGView extends SurfaceView
             // Level 1
             LevelData levelData = new LevelData();
             levelData.goalDistance = 1200;
-            /*levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.DUMMY_1, 100, 500));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 500));
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1000));*/
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_HUNTER_1, 0, 1400));
-            // levelData.enemyData.add(
-               //      new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
@@ -311,6 +303,12 @@ public class SGView extends SurfaceView
                     case SMALL_ASTEROID:
                         mEnemyEntities.add(
                                 new SmallAsteroid(mContext,
+                                        mScreenX, mScreenY,
+                                        eed.endDistance));
+                        break;
+                    case BIG_ASTEROID:
+                        mEnemyEntities.add(
+                                new BigAsteroid(mContext,
                                         mScreenX, mScreenY,
                                         eed.endDistance));
                         break;

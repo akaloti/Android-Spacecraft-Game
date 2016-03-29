@@ -32,6 +32,7 @@ public abstract class Entity {
 
         // asteroids
         SMALL_ASTEROID,
+        BIG_ASTEROID,
     }
 
     /**
@@ -78,6 +79,10 @@ public abstract class Entity {
             case SMALL_ASTEROID:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.small_asteroid);
+                break;
+            case BIG_ASTEROID:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.big_asteroid);
                 break;
             default:
                 throw new AssertionError("Invalid type given to Entity()");
