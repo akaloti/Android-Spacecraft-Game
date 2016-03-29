@@ -23,6 +23,7 @@ user is touching, even if he/she is touching both halves.
 1. Dummies and Asteroids
 2. Hunters
 3. Zig-Zaggers
+4. Big Ones (i.e. big versions of dummies, asteroids, and hunters)
 
 -Sprites designed with Autodesk Inventor.
 
@@ -75,6 +76,9 @@ and Antonio Hernández Niñirola helped me set up the unit tests.
 
 The background track "King Galaxian" is from the video game Pac-Man World.
 The background track "Saber Wing" was produced by TAG.
+
+I made (and exported images of) sprites with Autodesk Inventor and edited
+images with www.online-image-editor.com.
 
 Author
 ------
