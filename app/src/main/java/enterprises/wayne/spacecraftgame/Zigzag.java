@@ -11,7 +11,7 @@ public class Zigzag extends WaypointEnemy {
 
     private int mWaypoint1;
     private int mWaypoint2;
-    private int mCurrWaypoint;
+    private int mCurrWaypoint; // keeps track of which getWaypointX() is
     private final int mDistanceBetweenWaypoints;
 
     public Zigzag(Context context, int screenX, int screenY, float endDistance) {

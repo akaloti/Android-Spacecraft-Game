@@ -167,14 +167,4 @@ public abstract class Entity {
     public int getCenterX() {
         return mX + mBitmap.getWidth() / 2;
     }
-
-    public boolean isHunter() {
-        switch (mType) {
-            case HUNTER_1:
-            case BIG_HUNTER_1:
-                return true;
-            default:
-                return false;
-        }
-    }
 }
