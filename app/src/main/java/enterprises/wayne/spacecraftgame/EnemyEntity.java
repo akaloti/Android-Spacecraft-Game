@@ -131,4 +131,13 @@ public abstract class EnemyEntity extends Entity {
                 return false;
         }
     }
+
+    public boolean isAmbusher() {
+        switch (getType()) {
+            case AMBUSHER_1:
+                return true;
+            default:
+                return false;
+        }
+    } // isAmbusher()
 }

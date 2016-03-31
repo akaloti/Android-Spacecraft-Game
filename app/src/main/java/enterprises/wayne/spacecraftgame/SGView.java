@@ -138,8 +138,6 @@ public class SGView extends SurfaceView
             levelData.goalDistance = 1200;
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
@@ -300,6 +298,11 @@ public class SGView extends SurfaceView
                                 new Zigzag(mContext, mScreenX, mScreenY,
                                         eed.endDistance));
                         break;
+                    case AMBUSHER_1:
+                        mEnemyEntities.add(
+                                new Ambusher(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
+                        break;
                     case SMALL_ASTEROID:
                         mEnemyEntities.add(
                                 new SmallAsteroid(mContext,
@@ -447,8 +450,9 @@ public class SGView extends SurfaceView
         mPlayer.update();
 
         int playerCenterX = mPlayer.getCenterX();
+        int playerSpeedX = mPlayer.getSpeedX();
         int playerSpeedY = mPlayer.getSpeedY();
-        updateEnemies(playerCenterX, playerSpeedY);
+        updateEnemies(playerCenterX, playerSpeedX, playerSpeedY);
 
         // Update each speck of dust
         for (SpaceDust sd : mDustList)
@@ -478,16 +482,23 @@ public class SGView extends SurfaceView
      * @post each existing enemy has been updated, and new ones have
      * been spawnwed if player travelled far enough
      * @param playerCenterX
+     * @param playerSpeedX
      * @param playerSpeedY
      */
-    private void updateEnemies(int playerCenterX, int playerSpeedY) {
+    private void updateEnemies(int playerCenterX, int playerSpeedX,
+                               int playerSpeedY) {
         for (Iterator<EnemyEntity> itr = mEnemyEntities.iterator();
              itr.hasNext(); ) {
             EnemyEntity enemy = itr.next();
 
-            // Update waypoint if hunter
+            // Update waypoint depending on enemy type
             if (enemy.isHunter()) {
                 ((WaypointEnemy) enemy).setWaypointX(playerCenterX);
+            }
+            else if (enemy.isAmbusher()) {
+                int waypoint = ((Ambusher) enemy).determineOffset(
+                        playerCenterX, playerSpeedX);
+                ((WaypointEnemy) enemy).setWaypointX(waypoint);
             }
 
             boolean shouldDestroy = !(enemy.update(playerSpeedY));
