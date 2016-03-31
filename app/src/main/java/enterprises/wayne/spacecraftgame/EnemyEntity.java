@@ -121,4 +121,23 @@ public abstract class EnemyEntity extends Entity {
         setX(x);
         setY(y);
     }
+
+    public boolean isHunter() {
+        switch (getType()) {
+            case HUNTER_1:
+            case BIG_HUNTER_1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isAmbusher() {
+        switch (getType()) {
+            case AMBUSHER_1:
+                return true;
+            default:
+                return false;
+        }
+    } // isAmbusher()
 }

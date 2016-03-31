@@ -29,6 +29,7 @@ public abstract class Entity {
         HUNTER_1,
         BIG_HUNTER_1,
         ZIGZAG_1,
+        AMBUSHER_1,
 
         // asteroids
         SMALL_ASTEROID,
@@ -76,6 +77,10 @@ public abstract class Entity {
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.zigzag1);
                 break;
+            /*case AMBUSHER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.ambusher1);
+                break;*/
             case SMALL_ASTEROID:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.small_asteroid);
@@ -166,15 +171,5 @@ public abstract class Entity {
 
     public int getCenterX() {
         return mX + mBitmap.getWidth() / 2;
-    }
-
-    public boolean isHunter() {
-        switch (mType) {
-            case HUNTER_1:
-            case BIG_HUNTER_1:
-                return true;
-            default:
-                return false;
-        }
     }
 }
