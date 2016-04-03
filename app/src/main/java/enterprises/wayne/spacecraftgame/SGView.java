@@ -137,7 +137,7 @@ public class SGView extends SurfaceView
             LevelData levelData = new LevelData();
             levelData.goalDistance = 1200;
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
