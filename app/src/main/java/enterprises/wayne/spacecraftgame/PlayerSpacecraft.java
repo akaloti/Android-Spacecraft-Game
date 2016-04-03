@@ -22,7 +22,7 @@ public class PlayerSpacecraft extends Entity {
         super(context, MainActivity.getChosenSpacecraft(), screenX, screenY);
 
         setX(screenX / 2);
-        setY(screenY - 300);
+        setY(screenY - 350);
 
         mMaxSpeedY = decideMaxSpeedY();
         mMaxSpeedX = decideMaxSpeedX();
