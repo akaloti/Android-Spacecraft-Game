@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = true;
+    private final boolean mDebuggingLevels = false;
 
     private Context mContext;
 
