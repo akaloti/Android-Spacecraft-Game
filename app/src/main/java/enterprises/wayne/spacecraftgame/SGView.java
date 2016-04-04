@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = false;
+    private final boolean mDebuggingLevels = true;
 
     private Context mContext;
 
@@ -138,6 +138,10 @@ public class SGView extends SurfaceView
             levelData.goalDistance = 1200;
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
             levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
