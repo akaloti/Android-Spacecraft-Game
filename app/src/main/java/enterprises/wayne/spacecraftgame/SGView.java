@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = false;
+    private final boolean mDebuggingLevels = true;
 
     private Context mContext;
 
@@ -131,10 +131,11 @@ public class SGView extends SurfaceView
      */
     private void initializeLevelData() {
         mLevels = new ArrayList<>();
+        LevelData levelData;
 
         if (mDebuggingLevels) {
             // Level 1
-            LevelData levelData = new LevelData(1200, R.raw.king_galaxian);
+            levelData = new LevelData(300, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.enemyData.add(
@@ -143,39 +144,36 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
             mLevels.add(levelData);
 
-            /*// Level 2
-            levelData = new LevelData();
-            levelData.goalDistance = 200;
+            levelData = new LevelData(300, R.raw.hurry);
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
             mLevels.add(levelData);
 
-            // Level 3
-            levelData = new LevelData();
-            levelData.goalDistance = 200;
+            levelData = new LevelData(300, R.raw.saber_wing_2);
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
-            levelData.backgroundMusicResId = R.raw.saber_wing;
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
             mLevels.add(levelData);
 
-            // Level 4
-            levelData = new LevelData();
-            levelData.goalDistance = 400;
+            levelData = new LevelData(300, R.raw.saber_wing_3);
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 200, 1000));
-            levelData.backgroundMusicResId = R.raw.saber_wing;
-            mLevels.add(levelData);*/
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
+            mLevels.add(levelData);
         }
         else { // not debugging -- use real levels
             // Level 1
-            LevelData levelData = new LevelData(600, R.raw.king_galaxian);
+            levelData = new LevelData(600, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
             levelData.enemyData.add(
