@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = true;
+    private final boolean mDebuggingLevels = false;
 
     private Context mContext;
 
@@ -134,15 +134,13 @@ public class SGView extends SurfaceView
 
         if (mDebuggingLevels) {
             // Level 1
-            LevelData levelData = new LevelData();
-            levelData.goalDistance = 1200;
+            LevelData levelData = new LevelData(1200, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
             /*// Level 2
@@ -177,20 +175,17 @@ public class SGView extends SurfaceView
         }
         else { // not debugging -- use real levels
             // Level 1
-            LevelData levelData = new LevelData();
-            levelData.goalDistance = 600;
+            LevelData levelData = new LevelData(600, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 200, 1000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 400, 1000));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
             // Level 2
-            levelData = new LevelData();
-            levelData.goalDistance = 700;
+            levelData = new LevelData(700, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
             levelData.enemyData.add(
@@ -199,12 +194,10 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.DUMMY_1, 50, 1000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 300, 1000));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
             // Level 3
-            levelData = new LevelData();
-            levelData.goalDistance = 800;
+            levelData = new LevelData(800, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1000));
             levelData.enemyData.add(
@@ -221,12 +214,10 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 400, 1000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 600, 1000));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
             // Level 4
-            levelData = new LevelData();
-            levelData.goalDistance = 1000;
+            levelData = new LevelData(1000, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 2000));
             levelData.enemyData.add(
@@ -241,12 +232,10 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.HUNTER_1, 600, 2000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 850, 2000));
-            levelData.backgroundMusicResId = R.raw.king_galaxian;
             mLevels.add(levelData);
 
             // Level 5
-            levelData = new LevelData();
-            levelData.goalDistance = 1500;
+            levelData = new LevelData(1500, R.raw.saber_wing);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 0, 2000));
             levelData.enemyData.add(
@@ -259,7 +248,6 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.HUNTER_1, 800, 2000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 1000, 2000));
-            levelData.backgroundMusicResId = R.raw.saber_wing;
             mLevels.add(levelData);
         }
     }

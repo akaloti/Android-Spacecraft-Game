@@ -11,16 +11,16 @@ public class LevelData {
     public int backgroundMusicResId;
 
     // Default constructor
-    public LevelData() {
+    public LevelData(int goalDistance, int backgroundMusicResId) {
         this.enemyData = new CopyOnWriteArrayList<>();
-        this.goalDistance = 0;
-        this.backgroundMusicResId = -1; // should cause bug if not changed
+        this.goalDistance = goalDistance;
+        this.backgroundMusicResId = backgroundMusicResId;
     }
 
-    public LevelData(CopyOnWriteArrayList<EnemyEntityData> enemyData,
+    /*public LevelData(CopyOnWriteArrayList<EnemyEntityData> enemyData,
                      float goalDistance, int backgroundMusicResId) {
         this.enemyData = enemyData;
         this.goalDistance = goalDistance;
         this.backgroundMusicResId = backgroundMusicResId;
-    }
+    }*/
 }
