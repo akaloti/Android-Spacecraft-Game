@@ -75,11 +75,17 @@ source code. However, this game still differs greatly from Tappy Defender.
 "Testing and Securing Android Studio Applications" by Belén Cruz Zapata
 and Antonio Hernández Niñirola helped me set up the unit tests.
 
-The background track "King Galaxian" is from the video game Pac-Man World.
-The background track "Saber Wing" was produced by TAG.
-
 I made (and exported images of) sprites with Autodesk Inventor and edited
 images with www.online-image-editor.com.
+
+Sources of Background Music
+---------------------------
+
+(Note that I make no money from this app.)
+
+The track "Hurry" is from the video game Super Mario Galaxy 2.
+The track "King Galaxian" is from the video game Pac-Man World.
+The "Saber Wing" tracks were produced by TAG.
 
 Author
 ------
