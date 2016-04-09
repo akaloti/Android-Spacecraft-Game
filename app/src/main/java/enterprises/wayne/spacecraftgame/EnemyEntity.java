@@ -98,11 +98,12 @@ public abstract class EnemyEntity extends Entity {
         Random generator = new Random();
 
         // asteroids are slower than spacecrafts are;
-        // since there are not many enemy entity types yet,
+        // since there are not many enemy entity types,
         // this method of assigning different speed ranges suffices;
-        if (getType() == Type.SMALL_ASTEROID
-                || getType() == Type.BIG_ASTEROID)
+        if (isAsteroid())
             setSpeedY(generator.nextInt(2) + 3);
+        else if (isFastVariation())
+            setSpeedY(generator.nextInt(3) + 9);
         else
             setSpeedY(generator.nextInt(3) + 5);
     }
@@ -121,6 +122,25 @@ public abstract class EnemyEntity extends Entity {
 
         setX(x);
         setY(y);
+    }
+
+    public boolean isAsteroid() {
+        switch (getType()) {
+            case SMALL_ASTEROID:
+            case BIG_ASTEROID:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isFastVariation() {
+        switch (getType()) {
+            case FAST_DUMMY_1:
+                return true;
+            default:
+                return false;
+        }
     }
 
     public boolean isHunter() {

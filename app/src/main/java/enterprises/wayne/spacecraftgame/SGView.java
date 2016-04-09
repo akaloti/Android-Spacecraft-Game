@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = false;
+    private final boolean mDebuggingLevels = true;
 
     private Context mContext;
 
@@ -134,7 +134,16 @@ public class SGView extends SurfaceView
         LevelData levelData;
 
         if (mDebuggingLevels) {
-            // Level 1
+            levelData = new LevelData(900, R.raw.king_galaxian);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 0, 1000));
+            mLevels.add(levelData);
+
+            /*// Level 1
             levelData = new LevelData(600, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
@@ -208,7 +217,7 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.HUNTER_1, 800, 2000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 1000, 2000));
-            mLevels.add(levelData);
+            mLevels.add(levelData);*/
         }
         else { // not debugging -- use real levels
             // Level 1
@@ -265,7 +274,7 @@ public class SGView extends SurfaceView
 
             // Level 4
             levelData = new LevelData(1500, R.raw.hurry);
-            
+
             mLevels.add(levelData);
 
             /*levelData.enemyData.add(
@@ -299,6 +308,11 @@ public class SGView extends SurfaceView
                         mEnemyEntities.add(
                                 new Dummy(mContext, mScreenX, mScreenY,
                                           eed.endDistance));
+                        break;
+                    case FAST_DUMMY_1:
+                        mEnemyEntities.add(
+                                new FastDummy(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
                         break;
                     case BIG_DUMMY_1:
                         mEnemyEntities.add(

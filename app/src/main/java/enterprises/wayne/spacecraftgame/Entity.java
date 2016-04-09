@@ -25,6 +25,7 @@ public abstract class Entity {
 
         // enemy spacecrafts
         DUMMY_1,
+        FAST_DUMMY_1,
         BIG_DUMMY_1, // by "big dummy", I mean he's larger, not dumber
         HUNTER_1,
         BIG_HUNTER_1,
@@ -60,6 +61,10 @@ public abstract class Entity {
             case DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.dummy1);
+                break;
+            case FAST_DUMMY_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.fast_dummy1);
                 break;
             case BIG_DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource
