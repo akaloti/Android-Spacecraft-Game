@@ -324,6 +324,11 @@ public class SGView extends SurfaceView
                                 new Hunter(mContext, mScreenX, mScreenY,
                                            eed.endDistance));
                         break;
+                    case FAST_HUNTER_1:
+                        mEnemyEntities.add(
+                                new FastHunter(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
+                        break;
                     case BIG_HUNTER_1:
                         mEnemyEntities.add(
                                 new BigHunter1(mContext, mScreenX, mScreenY,

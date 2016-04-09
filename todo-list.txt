@@ -4,6 +4,8 @@ Release 1.0:
 -level design and game play:
     -make game have total of 15-20 levels; use pencil and paper
     -change player spacecrafts' speeds to all three have good chance
+    -test frame rate with many enemies
+-decrease volume of "victory" sound effect
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,

@@ -28,6 +28,7 @@ public abstract class Entity {
         FAST_DUMMY_1,
         BIG_DUMMY_1, // by "big dummy", I mean he's larger, not dumber
         HUNTER_1,
+        FAST_HUNTER_1,
         BIG_HUNTER_1,
         ZIGZAG_1,
         AMBUSHER_1,
@@ -73,6 +74,10 @@ public abstract class Entity {
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
+                break;
+            case FAST_HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.fast_hunter1);
                 break;
             case BIG_HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource

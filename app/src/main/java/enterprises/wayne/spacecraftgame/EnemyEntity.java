@@ -137,6 +137,7 @@ public abstract class EnemyEntity extends Entity {
     public boolean isFastVariation() {
         switch (getType()) {
             case FAST_DUMMY_1:
+            case FAST_HUNTER_1:
                 return true;
             default:
                 return false;
@@ -147,6 +148,7 @@ public abstract class EnemyEntity extends Entity {
         switch (getType()) {
             case HUNTER_1:
             case BIG_HUNTER_1:
+            case FAST_HUNTER_1:
                 return true;
             default:
                 return false;
