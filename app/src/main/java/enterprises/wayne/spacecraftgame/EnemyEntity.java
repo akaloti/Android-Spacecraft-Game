@@ -100,7 +100,8 @@ public abstract class EnemyEntity extends Entity {
         // asteroids are slower than spacecrafts are;
         // since there are not many enemy entity types yet,
         // this method of assigning different speed ranges suffices;
-        if (getType() == Type.SMALL_ASTEROID)
+        if (getType() == Type.SMALL_ASTEROID
+                || getType() == Type.BIG_ASTEROID)
             setSpeedY(generator.nextInt(2) + 3);
         else
             setSpeedY(generator.nextInt(3) + 5);

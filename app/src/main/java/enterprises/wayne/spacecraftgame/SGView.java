@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = true;
+    private final boolean mDebuggingLevels = false;
 
     private Context mContext;
 
@@ -135,44 +135,6 @@ public class SGView extends SurfaceView
 
         if (mDebuggingLevels) {
             // Level 1
-            levelData = new LevelData(300, R.raw.king_galaxian);
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
-            mLevels.add(levelData);
-
-            levelData = new LevelData(300, R.raw.hurry);
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
-            mLevels.add(levelData);
-
-            levelData = new LevelData(300, R.raw.saber_wing_2);
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
-            mLevels.add(levelData);
-
-            levelData = new LevelData(300, R.raw.saber_wing_3);
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1400));
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1400));
-            mLevels.add(levelData);
-        }
-        else { // not debugging -- use real levels
-            // Level 1
             levelData = new LevelData(600, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
@@ -247,6 +209,76 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 1000, 2000));
             mLevels.add(levelData);
+        }
+        else { // not debugging -- use real levels
+            // Level 1
+            /*levelData = new LevelData(1700, R.raw.king_galaxian);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 100, 700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 50, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 100, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 600, 1700));
+            mLevels.add(levelData);
+
+            // Level 2
+            levelData = new LevelData(1200, R.raw.king_galaxian);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 0, 1200));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.ZIGZAG_1, 600, 1200));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 900, 1200));
+            mLevels.add(levelData);*/
+
+            // Level 3
+            levelData = new LevelData(1500, R.raw.king_galaxian);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 50, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 100, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 150, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 200, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 250, 1100));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 300, 1200));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 350, 1300));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 400, 1400));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 850, 1500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 1000, 1500));
+            mLevels.add(levelData);
+
+            // Level 4
+            levelData = new LevelData(1500, R.raw.hurry);
+            
+            mLevels.add(levelData);
+
+            /*levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 100, 800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 50, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 100, 1700));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 800, 1700));
+                    */
         }
     }
 
