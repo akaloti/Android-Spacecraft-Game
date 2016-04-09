@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SGView extends SurfaceView
     implements Runnable {
 
-    private final boolean mDebuggingLevels = true;
+    private final boolean mDebuggingLevels = false;
 
     private Context mContext;
 
@@ -138,9 +138,11 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
-            levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 0, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_HUNTER_1, 0, 1000));
             mLevels.add(levelData);
 
             /*// Level 1
@@ -221,7 +223,7 @@ public class SGView extends SurfaceView
         }
         else { // not debugging -- use real levels
             // Level 1
-            /*levelData = new LevelData(1700, R.raw.king_galaxian);
+            levelData = new LevelData(1700, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
             levelData.enemyData.add(
@@ -244,7 +246,7 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.ZIGZAG_1, 600, 1200));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 900, 1200));
-            mLevels.add(levelData);*/
+            mLevels.add(levelData);
 
             // Level 3
             levelData = new LevelData(1500, R.raw.king_galaxian);
@@ -273,8 +275,65 @@ public class SGView extends SurfaceView
             mLevels.add(levelData);
 
             // Level 4
-            levelData = new LevelData(1500, R.raw.hurry);
+            levelData = new LevelData(1000, R.raw.hurry);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1100));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 50, 1100));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 0, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.DUMMY_1, 50, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 100, 1000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 300, 1500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 600, 1500));
+            mLevels.add(levelData);
 
+            // Level 5
+            levelData = new LevelData(1500, R.raw.hurry);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 0, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 100, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 200, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 600, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 1000, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 1400, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 1700, 2500));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 1000, 2500));
+            mLevels.add(levelData);
+
+            // Level 6
+            levelData = new LevelData(1800, R.raw.hurry);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 0, 1800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 100, 1800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 200, 1800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 120, 800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 300, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SMALL_ASTEROID, 400, 900));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_DUMMY_1, 200, 800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_HUNTER_1, 500, 1800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.FAST_HUNTER_1, 800, 1800));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 850, 1800));
             mLevels.add(levelData);
 
             /*levelData.enemyData.add(

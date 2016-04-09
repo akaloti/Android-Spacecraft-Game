@@ -76,3 +76,4 @@ spacecraft--adds a whole new set of possibilities)
 -put number of unit tests in readme
 -think of better way to determine Ambusher's offset waypoint;
 make Ambusher's image
+-can choose difficulty of levels on main menu
