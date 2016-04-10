@@ -86,6 +86,8 @@ Sources of Background Music
 The track "Hurry" is from the video game Super Mario Galaxy 2.
 The track "King Galaxian" is from the video game Pac-Man World.
 The "Saber Wing" tracks were produced by TAG.
+The track named "pac-man-champ.ogg" is from the video game
+Pac-Man Championship Edition DX.
 
 Author
 ------

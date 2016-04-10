@@ -222,8 +222,9 @@ public class SGView extends SurfaceView
             mLevels.add(levelData);*/
         }
         else { // not debugging -- use real levels
+            /*
             // Level 1
-            /*levelData = new LevelData(1700, R.raw.king_galaxian);
+            levelData = new LevelData(1700, R.raw.king_galaxian);
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.DUMMY_1, 0, 500));
             levelData.enemyData.add(
@@ -334,9 +335,8 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.FAST_HUNTER_1, 800, 1800));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_ASTEROID, 850, 1800));
-            mLevels.add(levelData);*/
+            mLevels.add(levelData);
 
-            /*
             // Level 7
             levelData = new LevelData(1500, R.raw.saber_wing);
             levelData.enemyData.add(
@@ -428,13 +428,6 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_HUNTER_1, 1000, 1500));
             mLevels.add(levelData);
-            */
-
-            // Level #
-            levelData = new LevelData(1800, R.raw.hurry);
-            levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.SUPER_FAST_DUMMY_1, 0, 1800));
-            mLevels.add(levelData);
 
             // Level 11
             levelData = new LevelData(1500, R.raw.saber_wing_3);
@@ -448,6 +441,13 @@ public class SGView extends SurfaceView
                     new EnemyEntityData(Entity.Type.HUNTER_1, 600, 2000));
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 800, 2000));
+            mLevels.add(levelData);
+            */
+
+            // Level 12
+            levelData = new LevelData(1800, R.raw.hurry);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 850, 1800));
             mLevels.add(levelData);
 
             /*
