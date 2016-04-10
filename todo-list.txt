@@ -2,9 +2,12 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -level design and game play:
-    -make game have total of 15-20 levels; use pencil and paper
+    -make game have total of 18 levels; use pencil and paper
     -change player spacecrafts' speeds to all three have good chance
     -test frame rate with many enemies
+    -use the Pac Man Championship edition music for last three levels; cite it
+    -review levels to make sure that none are too luck-dependent
+    -make "super fast" variations of enemies?
 -decrease volume of "victory" sound effect
 -main activity
     -main menu background image
