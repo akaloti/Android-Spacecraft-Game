@@ -41,6 +41,9 @@ experience with test-driven development, I missed a few
 opportunities to add unit tests and functional tests.
 I hope to not make this mistake again.)
 
+-No significant frame rate issues (at least on my device). I tested with
+100 hunters.
+
 
 Releases
 --------

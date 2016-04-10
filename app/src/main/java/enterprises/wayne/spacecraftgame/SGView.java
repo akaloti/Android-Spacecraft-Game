@@ -220,6 +220,15 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.HUNTER_1, 1000, 2000));
             mLevels.add(levelData);*/
+
+            // Frame Rate test
+            /*
+            levelData = new LevelData(1800, R.raw.hurry);
+            for (int i = 0; i < 100; ++i)
+                levelData.enemyData.add(
+                        new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1800));
+            mLevels.add(levelData);
+            */
         }
         else { // not debugging -- use real levels
             /*
@@ -447,7 +456,7 @@ public class SGView extends SurfaceView
             // Level 12
             levelData = new LevelData(1800, R.raw.hurry);
             levelData.enemyData.add(
-                    new EnemyEntityData(Entity.Type.BIG_ASTEROID, 850, 1800));
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 1800));
             mLevels.add(levelData);
 
             /*
