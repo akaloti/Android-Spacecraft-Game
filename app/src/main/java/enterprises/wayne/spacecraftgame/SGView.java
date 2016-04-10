@@ -372,7 +372,6 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_HUNTER_1, 1700, 2300));
             mLevels.add(levelData);
-            */
 
             // Level 9
             levelData = new LevelData(1500, R.raw.saber_wing_2);
@@ -429,6 +428,27 @@ public class SGView extends SurfaceView
             levelData.enemyData.add(
                     new EnemyEntityData(Entity.Type.BIG_HUNTER_1, 1000, 1500));
             mLevels.add(levelData);
+            */
+
+            // Level #
+            levelData = new LevelData(1800, R.raw.hurry);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.SUPER_FAST_DUMMY_1, 0, 1800));
+            mLevels.add(levelData);
+
+            // Level 11
+            levelData = new LevelData(1500, R.raw.saber_wing_3);
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 0, 2000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 200, 2000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 400, 2000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 600, 2000));
+            levelData.enemyData.add(
+                    new EnemyEntityData(Entity.Type.HUNTER_1, 800, 2000));
+            mLevels.add(levelData);
 
             /*
             // Level #
@@ -473,6 +493,11 @@ public class SGView extends SurfaceView
                     case FAST_DUMMY_1:
                         mEnemyEntities.add(
                                 new FastDummy(mContext, mScreenX, mScreenY,
+                                        eed.endDistance));
+                        break;
+                    case SUPER_FAST_DUMMY_1:
+                        mEnemyEntities.add(
+                                new SuperFastDummy(mContext, mScreenX, mScreenY,
                                         eed.endDistance));
                         break;
                     case BIG_DUMMY_1:

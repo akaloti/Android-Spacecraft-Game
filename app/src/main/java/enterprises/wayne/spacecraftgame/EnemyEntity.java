@@ -104,6 +104,8 @@ public abstract class EnemyEntity extends Entity {
             setSpeedY(generator.nextInt(2) + 3);
         else if (isFastVariation())
             setSpeedY(generator.nextInt(3) + 9);
+        else if (isSuperFastVariation())
+            setSpeedY(generator.nextInt(3) + 15);
         else
             setSpeedY(generator.nextInt(3) + 5);
     }
@@ -138,6 +140,15 @@ public abstract class EnemyEntity extends Entity {
         switch (getType()) {
             case FAST_DUMMY_1:
             case FAST_HUNTER_1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isSuperFastVariation() {
+        switch (getType()) {
+            case SUPER_FAST_DUMMY_1:
                 return true;
             default:
                 return false;
