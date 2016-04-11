@@ -2,10 +2,9 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -level design and game play:
-    -make enemies disappear before a level is finished (by editing level data)
-        -could test
-    -make game have total of 15-20 levels; use pencil and paper
     -change player spacecrafts' speeds to all three have good chance
+    -review levels to make sure that none are too luck-dependent
+-decrease volume of "victory" sound effect
 -main activity
     -main menu background image
     -include some sort of directions (e.g. keep eye on distance remaining,
@@ -76,3 +75,4 @@ spacecraft--adds a whole new set of possibilities)
 -put number of unit tests in readme
 -think of better way to determine Ambusher's offset waypoint;
 make Ambusher's image
+-can choose difficulty of levels on main menu
