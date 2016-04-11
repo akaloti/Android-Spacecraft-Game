@@ -43,9 +43,9 @@ public class PlayerSpacecraft extends Entity {
             case HERO_1:
                 return 2;
             case HERO_2:
-                return 4;
+                return 3;
             case HERO_3:
-                return 1;
+                return 2;
             default:
                 throw new AssertionError("Invalid spacecraft type");
         }
@@ -56,7 +56,7 @@ public class PlayerSpacecraft extends Entity {
             case HERO_1:
                 return 10;
             case HERO_2:
-                return 5;
+                return 8;
             case HERO_3:
                 return 15;
             default:
