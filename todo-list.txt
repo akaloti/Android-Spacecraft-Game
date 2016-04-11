@@ -2,12 +2,6 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -level design and game play:
-    -make game have total of 15 levels; use pencil and paper
-        -12: mix of asteroids, dummies, hunters, and zig-zaggers?
-        -switch to Pac Man music
-        -13: bunch of super fast dummies
-        -14: bunch of red hunters
-        -15: variety of enemies (including small asteroids)
     -change player spacecrafts' speeds to all three have good chance
     -review levels to make sure that none are too luck-dependent
 -decrease volume of "victory" sound effect
