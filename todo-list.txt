@@ -2,7 +2,6 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -main activity
-    -put hero #1 in middle of main menu
     -describe each hero? very briefly; ideas:
         -"Easy", "Average", "Hard"
         -"Default", "Faster Challenge", "Tall Order"
@@ -13,6 +12,8 @@ Release 1.0:
     -include some sort of directions (e.g. keep eye on distance remaining,
     tap left and right halves of screen)
 -review readme; check it on GitHub
+    -use parentheses after numbers when numbering enemies
+    -add numbers to readme headers? (e.g. "1) Features")
 -upload app on Google Play
 
 Release 1.1:

@@ -3,7 +3,8 @@
 About
 -----
 
-In this app, the user controls a spacecraft and attempts to navigate
+In this portrait-oriented app,
+the user controls a spacecraft and attempts to navigate
 through all of the levels by dodging enemies and rocks.
 
 I programmed this from December of 2015 (during my winter break)
@@ -69,10 +70,10 @@ Note on Device Resolution
 
 Because this was kind of a no-budget game, I couldn't test it on devices
 of different resolutions. (My device was my smartphone.)
-The AVD Manager of Android Studio pretends
-to let me create an emulator for a tablet, but it ends up creating
-a tablet with decreased resolution (so that it is pretty much just like
-the smartphone). However, the level code is set up in a way to make
+The AVD Manager of Android Studio lets me create an emulator for a
+high-resolution tablet, but it always freezes when I switch its
+orientation (which is unfortunately landscape by default).
+However, the level code is set up in a way to make
 adding levels for devices of different resolutions easier; this
 could help if I ever return to working on this app with a purchased
 tablet. Anyway, as the game is, I imagine that the higher the resolution,

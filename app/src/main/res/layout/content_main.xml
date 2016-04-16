@@ -16,15 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ibHero"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="81dp"
         android:src="@drawable/hero"
         android:background="#00ffffff"
+        android:onClick="onPlayClick"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="76dp"
-        android:layout_marginStart="76dp"
-        android:onClick="onPlayClick" />
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -33,19 +30,24 @@
         android:src="@drawable/hero2"
         android:background="#00ffffff"
         android:onClick="onPlayClick"
-        android:layout_marginLeft="39dp"
-        android:layout_marginStart="39dp"
-        android:layout_alignBottom="@+id/ibHero3"
-        android:layout_toRightOf="@+id/ibHero3"
-        android:layout_toEndOf="@+id/ibHero3" />
+        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_alignBottom="@+id/ibHero"
+        android:layout_toLeftOf="@+id/ibHero"
+        android:layout_toStartOf="@+id/ibHero"
+        android:layout_marginBottom="7dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ibHero3"
         android:src="@drawable/hero3"
-        android:layout_alignBottom="@+id/ibHero"
-        android:layout_centerHorizontal="true"
         android:onClick="onPlayClick"
-        android:background="#00ffffff" />
+        android:background="#00ffffff"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp"
+        android:layout_alignTop="@+id/ibHero"
+        android:layout_toRightOf="@+id/ibHero"
+        android:layout_toEndOf="@+id/ibHero"
+        android:layout_marginTop="-20dp" />
 </RelativeLayout>
