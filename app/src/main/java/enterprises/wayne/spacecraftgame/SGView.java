@@ -42,7 +42,7 @@ public class SGView extends SurfaceView
     private CopyOnWriteArrayList<EnemyEntityData> mEnemyData;
 
     private CopyOnWriteArrayList<SpaceDust> mDustList;
-    private static final int NUMBER_OF_DUST = 120;
+    private static final int NUMBER_OF_DUST = 175;
 
     // For controlling frame rate
     private static final int IDEAL_FRAMES_PER_SECOND = 60;
