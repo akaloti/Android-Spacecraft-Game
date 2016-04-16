@@ -1,11 +1,9 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
--review readme; check it on GitHub
-    -use parentheses after numbers when numbering enemies
-    -add numbers to readme headers? (e.g. "1) Features")
-    -describe three heroes and their differences
--upload app on Google Play
+-publish app
+    -create appropriate icons
+    -add Google Play link to readme
 
 Release 1.1:
 -Preserve game if press back or pause app, in case accident or phone call

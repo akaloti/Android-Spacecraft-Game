@@ -32,20 +32,25 @@ Readme Contents
 
 9) Contact Information
 
-Features
---------
+1) Features
+-----------
 
 -Handling of two threads (the main game thread and the input thread).
 
 -User's spacecraft reacts according to which half (if any) of the screen the
-user is touching, even if he/she is touching both halves.
+user is touching, even if he/she is touching both halves (causing no movement).
+
+-Can choose between three spacecrafts that differ in speed and shape:
+1) Default,
+2) Cube (vertically faster but horizontally slower), and
+3) Long (horizontally faster but dangerously long).
 
 -Five kinds of enemies:
-1. Dummies and Asteroids,
-2. Hunters,
-3. Zig-Zaggers,
-4. Big Ones (i.e. big versions of dummies, asteroids, and hunters),
-5. Ambushers (unfinished).
+1) Dummies (includes Asteroids),
+2) Hunters,
+3) Zig-Zaggers,
+4) Big Ones (i.e. big versions of dummies, asteroids, and hunters), and
+5) Ambushers (unfinished).
 
 -Sprites designed with Autodesk Inventor.
 
@@ -55,7 +60,7 @@ user is touching, even if he/she is touching both halves.
 
 -Each level has total goal distance according to level data.
 
--Five levels.
+-15 levels.
 
 -A few unit tests. (Because of the nature of this game and my relatively low
 experience with test-driven development, I missed a few
@@ -65,44 +70,45 @@ I hope to not make this mistake again.)
 -No significant frame rate issues (at least on my device). I tested with
 100 hunters.
 
-Note on Device Resolution
--------------------------
+2) Note on Device Resolution
+----------------------------
 
-Because this was kind of a no-budget game, I couldn't test it on devices
-of different resolutions. (My device was my smartphone.)
+Because this was a no-budget game, I couldn't test it on devices
+of different resolutions than my smartphone's.
 The AVD Manager of Android Studio lets me create an emulator for a
-high-resolution tablet, but it always freezes when I switch its
+high-resolution tablet, but any emulator with a high enough resolution
+always freezes when I switch its
 orientation (which is unfortunately landscape by default).
 However, the level code is set up in a way to make
 adding levels for devices of different resolutions easier; this
 could help if I ever return to working on this app with a purchased
 tablet. Anyway, as the game is, I imagine that the higher the resolution,
-the easier the game is.
+the easier the game is (since the sprites have constant sizes).
 
 
-Releases
---------
+3) Releases
+-----------
 
-Latest release: v0.3
+Latest release: v1.0
 
 Please see the releases section under this repository on GitHub
 to download the latest release.
 
-How to Run App
---------------
+4) How to Run App
+-----------------
 
 In Android Studio, run 'app' in 'enterprises.wayne.spacecraftgame'.
 
-How to Run Tests
-----------------
+5) How to Run Tests
+-------------------
 
 In Android Studio, run 'Tests' in 'enterprises.wayne.spacecraftgame'.
 The Android device that you use to run the tests must be unlocked (even
 if the device is an emulator); otherwise, at least one of the functional
 tests will always fail.
 
-Acknowledgments
----------------
+6) Acknowledgments
+------------------
 
 "Android Game Programming by Example" by John Horton helped me decide
 which classes to use. Many of this game's classes were inspired
@@ -116,8 +122,8 @@ and Antonio Hernández Niñirola helped me set up the unit tests.
 I made (and exported images of) sprites with Autodesk Inventor and edited
 images with www.online-image-editor.com.
 
-Sources of Background Music
----------------------------
+7) Sources of Background Music
+------------------------------
 
 (Note that I make no money from this app.)
 
@@ -127,13 +133,13 @@ The "Saber Wing" tracks were produced by TAG.
 The track named "pac-man-champ.ogg" is from the video game
 Pac-Man Championship Edition DX.
 
-Author
-------
+8) Author
+---------
 
 That is me, Aaron Kaloti.
 
-Contact Information
--------------------
+9) Contact Information
+----------------------
 
 My email address: aarons.7007@gmail.com
 
