@@ -7,9 +7,29 @@ In this app, the user controls a spacecraft and attempts to navigate
 through all of the levels by dodging enemies and rocks.
 
 I programmed this from December of 2015 (during my winter break)
-to March of 2016 (during the winter quarter of my first year in college).
+to April of 2016 (through the winter and spring quarters of my first year
+in college) in Java with the help of Android Studio.
 
-I programmed it in Java with the help of Android Studio.
+Readme Contents
+---------------
+
+1) Features
+
+2) Note on Device Resolution
+
+3) Releases
+
+4) How to Run App
+
+5) How to Run Tests
+
+6) Acknowledgements
+
+7) Sources of Background Music
+
+8) Author
+
+9) Contact Information
 
 Features
 --------
@@ -20,11 +40,11 @@ Features
 user is touching, even if he/she is touching both halves.
 
 -Five kinds of enemies:
-1. Dummies and Asteroids
-2. Hunters
-3. Zig-Zaggers (has slight problems)
-4. Big Ones (i.e. big versions of dummies, asteroids, and hunters)
-5. Ambushers (unfinished)
+1. Dummies and Asteroids,
+2. Hunters,
+3. Zig-Zaggers,
+4. Big Ones (i.e. big versions of dummies, asteroids, and hunters),
+5. Ambushers (unfinished).
 
 -Sprites designed with Autodesk Inventor.
 
@@ -43,6 +63,20 @@ I hope to not make this mistake again.)
 
 -No significant frame rate issues (at least on my device). I tested with
 100 hunters.
+
+Note on Device Resolution
+-------------------------
+
+Because this was kind of a no-budget game, I couldn't test it on devices
+of different resolutions. (My device was my smartphone.)
+The AVD Manager of Android Studio pretends
+to let me create an emulator for a tablet, but it ends up creating
+a tablet with decreased resolution (so that it is pretty much just like
+the smartphone). However, the level code is set up in a way to make
+adding levels for devices of different resolutions easier; this
+could help if I ever return to working on this app with a purchased
+tablet. Anyway, as the game is, I imagine that the higher the resolution,
+the easier the game is.
 
 
 Releases
