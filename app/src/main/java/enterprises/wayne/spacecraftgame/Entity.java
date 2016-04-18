@@ -19,14 +19,24 @@ public abstract class Entity {
     private Type mType;
 
     public enum Type {
-        HERO,
+        HERO_1,
+        HERO_2,
+        HERO_3,
 
         // enemy spacecrafts
         DUMMY_1,
+        FAST_DUMMY_1,
+        SUPER_FAST_DUMMY_1,
+        BIG_DUMMY_1, // by "big dummy", I mean he's larger, not dumber
         HUNTER_1,
+        FAST_HUNTER_1,
+        BIG_HUNTER_1,
+        ZIGZAG_1,
+        AMBUSHER_1,
 
         // asteroids
         SMALL_ASTEROID,
+        BIG_ASTEROID,
     }
 
     /**
@@ -38,21 +48,61 @@ public abstract class Entity {
     public Entity(Context context, Type type, int screenX, int screenY) {
         // Select appropriate bitmap for the entity
         switch (type) {
-            case HERO:
+            case HERO_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hero);
+                break;
+            case HERO_2:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero2);
+                break;
+            case HERO_3:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.hero3);
                 break;
             case DUMMY_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.dummy1);
                 break;
+            case FAST_DUMMY_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.fast_dummy1);
+                break;
+            case SUPER_FAST_DUMMY_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.fast_dummy1);
+                break;
+            case BIG_DUMMY_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.big_dummy1);
+                break;
             case HUNTER_1:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.hunter1);
                 break;
+            case FAST_HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.fast_hunter1);
+                break;
+            case BIG_HUNTER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.big_hunter1);
+                break;
+            case ZIGZAG_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.zigzag1);
+                break;
+            /*case AMBUSHER_1:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.ambusher1);
+                break;*/
             case SMALL_ASTEROID:
                 mBitmap = BitmapFactory.decodeResource
                         (context.getResources(), R.drawable.small_asteroid);
+                break;
+            case BIG_ASTEROID:
+                mBitmap = BitmapFactory.decodeResource
+                        (context.getResources(), R.drawable.big_asteroid);
                 break;
             default:
                 throw new AssertionError("Invalid type given to Entity()");
@@ -136,9 +186,5 @@ public abstract class Entity {
 
     public int getCenterX() {
         return mX + mBitmap.getWidth() / 2;
-    }
-
-    public boolean isHunter() {
-        return mType == Type.HUNTER_1;
     }
 }

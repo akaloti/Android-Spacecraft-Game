@@ -64,7 +64,7 @@ public abstract class EnemyEntity extends Entity {
      * @param playerSpeedY is used to move the enemy further,
      * creating the illusion that the player is moving forward
      * (so that the camera needn't move)
-     * @returns false if enemy should be destroyed; otherwise, true
+     * @return false if enemy should be destroyed; otherwise, true
      */
     public boolean update(int playerSpeedY) {
         setX(getX() + getSpeedX());
@@ -98,10 +98,14 @@ public abstract class EnemyEntity extends Entity {
         Random generator = new Random();
 
         // asteroids are slower than spacecrafts are;
-        // since there are not many enemy entity types yet,
+        // since there are not many enemy entity types,
         // this method of assigning different speed ranges suffices;
-        if (getType() == Type.SMALL_ASTEROID)
+        if (isAsteroid())
             setSpeedY(generator.nextInt(2) + 3);
+        else if (isFastVariation())
+            setSpeedY(generator.nextInt(3) + 9);
+        else if (isSuperFastVariation())
+            setSpeedY(generator.nextInt(3) + 15);
         else
             setSpeedY(generator.nextInt(3) + 5);
     }
@@ -121,4 +125,53 @@ public abstract class EnemyEntity extends Entity {
         setX(x);
         setY(y);
     }
+
+    public boolean isAsteroid() {
+        switch (getType()) {
+            case SMALL_ASTEROID:
+            case BIG_ASTEROID:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isFastVariation() {
+        switch (getType()) {
+            case FAST_DUMMY_1:
+            case FAST_HUNTER_1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isSuperFastVariation() {
+        switch (getType()) {
+            case SUPER_FAST_DUMMY_1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isHunter() {
+        switch (getType()) {
+            case HUNTER_1:
+            case BIG_HUNTER_1:
+            case FAST_HUNTER_1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isAmbusher() {
+        switch (getType()) {
+            case AMBUSHER_1:
+                return true;
+            default:
+                return false;
+        }
+    } // isAmbusher()
 }

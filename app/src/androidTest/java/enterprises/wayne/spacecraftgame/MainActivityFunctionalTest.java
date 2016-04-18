@@ -5,6 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.view.KeyEvent;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by Aaron on 12/27/2015.
@@ -13,7 +14,8 @@ public class MainActivityFunctionalTest
     extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity mActivity;
-    private Button mPlay;
+    private ImageButton mHero1;
+    private ImageButton mHero2;
 
     public MainActivityFunctionalTest() {
         super(MainActivity.class);
@@ -30,7 +32,8 @@ public class MainActivityFunctionalTest
         // this is enough to start the activity
         mActivity = getActivity();
 
-        mPlay = (Button) mActivity.findViewById(R.id.bPlay);
+        mHero1 = (ImageButton) mActivity.findViewById(R.id.ibHero);
+        mHero2 = (ImageButton) mActivity.findViewById(R.id.ibHero2);
     }
 
     /**
@@ -41,7 +44,7 @@ public class MainActivityFunctionalTest
                 getInstrumentation().addMonitor(GameActivity.class.getName(),
                         null, false);
 
-        TouchUtils.clickView(this, mPlay);
+        TouchUtils.clickView(this, mHero1);
 
         GameActivity gameActivity =
                 (GameActivity) monitor.waitForActivityWithTimeout(2000);

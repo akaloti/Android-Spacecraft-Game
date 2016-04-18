@@ -1,26 +1,36 @@
 DON'T FORGET ABOUT UNIT TESTS
 
-Release 1.0:
--can choose between three different spacecrafts of varying speed, size,
-and shape
-
 Release 1.1:
--main activity
-    -main menu background image
-    -include some sort of directions (e.g. keep eye on distance remaining,
-    tap left and right halves of screen)
--make HUD beautiful-er; see Google Images for inspiration
+-Preserve game if press back or pause app, in case accident or phone call
 
-Eventually:
--player's spacecraft's speed could increase as levels progress
--make enemies disappear before a level is finished (by editing level data)
--make more kinds of enemies (i.e. not variations of hunters or dummies)
--make game have total of 40 levels
--upload app on Google Play
+Release 2.0:
+-enemies
+    -allow enemies to have different vertical speeds
+        -let each enemy keep its speed range instead of storing
+        them in EnemyEntity::setNewRandomSpeedY()?
+    -more types
+        -small, really fast one; waypoint rarely set
+        -boundary-gliders
+        -enemy that alters between small and big sprite each time interval
+        -enemy that toggles its visibilty (really frequently)
+            -dummy version
+            -hunter version?
+        -gigantic asteroid that is almost as wide as the screen
+         (would have to check how well the game works on
+          devices of other sizes first, though)
+    -faster different-colored versions of the enemies
+-bring level total to 40 (make these levels after deciding whether to
+allow choosing a different spacecraft in between levels)
+-make HUD beautiful-er; see Google Images for inspiration
+-upload new APK (i.e. update the app) on Google Play
 
 Considerable:
--consider scaling everything, so it all looks the same on every device
-    --may not be needed
+-invest in a real tablet (with different resolution from that of my phone)
+to test how well the app performs; AVD Manager won't let me create a tablet
+emulator with enough resolution
+    -if doesn't look well on tablets, can fix it or mention on Google Play;
+        is fine since there aren't leaderboards
+    -consider scaling everything, so it all looks the same on every device
     --look into eBook (i.e. "Android Game Development by Example")
     for discussion about this topic
     --since a dust speck is a pixel, could make number of specks
@@ -28,21 +38,37 @@ Considerable:
         --PROBLEM: all crafts move more slowly on bigger devices
             --could compensate by editing speed
             --could do what was done in eBook's Chapter 5
--put finish line sprite at goal distance
--special effects when the user is almost at the goal; e.g.:
-    -screen could have flashes of red
-    -alarm sound effects could play
+    -would something have to be done about sprites that could be
+    too big on smaller devices?
 -implement explosion (via sprite sheet) when user's spacecraft explodes
 -combine all images into one sprite sheet
 -enemies that shoot
 -could restart level data by iterating through and adjusting each's
 hasSpawned member
--look into reading data from text files
-    -doesn't seem to have any benefit in this context
--use unit test to check for invalid level data
-    -check both "debugging" and "non-debugging levels"
-    -criteria for being invalid:
-        -background music isn't set
-        -any enemy's beginning distance is past goal distance?
 -don't allow the player to pause
     -call mBackgroundMusic.release() in SGView.pause()
+-player's spacecraft's speed could increase as levels progress
+-inflate speeds (and thus level distances) to increase variety of slower
+(int) speeds
+-make everything smaller (to make world wider) by making sprites smaller
+-make "max" (and other appropriate) members "final"
+-don't let any update method call System.currentTimeMillis() twice; instead
+store the time in a local variable
+-switch zig-zagger's current waypoint based on reaching the waypoint
+rather than on reaching the time
+-figure out why zig-zagger's sometimes vibrates in place, even when
+it doesn't seem to have reached its waypoint
+-figure out some quick way to add new enemies (and in the process update what
+needs to be updated in isHunter() and SGView)
+-allow more chances to switch spacecraft (e.g. after finishing the game; before
+restarting the level (so wouldn't have to make each level passable by each
+spacecraft--adds a whole new set of possibilities)
+-give enemies horizontal boundary checking
+-put number of unit tests in readme
+-think of better way to determine Ambusher's offset waypoint;
+make Ambusher's image
+-can choose difficulty of levels on main menu
+-audio improvements (that can't be done with Audacity because the sound clips
+are too big)
+    -remove blank sound at end of "Hurry"
+    -improve volumes; make "Pac Man Champ" louder
