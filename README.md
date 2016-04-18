@@ -11,6 +11,9 @@ I programmed this from December of 2015 (during my winter break)
 to April of 2016 (through the winter and spring quarters of my first year
 in college) in Java with the help of Android Studio.
 
+Here is the app (named "Outer Space Legion") on the Google Play store:
+https://play.google.com/store/apps/details?id=enterprises.wayne.spacecraftgame&hl=en
+
 Readme Contents
 ---------------
 
