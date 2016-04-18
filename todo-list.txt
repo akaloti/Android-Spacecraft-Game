@@ -2,7 +2,6 @@ DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.0:
 -publish app
-    -create appropriate icons
     -add Google Play link to readme
 
 Release 1.1:
