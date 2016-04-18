@@ -11,6 +11,9 @@ I programmed this from December of 2015 (during my winter break)
 to April of 2016 (through the winter and spring quarters of my first year
 in college) in Java with the help of Android Studio.
 
+Here is the app (named "Outer Space Legion") on the Google Play store:
+https://play.google.com/store/apps/details?id=enterprises.wayne.spacecraftgame&hl=en
+
 Readme Contents
 ---------------
 
@@ -45,12 +48,13 @@ user is touching, even if he/she is touching both halves (causing no movement).
 2) Cube (vertically faster but horizontally slower), and
 3) Long (horizontally faster but dangerously long).
 
--Five kinds of enemies:
+-Six kinds of enemies:
 1) Dummies (includes Asteroids),
 2) Hunters,
 3) Zig-Zaggers,
-4) Big Ones (i.e. big versions of dummies, asteroids, and hunters), and
-5) Ambushers (unfinished).
+4) Big Ones (i.e. big versions of dummies, asteroids, and hunters),
+5) Fast Ones (i.e. fast versions of dummies and hunters),
+6) Ambushers (unfinished).
 
 -Sprites designed with Autodesk Inventor.
 
