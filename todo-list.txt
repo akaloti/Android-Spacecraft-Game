@@ -1,13 +1,20 @@
 DON'T FORGET ABOUT UNIT TESTS
 
 Release 1.1:
--Figure out how to make the game better-scaled on BlueStacks; ideas:
-    -have another folder containing bigger images
-        -may have to change some goal distances
-    -scale images in the way done in chapter 5 of the Android Java
-    game book (this may not be as hard as I think; shouldn't I merely
-    have to check the screen size and then modify the images (and maybe
-    the distances and speeds))
+-scale things based on device resolution:
+    -main menu:
+        -figure out how to scale Android UI components based on device resolution
+        -scale images
+        -scale text
+    -game:
+        -scale HUD
+    -change the note on device resolution in the readme
+        -could remove it and mention different-resolution compatability
+        as a feature
+        -mention that only could test on either smartphone or BlueStacks;
+        say resolution of both; mention that the solution looks like
+        it should work for all resolutions but that I've no way of knowing
+        for sure
 -Preserve game if press back or pause app, in case accident or phone call
 
 Release 2.0:

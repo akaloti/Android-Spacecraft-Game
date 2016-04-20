@@ -23,6 +23,8 @@ public class GameActivity extends Activity {
         Point size = new Point();
         display.getSize(size);
 
+        // Log.e("e", "X=" + size.x + " Y=" + size.y);
+
         mGameView = new SGView(this, size.x, size.y);
         setContentView(mGameView);
     }
