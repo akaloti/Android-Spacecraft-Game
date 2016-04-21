@@ -6,8 +6,11 @@ Release 1.1:
         -figure out how to scale Android UI components based on device resolution
         -scale images
         -scale text
-    -game:
-        -scale HUD
+    -game appearance:
+        -scale HUD?
+    -gameplay:
+        -scale distances or speeds? (or should the currently existent
+        differences in gameplay be accepted?)
     -change the note on device resolution in the readme
         -could remove it and mention different-resolution compatability
         as a feature
@@ -15,6 +18,8 @@ Release 1.1:
         say resolution of both; mention that the solution looks like
         it should work for all resolutions but that I've no way of knowing
         for sure
+-reupload app on Google Play
+  -provide pictures of tablet or BlueStacks emulator
 -Preserve game if press back or pause app, in case accident or phone call
 
 Release 2.0:
