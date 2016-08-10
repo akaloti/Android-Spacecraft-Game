@@ -11,6 +11,9 @@ I programmed this from December of 2015 (during my winter break)
 to April of 2016 (through the winter and spring quarters of my first year
 in college) in Java with the help of Android Studio.
 
+Here is a demonstrative YouTube video:
+https://www.youtube.com/watch?v=8kL93vDL6ms
+
 Here is the app (named "Outer Space Legion") on the Google Play store:
 https://play.google.com/store/apps/details?id=enterprises.wayne.spacecraftgame&hl=en
 
@@ -71,6 +74,8 @@ experience with test-driven development, I missed a few
 opportunities to add unit tests and functional tests.
 I hope to not make this mistake again.)
 
+-Enemy, player, and asteroid bitmaps are scaled based on device resolution.
+
 -No significant frame rate issues (at least on my device). I tested with
 100 hunters.
 
@@ -83,17 +88,18 @@ The AVD Manager of Android Studio lets me create an emulator for a
 high-resolution tablet, but any emulator with a high enough resolution
 always freezes when I switch its
 orientation (which is unfortunately landscape by default).
-However, the level code is set up in a way to make
-adding levels for devices of different resolutions easier; this
-could help if I ever return to working on this app with a purchased
-tablet. Anyway, as the game is, I imagine that the higher the resolution,
-the easier the game is (since the sprites have constant sizes).
+Enemy, player, and asteroid bitmaps are scaled based on device resolution,
+but I could only test on my smartphone and on the BlueStacks emulator.
+Thus, the game should work for all resolutions, but I have no
+way of knowing for sure. Furthermore, the scale still seems easier
+on the BlueStacks emulator (which has a higher resolution than my
+smartphone does).
 
 
 3) Releases
 -----------
 
-Latest release: v1.0
+Latest release: v1.1
 
 Please see the releases section under this repository on GitHub
 to download the latest release.
