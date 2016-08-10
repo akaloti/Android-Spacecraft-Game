@@ -108,6 +108,8 @@ public abstract class Entity {
                 throw new AssertionError("Invalid type given to Entity()");
         }
 
+        scaleBitmap(screenX, screenY);
+
         mType = type;
 
         mX = 50;
@@ -187,4 +189,28 @@ public abstract class Entity {
     public int getCenterX() {
         return mX + mBitmap.getWidth() / 2;
     }
+
+    /**
+     * This method is based on a similar one from chapter 4
+     * of "Android Game Programming by Example" by John Horton.
+     *
+     * @param screenX
+     * @param screenY
+     */
+    private void scaleBitmap(int screenX, int screenY) {
+        /**
+         * Because of the no-budget nature of this game, I only
+         * had my smartphone to test it on. That device had a
+         * resolution of 540 by 960, so I wrote this function
+         * to try to scale the bitmaps to take up the relative
+         * amounts of the screen that they take up on my device.
+         */
+        float multiplierX = (float) screenX / 540;
+        float multiplierY = (float) screenY / 960;
+        mBitmap = Bitmap.createScaledBitmap(mBitmap,
+                (int) (mBitmap.getWidth() * multiplierX),
+                (int) (mBitmap.getHeight() * multiplierY),
+                false);
+        // Log.e("e", "multX=" + multiplierX + " multY=" + multiplierY);
+    } // scaleBitmap()
 }
