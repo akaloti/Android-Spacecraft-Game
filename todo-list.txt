@@ -1,7 +1,10 @@
 DON'T FORGET ABOUT UNIT TESTS
 
-Release 1.1:
--scale things based on device resolution:
+Release 1.2:
+-Preserve game if press back or pause app, in case accident or phone call
+
+Release 1.3:
+-scale (more) things based on device resolution:
     -main menu:
         -figure out how to scale Android UI components based on device resolution
         -scale images
@@ -11,16 +14,9 @@ Release 1.1:
     -gameplay:
         -scale distances or speeds? (or should the currently existent
         differences in gameplay be accepted?)
-    -change the note on device resolution in the readme
-        -could remove it and mention different-resolution compatability
-        as a feature
-        -mention that only could test on either smartphone or BlueStacks;
-        say resolution of both; mention that the solution looks like
-        it should work for all resolutions but that I've no way of knowing
-        for sure
--reupload app on Google Play
+    -change the note on device resolution in the readme?
+-reupload app on Google Play (if enough downloads already)
   -provide pictures of tablet or BlueStacks emulator
--Preserve game if press back or pause app, in case accident or phone call
 
 Release 2.0:
 -enemies
